@@ -21,6 +21,9 @@ jobs:
       - run: flutter test
         working-directory: core
       - run: dart tool/format.dart
+      - run: dart run build_runner build --delete-conflicting-outputs
+      - run: dart run build_runner build --delete-conflicting-outputs
+        working-directory: core
       - name: "check for uncommitted changes"
         run: |
           git diff --exit-code . \

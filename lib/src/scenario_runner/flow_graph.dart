@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:built_collection/built_collection.dart';
-import 'package:dev_studio/src/utils/router_outlet.dart';
 import 'package:dev_studio_client/internal.dart';
 import 'package:dev_studio_core/graphite.dart';
 import 'package:flutter/material.dart' hide InteractiveViewer;
 import 'package:flutter/services.dart';
 import '../ui.dart';
 import '../utils/graphite.dart';
+import '../utils/router_outlet.dart';
 import 'app_connected.dart';
 import 'detail.dart';
 import 'screens/screens.dart';

@@ -1,3 +1,9 @@
+.*
+_*
+
+!.gitignore
+!.github
+
 # Miscellaneous
 *.class
 *.log

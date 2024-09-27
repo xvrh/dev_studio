@@ -2,9 +2,9 @@ import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:collection/collection.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:dev_studio_core/src/utils/string.dart';
 import '../scenario/model/screen.dart';
 import '../utils/source_code.dart';
+import '../utils/string.dart';
 
 class TranslationScreenshotUtilities {
   static Map<String, List<String>> parseFiltersCode(String dartCode) {
