@@ -1,7 +1,5 @@
 name: dev_studio_client
 
-resolution: workspace
-
 environment:
   sdk: '^3.5.0'
 

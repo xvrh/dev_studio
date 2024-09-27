@@ -1,6 +1,0 @@
-include: ../analysis_options.yaml
-
-linter:
-  rules:
-#    cast_nullable_to_non_nullable: false # BuiltValues generator doesn't exclude it
-#    no_leading_underscores_for_local_identifiers: false # BuiltValues generate local with _

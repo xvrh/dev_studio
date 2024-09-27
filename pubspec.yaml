@@ -1,9 +1,5 @@
 name: dev_studio
 
-workspace:
-  - client
-  - core
-
 environment:
   sdk: '^3.5.0'
 
