@@ -1,0 +1,115 @@
+
+Mvp
+- Write iAqualink+ onboarding scenario
+- On each "screen" action, send the update to the Host, update the ScenarioRun & display the full flow!
+- Write iAqualink+ login scenarios
+
+- Build web version of the Runner and start the UI with the postMessage based Connection
+ ===> REQUIRED
+
+====> nothing else until this is working
+
+
+- Side improvements:
+   Allow to switch devices & language (locale) (add test for Intl in the test scenario)
+   (Group Listing view)
+
+Next big feature
+- Screen details
+    UI goes full screen
+    Extract translations
+    Hover buttons & Text
+
+
+=> Write a ton of scenario & add features as needed
+
+
+- Delete example, app & runner are the same
+- Name it something generic (dev_tool?). We will add more feature into this (launcher, etc...).
+- Runner API & protocol (with simplified api: tapText(translations.myKey), tapKey(Keys.xxx), ensureVisible()
+- UI features with desktop & web entry points
+- Headless runner to generate index
+   Index is basically the object graph serialized. The protocol (server) should be instantiable with existing data.
+   Client updates should incremently update the data so that at the end of the run, the data are correctly updated.
+   But a fresh run could clean all the screens? It's just that runs could exist without images. And runs without images
+   will automatically be executed when opened?
+- Search feature: paste a key & it shows all the screen with it. Click on it and it opens the scenario + full screen with
+  this key.
+  Same thing for analytics event.
+- GroupKey: in a run some screen can be grouped, a toggle switch allow to display the graph grouped or not.
+- Path: allow to take several distinct path in the run (ie. With or without MFA) and remerge after
+splitPaths({
+  'normal': () {
+    .. do the sub path (1 more indentation)
+    tapText('');
+  },
+   'with 2FA': () {
+
+   }
+ });
+}
+
+
+
+
+// Commandes
+
+
+- Start a Flutter desktop app that start a WebServer / WebSocket
+   - Register the Controller
+
+
+Steps:
+- On client connection, list all scenarios (fetch)
+- Register on "onReload" stream and refresh list when it's happen
+- Setup hotreload feature on the Runner
+- Setup "merging" of ScenarioReference (received in list()) and ScenarioResult (which contains
+    all informations: latest result (screens), status (running/stopped/error), timing
+-
+
+
+====
+POC
+====
+- UI send command Start to a scenario
+- Scenario run et send Image (encoded base64) to UI
+- UI display images
+- Try with 2 separate scenarios (with image, text & shadow)
+- Setup Hot reload in the runner
+- Build with a web client.
+
+===> POC OK
+
+=========
+MVP
+=========
+- Handle several clients (tabs)
+- Handle auto-reconnect client (or auto-relaunching client)
+- API to define scenario (extends class or function with argument)
+- Finalize Listing
+- Running API: Populate a Scenario with some results
+Models: Scenario, ScenarioRun(Device, language), Screen(name, parent), ScreenState(description, image, events, translations),
+Translation(key, Rect), Device(Size, TargetPlatform)
+
+- Pouvoir lancer un client depuis l'interface graphique?
+    Web ou Desktop, choisir le fichier avec les scénarios. Run the start command (flutter test...)
+    on a generated entry point file.
+
+======
+TO CONSIDER
+======
+- Create a RPC mecanism (protobuf? or custom) to Dartify the communication between Host & Client
+
+
+
+- Start a client.
+   Register the api on the client
+   Have the server send a message to the client
+   Have the client send a message to the server. (ie: list all scenario available)
+   Server list scenarios
+   Client update scenarios (hot reload)
+   Server start scenario
+   Client update scenario_run in real time
+
+
+

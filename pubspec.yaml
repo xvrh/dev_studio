@@ -1,0 +1,52 @@
+name: dev_studio
+
+workspace:
+  - client
+  - core
+
+environment:
+  sdk: '^3.5.0'
+
+dependencies:
+  built_collection:
+  built_value:
+  collection:
+  dev_studio_client:
+    path: client
+  dev_studio_core:
+    path: core
+  file_selector:
+  flutter:
+    sdk: flutter
+  flutter_highlight:
+  flutter_web_plugins:
+    sdk: flutter
+  http:
+  logging:
+  os_detect:
+  path:
+  process_runner:
+  puppeteer:
+  quiver:
+  rxdart:
+  shelf:
+  shelf_router:
+  shelf_static:
+  shelf_web_socket:
+  stream_transform:
+  test:
+  url_launcher:
+  vector_math:
+  web_socket_channel:
+
+dev_dependencies:
+  build_runner:
+  built_value_generator:
+  flutter_test:
+    sdk: flutter
+  lints:
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

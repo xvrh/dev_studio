@@ -1,0 +1,32 @@
+name: dev_studio_core
+
+resolution: workspace
+
+environment:
+  sdk: '^3.5.0'
+
+dependencies:
+  analyzer:
+  built_collection:
+  built_value:
+  collection:
+  common_locale_data:
+  dart_style:
+  diacritic:
+  html:
+  http:
+  intl:
+  json_annotation:
+  lints:
+  logging:
+  package_config:
+  path:
+  pdf:
+  process_runner:
+  yaml:
+
+dev_dependencies:
+  build_runner:
+  built_value_generator:
+  json_serializable:
+  test:

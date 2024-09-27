@@ -1,0 +1,11 @@
+export 'src/scenario/model/accessibility.dart';
+export 'src/scenario/model/device_info.dart';
+export 'src/scenario/model/message.dart';
+export 'src/scenario/model/project_info.dart';
+export 'src/scenario/model/rectangle.dart';
+export 'src/scenario/model/run_args.dart';
+export 'src/scenario/model/run_result.dart';
+export 'src/scenario/model/scenario.dart';
+export 'src/scenario/model/scenario_run.dart';
+export 'src/scenario/model/screen.dart';
+export 'src/scenario/serializers.dart' show modelSerializers;
