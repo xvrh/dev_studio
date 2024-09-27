@@ -6,7 +6,7 @@ part of 'run_args.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<RunArgs> _$runArgsSerializer = _$RunArgsSerializer();
+Serializer<RunArgs> _$runArgsSerializer = new _$RunArgsSerializer();
 
 class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
   @override
@@ -22,7 +22,8 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'scenarioName',
       serializers.serialize(object.scenarioName,
-          specifiedType: const FullType(BuiltList, [FullType(String)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
       'device',
       serializers.serialize(object.device,
           specifiedType: const FullType(DeviceInfo)),
@@ -46,7 +47,7 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
   @override
   RunArgs deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = RunArgsBuilder();
+    final result = new RunArgsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -60,7 +61,8 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
           break;
         case 'scenarioName':
           result.scenarioName.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(BuiltList, [FullType(String)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
         case 'device':
@@ -108,7 +110,7 @@ class _$RunArgs extends RunArgs {
   final bool onlyWithDocumentationKey;
 
   factory _$RunArgs([void Function(RunArgsBuilder)? updates]) =>
-      (RunArgsBuilder()..update(updates))._build();
+      (new RunArgsBuilder()..update(updates))._build();
 
   _$RunArgs._(
       {required this.id,
@@ -136,7 +138,7 @@ class _$RunArgs extends RunArgs {
       (toBuilder()..update(updates)).build();
 
   @override
-  RunArgsBuilder toBuilder() => RunArgsBuilder()..replace(this);
+  RunArgsBuilder toBuilder() => new RunArgsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -188,17 +190,17 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
 
   ListBuilder<String>? _scenarioName;
   ListBuilder<String> get scenarioName =>
-      _$this._scenarioName ??= ListBuilder<String>();
+      _$this._scenarioName ??= new ListBuilder<String>();
   set scenarioName(ListBuilder<String>? scenarioName) =>
       _$this._scenarioName = scenarioName;
 
   DeviceInfoBuilder? _device;
-  DeviceInfoBuilder get device => _$this._device ??= DeviceInfoBuilder();
+  DeviceInfoBuilder get device => _$this._device ??= new DeviceInfoBuilder();
   set device(DeviceInfoBuilder? device) => _$this._device = device;
 
   AccessibilityConfigBuilder? _accessibility;
   AccessibilityConfigBuilder get accessibility =>
-      _$this._accessibility ??= AccessibilityConfigBuilder();
+      _$this._accessibility ??= new AccessibilityConfigBuilder();
   set accessibility(AccessibilityConfigBuilder? accessibility) =>
       _$this._accessibility = accessibility;
 
@@ -250,7 +252,7 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
     _$RunArgs _$result;
     try {
       _$result = _$v ??
-          _$RunArgs._(
+          new _$RunArgs._(
               id: BuiltValueNullFieldError.checkNotNull(id, r'RunArgs', 'id'),
               scenarioName: scenarioName.build(),
               device: device.build(),
@@ -273,7 +275,7 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
         _$failedField = 'accessibility';
         accessibility.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'RunArgs', _$failedField, e.toString());
       }
       rethrow;

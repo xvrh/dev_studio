@@ -24,8 +24,8 @@ HtmlScreenshotResponse _$HtmlScreenshotResponseFromJson(
         Map<String, dynamic> json) =>
     HtmlScreenshotResponse(
       image: base64Decode(json['image'] as String),
-      imageWidth: json['imageWidth'] as int,
-      imageHeight: json['imageHeight'] as int,
+      imageWidth: (json['imageWidth'] as num).toInt(),
+      imageHeight: (json['imageHeight'] as num).toInt(),
       texts: (json['texts'] as List<dynamic>)
           .map((e) => TextInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -62,8 +62,8 @@ PdfScreenshotResponse _$PdfScreenshotResponseFromJson(
         Map<String, dynamic> json) =>
     PdfScreenshotResponse(
       image: base64Decode(json['image'] as String),
-      imageWidth: json['imageWidth'] as int,
-      imageHeight: json['imageHeight'] as int,
+      imageWidth: (json['imageWidth'] as num).toInt(),
+      imageHeight: (json['imageHeight'] as num).toInt(),
     );
 
 Map<String, dynamic> _$PdfScreenshotResponseToJson(
@@ -75,8 +75,8 @@ Map<String, dynamic> _$PdfScreenshotResponseToJson(
     };
 
 DeviceInfo _$DeviceInfoFromJson(Map<String, dynamic> json) => DeviceInfo(
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
       pixelRatio: json['pixelRatio'] as num,
     );
 
