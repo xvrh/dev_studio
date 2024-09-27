@@ -25,15 +25,14 @@ class TranslationsScreenshotsService {
         filterFile.readAsStringSync());
 
     var initialFilters = <String, List<Screen>>{};
-      for (var filter in filters.entries) {
-        var filteredScreens = screens
-            .where((s) => filter.value.any((f) => f == _screenName(s)))
-            .toList();
-        if (filteredScreens.isNotEmpty) {
-          initialFilters[filter.key] = filteredScreens;
-        }
+    for (var filter in filters.entries) {
+      var filteredScreens = screens
+          .where((s) => filter.value.any((f) => f == _screenName(s)))
+          .toList();
+      if (filteredScreens.isNotEmpty) {
+        initialFilters[filter.key] = filteredScreens;
       }
-
+    }
 
     definitionFile.writeAsStringSync(
         TranslationScreenshotUtilities.generateListCode(screens));

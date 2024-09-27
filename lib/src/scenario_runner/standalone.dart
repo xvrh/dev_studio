@@ -1,5 +1,5 @@
-import 'package:dev_studio/src/utils/router_outlet.dart';
 import 'package:flutter/material.dart';
+import '../utils/router_outlet.dart';
 
 class StandaloneScenarioApp extends StatelessWidget {
   final Widget app;

@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
-import 'package:dev_studio/src/utils/router_outlet.dart';
 import 'package:dev_studio_client/internal.dart';
 import 'package:flutter/material.dart';
 import '../ui.dart';
+import '../utils/router_outlet.dart';
 import 'app_connected.dart';
 import 'detail/email.dart';
 import 'detail/image.dart';

@@ -1,9 +1,9 @@
-import 'package:dev_studio/src/utils/router_outlet.dart';
 import 'package:dev_studio_client/internal.dart';
 import 'package:dev_studio_core/web_manifest.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../ui.dart';
+import '../utils/router_outlet.dart';
 import 'service.dart' show ScenarioContext;
 import 'ui/breadcrumb.dart';
 import 'ui/menu_tree.dart';

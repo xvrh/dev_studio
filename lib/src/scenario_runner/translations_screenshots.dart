@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:collection/collection.dart';
-import 'package:dev_studio/src/utils/router_outlet.dart';
 import 'package:dev_studio_client/html_screenshot.dart' as html;
 import 'package:dev_studio_client/internal.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:path/path.dart' as p;
 import 'package:puppeteer/puppeteer.dart' as pup;
+import '../utils/router_outlet.dart';
 import 'translations_screenshots_service.dart';
 
 final _logger = Logger('translation_screenshots');

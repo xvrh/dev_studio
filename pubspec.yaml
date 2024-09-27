@@ -41,6 +41,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints:
+  project_tools:
+    git:
+      url: https://github.com/xvrh/project_tools.dart.git
+      ref: '76d200c'
 
 flutter:
   uses-material-design: true
