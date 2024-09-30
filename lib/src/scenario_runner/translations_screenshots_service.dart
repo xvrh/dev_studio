@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'package:dev_studio_core/documentation.dart'
-    show TranslationScreenshotUtilities;
-import 'package:dev_studio_core/scenario_models.dart' show Screen;
-import 'package:dev_studio_core/utils_string.dart';
+import '../../core/documentation.dart' show TranslationScreenshotUtilities;
+import '../../core/scenario_models.dart' show Screen;
+import '../../core/utils_string.dart';
 
 class TranslationsScreenshotsService {
   final File filterFile;

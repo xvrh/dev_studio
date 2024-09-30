@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dev_studio_client/html_screenshot.dart';
+import 'package:dev_studio/client/html_screenshot.dart';
 import 'package:logging/logging.dart';
 
 void main() async {

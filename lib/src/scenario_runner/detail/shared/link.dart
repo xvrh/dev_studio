@@ -1,5 +1,5 @@
-import 'package:dev_studio_client/internal.dart';
 import 'package:flutter/material.dart';
+import '../../../../client/internal.dart';
 import '../../../utils/router_outlet.dart';
 import 'analytic_event.dart';
 

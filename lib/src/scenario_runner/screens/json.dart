@@ -1,7 +1,7 @@
-import 'package:dev_studio_core/scenario_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
+import '../../../core/scenario_models.dart';
 
 class JsonBody extends StatelessWidget {
   final ScenarioRun run;

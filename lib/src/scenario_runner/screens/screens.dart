@@ -1,5 +1,5 @@
-import 'package:dev_studio_core/scenario_models.dart';
 import 'package:flutter/material.dart';
+import '../../../core/scenario_models.dart';
 import '../service.dart';
 import '../ui/device_frame.dart';
 import '../ui/gmail.dart';

@@ -1,6 +1,6 @@
-import 'package:dev_studio_core/html_screenshot.dart' as screenshot;
-import 'package:dev_studio_core/scenario_models.dart';
 import 'package:flutter/material.dart';
+import '../../../core/html_screenshot.dart' as screenshot;
+import '../../../core/scenario_models.dart';
 import '../html_screenshot/service.dart';
 
 class PdfBody extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:dev_studio_client/internal.dart';
 import 'package:flutter/material.dart';
+import '../../client/internal.dart';
 import '../ui.dart';
 import '../utils/router_outlet.dart';
 import 'extra_tools.dart';

@@ -1,8 +1,8 @@
-import 'package:dev_studio_client/internal.dart' hide TextInfo;
-import 'package:dev_studio_core/html_screenshot.dart' as screenshot;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../client/internal.dart' hide TextInfo;
+import '../../../core/html_screenshot.dart' as screenshot;
 import '../detail.dart';
 import '../html_screenshot/service.dart';
 import '../ui/gmail.dart';

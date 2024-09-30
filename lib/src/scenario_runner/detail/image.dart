@@ -1,5 +1,5 @@
-import 'package:dev_studio_client/internal.dart';
 import 'package:flutter/material.dart';
+import '../../../client/internal.dart';
 import '../detail.dart';
 import '../ui/side_bar.dart';
 import 'shared/documentation_section.dart';

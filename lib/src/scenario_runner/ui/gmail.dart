@@ -1,6 +1,6 @@
-import 'package:dev_studio_core/scenario_models.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../core/scenario_models.dart';
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices

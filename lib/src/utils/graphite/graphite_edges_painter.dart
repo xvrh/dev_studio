@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:dev_studio_core/graphite.dart';
 import 'package:flutter/widgets.dart';
+import '../../../core/graphite.dart';
 import 'arrow_path.dart';
 import 'graphite.dart';
 

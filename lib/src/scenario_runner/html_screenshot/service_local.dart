@@ -1,5 +1,5 @@
-import 'package:dev_studio_client/html_screenshot.dart' as screenshot;
 import 'package:puppeteer/puppeteer.dart';
+import '../../../client/html_screenshot.dart' as screenshot;
 import 'service.dart';
 
 class LocalHtmlScreenshotService implements HtmlScreenshotService {
