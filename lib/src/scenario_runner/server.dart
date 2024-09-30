@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dev_studio_client/internal.dart';
-import 'package:dev_studio_client/scenario.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf_web_socket/shelf_web_socket.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import '../../client/internal.dart';
+import '../../client/scenario.dart';
 
 class Server {
   static const defaultPort = defaultServerPort;

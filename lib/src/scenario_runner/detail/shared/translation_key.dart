@@ -1,8 +1,8 @@
-import 'package:dev_studio_client/internal.dart';
-import 'package:dev_studio_core/link_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../client/internal.dart';
+import '../../../../core/link_generator.dart';
 import '../../../utils/color.dart';
 import '../../ui/side_bar.dart';
 

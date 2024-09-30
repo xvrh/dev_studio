@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:dev_studio_client/internal.dart' hide TextInfo;
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
+import '../../../client/internal.dart' hide TextInfo;
 import '../detail.dart';
 import '../ui/side_bar.dart';
 import 'shared/link.dart';

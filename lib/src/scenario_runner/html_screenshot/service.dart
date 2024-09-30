@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:dev_studio_core/html_screenshot.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:quiver/collection.dart';
+import '../../../core/html_screenshot.dart';
 
-export 'package:dev_studio_core/html_screenshot.dart';
+export '../../../core/html_screenshot.dart';
 
 abstract class HtmlScreenshotService {
   Future<HtmlScreenshotResponse> htmlScreenshot(HtmlScreenshotRequest request);

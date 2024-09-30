@@ -1,5 +1,5 @@
-import 'package:dev_studio_client/logger_utils.dart';
 import 'package:flutter/widgets.dart';
+import '../../client/logger_utils.dart';
 
 void runDebugApp(Widget widget) {
   setupDebugLogger();

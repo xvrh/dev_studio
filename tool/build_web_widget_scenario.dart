@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dev_studio_client/web_compiler.dart';
+import 'package:dev_studio/client/web_compiler.dart';
 
 void main() {
   buildWebBundle('test/widget_scenario.dart',

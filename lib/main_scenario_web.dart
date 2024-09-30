@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
-import 'package:dev_studio_client/internal.dart';
-import 'package:dev_studio_client/internal_web.dart';
-import 'package:dev_studio_core/web_manifest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:rxdart/rxdart.dart';
+import 'client/internal.dart';
+import 'client/internal_web.dart';
+import 'core/web_manifest.dart';
 import 'src/scenario_runner/app.dart';
 import 'src/scenario_runner/html_screenshot/service.dart';
 import 'src/scenario_runner/service.dart';

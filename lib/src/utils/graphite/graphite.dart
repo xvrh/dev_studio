@@ -1,6 +1,6 @@
 import 'dart:math' as math;
-import 'package:dev_studio_core/graphite.dart';
 import 'package:flutter/widgets.dart';
+import '../../../core/graphite.dart';
 import 'graphite_cell.dart';
 import 'graphite_edges_painter.dart';
 import 'graphite_root.dart';

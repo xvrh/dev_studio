@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:dev_studio_client/scenario.dart';
+import 'package:dev_studio/client/scenario.dart';
 import 'package:flutter/material.dart';
 import 'fake_app.dart';
 

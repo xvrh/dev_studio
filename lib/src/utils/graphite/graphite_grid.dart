@@ -1,6 +1,6 @@
-import 'package:dev_studio_core/graphite.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../../../core/graphite.dart';
 import 'graphite.dart';
 
 class GraphiteGrid extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:dev_studio_client/internal.dart' hide TextInfo;
-import 'package:dev_studio_core/html_screenshot.dart' as screenshot;
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
+import '../../../client/internal.dart' hide TextInfo;
+import '../../../core/html_screenshot.dart' as screenshot;
 import '../detail.dart';
 import '../html_screenshot/service.dart';
 import '../ui/side_bar.dart';

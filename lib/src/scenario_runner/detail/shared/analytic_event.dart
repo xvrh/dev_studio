@@ -1,7 +1,7 @@
-import 'package:dev_studio_client/internal.dart';
-import 'package:dev_studio_core/link_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../client/internal.dart';
+import '../../../../core/link_generator.dart';
 
 class AnalyticEventDialog extends StatelessWidget {
   final ProjectInfo project;

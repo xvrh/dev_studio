@@ -7,17 +7,17 @@ dependencies:
   built_collection:
   built_value:
   collection:
-  dev_studio_client:
-    path: client
-  dev_studio_core:
-    path: core
+  dart_style:
+  diacritic:
+  device_frame:
   file_selector:
-  flutter:
-    sdk: flutter
+  flutter: { sdk: flutter }
   flutter_highlight:
-  flutter_web_plugins:
-    sdk: flutter
+  flutter_markdown:
+  flutter_svg:
+  flutter_web_plugins: { sdk: flutter }
   http:
+  image:
   logging:
   os_detect:
   path:

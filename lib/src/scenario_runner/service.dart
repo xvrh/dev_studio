@@ -1,6 +1,6 @@
-import 'package:dev_studio_client/internal.dart';
-import 'package:dev_studio_core/web_manifest.dart';
 import 'package:rxdart/rxdart.dart';
+import '../../client/internal.dart';
+import '../../core/web_manifest.dart';
 import 'html_screenshot/service.dart';
 
 class ScenarioService {
