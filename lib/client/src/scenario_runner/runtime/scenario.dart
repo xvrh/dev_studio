@@ -57,6 +57,8 @@ abstract class Scenario {
 
   ScenarioBundle get bundle => _bundle;
 
+  bool get isDesktop => false;
+
   Widget? _widget;
   Future<void> pumpWidget(Widget widget) async {
     _widget = widget;

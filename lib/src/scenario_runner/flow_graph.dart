@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart' hide InteractiveViewer;
 import 'package:flutter/services.dart';
 import '../../client/internal.dart';
@@ -19,10 +18,10 @@ import 'ui/interactive_viewer.dart';
 class RunView extends StatefulWidget {
   final ScenarioService service;
   final ScenarioApi client;
-  final BuiltList<String> scenarioName;
+  final ScenarioReference scenario;
 
-  RunView(this.service, this.client, this.scenarioName)
-      : super(key: Key(scenarioName.join('-')));
+  RunView(this.service, this.client, this.scenario)
+      : super(key: Key(scenario.name.join('-')));
 
   @override
   State<RunView> createState() => _RunViewState();
@@ -53,10 +52,12 @@ class _RunViewState extends State<RunView> {
 
   void _start() {
     var toolbar = ToolBarScope.of(context).parameters;
+
+    var isDesktop = widget.scenario.isDesktop;
     _runReference = widget.client.run.start(
       RunArgs(
-        widget.scenarioName,
-        device: toolbar.device,
+        widget.scenario.name,
+        device: isDesktop ? toolbar.desktopDevice : toolbar.mobileDevice,
         language: toolbar.language,
         accessibility: toolbar.accessibility,
         imageRatio: 1.0,
@@ -105,6 +106,7 @@ class _RunViewState extends State<RunView> {
         return RunToolbar(
           project: project,
           initialParameters: toolbarScope.parameters,
+          isDesktop: widget.scenario.isDesktop,
           onChanged: (p) {
             var oldParameters = toolbarScope.parameters;
             toolbarScope.parameters = p;

@@ -6,18 +6,21 @@ import 'ui/toolbar.dart';
 
 class ToolbarParameters {
   final String language;
-  final DeviceInfo device;
+  final DeviceInfo mobileDevice;
+  final DeviceInfo desktopDevice;
   final AccessibilityConfig accessibility;
 
   ToolbarParameters({
     required this.language,
-    required this.device,
+    required this.mobileDevice,
+    required this.desktopDevice,
     required this.accessibility,
   });
 
   bool requiresFullRun(ToolbarParameters newConfig) {
     return newConfig.language != language ||
-        newConfig.device != device ||
+        newConfig.mobileDevice != mobileDevice ||
+        newConfig.desktopDevice != desktopDevice ||
         newConfig.accessibility != accessibility;
   }
 }
@@ -38,7 +41,8 @@ class ToolBarScope extends StatefulWidget {
 class ToolBarScopeState extends State<ToolBarScope> {
   late ToolbarParameters parameters = ToolbarParameters(
     language: widget.project.supportedLanguages.first,
-    device: DeviceInfo.iPhoneX,
+    mobileDevice: DeviceInfo.iPhoneX,
+    desktopDevice: DeviceInfo.laptop,
     accessibility: AccessibilityConfig.defaultValue,
   );
   bool isCollapsed = false;
@@ -56,6 +60,7 @@ class RunToolbar extends StatefulWidget {
   final Widget child;
   final ToolbarParameters initialParameters;
   final void Function(ToolbarParameters) onChanged;
+  final bool isDesktop;
 
   const RunToolbar({
     super.key,
@@ -65,6 +70,7 @@ class RunToolbar extends StatefulWidget {
     required this.onChanged,
     this.leadingActions,
     this.trailingActions,
+    required this.isDesktop,
   });
 
   @override
@@ -73,12 +79,14 @@ class RunToolbar extends StatefulWidget {
 
 class _RunToolbarState extends State<RunToolbar> {
   late String _language = widget.initialParameters.language;
-  late DeviceInfo _device = widget.initialParameters.device;
+  late DeviceInfo _mobileDevice = widget.initialParameters.mobileDevice;
+  late DeviceInfo _desktopDevice = widget.initialParameters.desktopDevice;
   late AccessibilityConfig _accessibility =
       widget.initialParameters.accessibility;
 
   @override
   Widget build(BuildContext context) {
+    var devices = widget.isDesktop ? DeviceInfo.desktopDevices : DeviceInfo.mobileDevices;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -106,15 +114,20 @@ class _RunToolbarState extends State<RunToolbar> {
                 },
               ),
               ToolbarDropdown<DeviceInfo>(
-                value: _device,
+                value: widget.isDesktop ? _desktopDevice : _mobileDevice,
                 onChanged: (v) {
                   setState(() {
-                    _device = v;
+                    if (widget.isDesktop) {
+                      _desktopDevice = v;
+                    } else {
+
+                      _mobileDevice = v;
+                    }
                   });
                   _onChanged();
                 },
                 items: {
-                  for (var value in DeviceInfo.devices) value: Text(value.name)
+                  for (var value in devices) value: Text(value.name)
                 },
               ),
               ToolbarPanel(
@@ -156,7 +169,8 @@ class _RunToolbarState extends State<RunToolbar> {
   void _onChanged() {
     widget.onChanged(ToolbarParameters(
       language: _language,
-      device: _device,
+      mobileDevice: _mobileDevice,
+      desktopDevice: _desktopDevice,
       accessibility: _accessibility,
     ));
   }

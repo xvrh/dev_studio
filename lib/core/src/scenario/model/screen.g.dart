@@ -6,18 +6,18 @@ part of 'screen.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<NewScreen> _$newScreenSerializer = _$NewScreenSerializer();
-Serializer<Screen> _$screenSerializer = _$ScreenSerializer();
-Serializer<TextInfo> _$textInfoSerializer = _$TextInfoSerializer();
-Serializer<ScreenLink> _$screenLinkSerializer = _$ScreenLinkSerializer();
+Serializer<NewScreen> _$newScreenSerializer = new _$NewScreenSerializer();
+Serializer<Screen> _$screenSerializer = new _$ScreenSerializer();
+Serializer<TextInfo> _$textInfoSerializer = new _$TextInfoSerializer();
+Serializer<ScreenLink> _$screenLinkSerializer = new _$ScreenLinkSerializer();
 Serializer<AnalyticEvent> _$analyticEventSerializer =
-    _$AnalyticEventSerializer();
-Serializer<BrowserInfo> _$browserInfoSerializer = _$BrowserInfoSerializer();
-Serializer<EmailInfo> _$emailInfoSerializer = _$EmailInfoSerializer();
-Serializer<PdfInfo> _$pdfInfoSerializer = _$PdfInfoSerializer();
-Serializer<JsonInfo> _$jsonInfoSerializer = _$JsonInfoSerializer();
+    new _$AnalyticEventSerializer();
+Serializer<BrowserInfo> _$browserInfoSerializer = new _$BrowserInfoSerializer();
+Serializer<EmailInfo> _$emailInfoSerializer = new _$EmailInfoSerializer();
+Serializer<PdfInfo> _$pdfInfoSerializer = new _$PdfInfoSerializer();
+Serializer<JsonInfo> _$jsonInfoSerializer = new _$JsonInfoSerializer();
 Serializer<ScreenAndPath> _$screenAndPathSerializer =
-    _$ScreenAndPathSerializer();
+    new _$ScreenAndPathSerializer();
 
 class _$NewScreenSerializer implements StructuredSerializer<NewScreen> {
   @override
@@ -68,7 +68,7 @@ class _$NewScreenSerializer implements StructuredSerializer<NewScreen> {
   @override
   NewScreen deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = NewScreenBuilder();
+    final result = new NewScreenBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -115,18 +115,22 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
     final result = <Object?>[
       'scenarioName',
       serializers.serialize(object.scenarioName,
-          specifiedType: const FullType(BuiltList, [FullType(String)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'texts',
       serializers.serialize(object.texts,
-          specifiedType: const FullType(BuiltList, [FullType(TextInfo)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(TextInfo)])),
       'next',
       serializers.serialize(object.next,
-          specifiedType: const FullType(BuiltList, [FullType(ScreenLink)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(ScreenLink)])),
       'pathTrail',
       serializers.serialize(object.pathTrail,
-          specifiedType: const FullType(BuiltList, [FullType(String)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'isCollapsable',
@@ -137,7 +141,8 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
           specifiedType: const FullType(bool)),
       'collapsedScreens',
       serializers.serialize(object.collapsedScreens,
-          specifiedType: const FullType(BuiltList, [FullType(Screen)])),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Screen)])),
     ];
     Object? value;
     value = object.pathName;
@@ -195,7 +200,7 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
   @override
   Screen deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = ScreenBuilder();
+    final result = new ScreenBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -205,7 +210,8 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
       switch (key) {
         case 'scenarioName':
           result.scenarioName.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(BuiltList, [FullType(String)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
         case 'id':
@@ -214,14 +220,14 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
           break;
         case 'texts':
           result.texts.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, [FullType(TextInfo)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(TextInfo)]))!
               as BuiltList<Object?>);
           break;
         case 'next':
           result.next.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, [FullType(ScreenLink)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(ScreenLink)]))!
               as BuiltList<Object?>);
           break;
         case 'pathName':
@@ -230,7 +236,8 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
           break;
         case 'pathTrail':
           result.pathTrail.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(BuiltList, [FullType(String)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
         case 'name':
@@ -255,7 +262,8 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
           break;
         case 'collapsedScreens':
           result.collapsedScreens.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(BuiltList, [FullType(Screen)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Screen)]))!
               as BuiltList<Object?>);
           break;
         case 'browser':
@@ -336,7 +344,7 @@ class _$TextInfoSerializer implements StructuredSerializer<TextInfo> {
   @override
   TextInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = TextInfoBuilder();
+    final result = new TextInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -417,7 +425,7 @@ class _$ScreenLinkSerializer implements StructuredSerializer<ScreenLink> {
   @override
   ScreenLink deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = ScreenLinkBuilder();
+    final result = new ScreenLinkBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -459,8 +467,8 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
           specifiedType: const FullType(String)),
       'args',
       serializers.serialize(object.args,
-          specifiedType:
-              const FullType(BuiltMap, [FullType(String), FullType(String)])),
+          specifiedType: const FullType(BuiltMap,
+              const [const FullType(String), const FullType(String)])),
     ];
 
     return result;
@@ -470,7 +478,7 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
   AnalyticEvent deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = AnalyticEventBuilder();
+    final result = new AnalyticEventBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -484,8 +492,8 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
           break;
         case 'args':
           result.args.replace(serializers.deserialize(value,
-              specifiedType: const FullType(
-                  BuiltMap, [FullType(String), FullType(String)]))!);
+              specifiedType: const FullType(BuiltMap,
+                  const [const FullType(String), const FullType(String)]))!);
           break;
       }
     }
@@ -520,7 +528,7 @@ class _$BrowserInfoSerializer implements StructuredSerializer<BrowserInfo> {
   @override
   BrowserInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = BrowserInfoBuilder();
+    final result = new BrowserInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -579,7 +587,7 @@ class _$EmailInfoSerializer implements StructuredSerializer<EmailInfo> {
   @override
   EmailInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = EmailInfoBuilder();
+    final result = new EmailInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -638,7 +646,7 @@ class _$PdfInfoSerializer implements StructuredSerializer<PdfInfo> {
   @override
   PdfInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = PdfInfoBuilder();
+    final result = new PdfInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -684,7 +692,7 @@ class _$JsonInfoSerializer implements StructuredSerializer<JsonInfo> {
   @override
   JsonInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = JsonInfoBuilder();
+    final result = new JsonInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -731,7 +739,7 @@ class _$ScreenAndPathSerializer implements StructuredSerializer<ScreenAndPath> {
   ScreenAndPath deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = ScreenAndPathBuilder();
+    final result = new ScreenAndPathBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -767,7 +775,7 @@ class _$NewScreen extends NewScreen {
   final String? imageBase64;
 
   factory _$NewScreen([void Function(NewScreenBuilder)? updates]) =>
-      (NewScreenBuilder()..update(updates))._build();
+      (new NewScreenBuilder()..update(updates))._build();
 
   _$NewScreen._(
       {required this.screen,
@@ -784,7 +792,7 @@ class _$NewScreen extends NewScreen {
       (toBuilder()..update(updates)).build();
 
   @override
-  NewScreenBuilder toBuilder() => NewScreenBuilder()..replace(this);
+  NewScreenBuilder toBuilder() => new NewScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -825,7 +833,7 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
   _$NewScreen? _$v;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   String? _parent;
@@ -834,13 +842,13 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
 
   RectangleBuilder? _parentRectangle;
   RectangleBuilder get parentRectangle =>
-      _$this._parentRectangle ??= RectangleBuilder();
+      _$this._parentRectangle ??= new RectangleBuilder();
   set parentRectangle(RectangleBuilder? parentRectangle) =>
       _$this._parentRectangle = parentRectangle;
 
   AnalyticEventBuilder? _analyticEvent;
   AnalyticEventBuilder get analyticEvent =>
-      _$this._analyticEvent ??= AnalyticEventBuilder();
+      _$this._analyticEvent ??= new AnalyticEventBuilder();
   set analyticEvent(AnalyticEventBuilder? analyticEvent) =>
       _$this._analyticEvent = analyticEvent;
 
@@ -881,7 +889,7 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
     _$NewScreen _$result;
     try {
       _$result = _$v ??
-          _$NewScreen._(
+          new _$NewScreen._(
               screen: screen.build(),
               parent: parent,
               parentRectangle: _parentRectangle?.build(),
@@ -898,7 +906,7 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
         _$failedField = 'analyticEvent';
         _analyticEvent?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'NewScreen', _$failedField, e.toString());
       }
       rethrow;
@@ -943,7 +951,7 @@ class _$Screen extends Screen {
   final JsonInfo? json;
 
   factory _$Screen([void Function(ScreenBuilder)? updates]) =>
-      (ScreenBuilder()..update(updates))._build();
+      (new ScreenBuilder()..update(updates))._build();
 
   _$Screen._(
       {required this.scenarioName,
@@ -983,7 +991,7 @@ class _$Screen extends Screen {
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenBuilder toBuilder() => ScreenBuilder()..replace(this);
+  ScreenBuilder toBuilder() => new ScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1058,7 +1066,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<String>? _scenarioName;
   ListBuilder<String> get scenarioName =>
-      _$this._scenarioName ??= ListBuilder<String>();
+      _$this._scenarioName ??= new ListBuilder<String>();
   set scenarioName(ListBuilder<String>? scenarioName) =>
       _$this._scenarioName = scenarioName;
 
@@ -1067,12 +1075,13 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
   set id(String? id) => _$this._id = id;
 
   ListBuilder<TextInfo>? _texts;
-  ListBuilder<TextInfo> get texts => _$this._texts ??= ListBuilder<TextInfo>();
+  ListBuilder<TextInfo> get texts =>
+      _$this._texts ??= new ListBuilder<TextInfo>();
   set texts(ListBuilder<TextInfo>? texts) => _$this._texts = texts;
 
   ListBuilder<ScreenLink>? _next;
   ListBuilder<ScreenLink> get next =>
-      _$this._next ??= ListBuilder<ScreenLink>();
+      _$this._next ??= new ListBuilder<ScreenLink>();
   set next(ListBuilder<ScreenLink>? next) => _$this._next = next;
 
   String? _pathName;
@@ -1081,7 +1090,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<String>? _pathTrail;
   ListBuilder<String> get pathTrail =>
-      _$this._pathTrail ??= ListBuilder<String>();
+      _$this._pathTrail ??= new ListBuilder<String>();
   set pathTrail(ListBuilder<String>? pathTrail) =>
       _$this._pathTrail = pathTrail;
 
@@ -1109,24 +1118,25 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<Screen>? _collapsedScreens;
   ListBuilder<Screen> get collapsedScreens =>
-      _$this._collapsedScreens ??= ListBuilder<Screen>();
+      _$this._collapsedScreens ??= new ListBuilder<Screen>();
   set collapsedScreens(ListBuilder<Screen>? collapsedScreens) =>
       _$this._collapsedScreens = collapsedScreens;
 
   BrowserInfoBuilder? _browser;
-  BrowserInfoBuilder get browser => _$this._browser ??= BrowserInfoBuilder();
+  BrowserInfoBuilder get browser =>
+      _$this._browser ??= new BrowserInfoBuilder();
   set browser(BrowserInfoBuilder? browser) => _$this._browser = browser;
 
   EmailInfoBuilder? _email;
-  EmailInfoBuilder get email => _$this._email ??= EmailInfoBuilder();
+  EmailInfoBuilder get email => _$this._email ??= new EmailInfoBuilder();
   set email(EmailInfoBuilder? email) => _$this._email = email;
 
   PdfInfoBuilder? _pdf;
-  PdfInfoBuilder get pdf => _$this._pdf ??= PdfInfoBuilder();
+  PdfInfoBuilder get pdf => _$this._pdf ??= new PdfInfoBuilder();
   set pdf(PdfInfoBuilder? pdf) => _$this._pdf = pdf;
 
   JsonInfoBuilder? _json;
-  JsonInfoBuilder get json => _$this._json ??= JsonInfoBuilder();
+  JsonInfoBuilder get json => _$this._json ??= new JsonInfoBuilder();
   set json(JsonInfoBuilder? json) => _$this._json = json;
 
   ScreenBuilder();
@@ -1173,7 +1183,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
     _$Screen _$result;
     try {
       _$result = _$v ??
-          _$Screen._(
+          new _$Screen._(
               scenarioName: scenarioName.build(),
               id: BuiltValueNullFieldError.checkNotNull(id, r'Screen', 'id'),
               texts: texts.build(),
@@ -1218,7 +1228,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
         _$failedField = 'json';
         _json?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'Screen', _$failedField, e.toString());
       }
       rethrow;
@@ -1247,7 +1257,7 @@ class _$TextInfo extends TextInfo {
   final int? fontWeight;
 
   factory _$TextInfo([void Function(TextInfoBuilder)? updates]) =>
-      (TextInfoBuilder()..update(updates))._build();
+      (new TextInfoBuilder()..update(updates))._build();
 
   _$TextInfo._(
       {required this.translationKey,
@@ -1273,7 +1283,7 @@ class _$TextInfo extends TextInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  TextInfoBuilder toBuilder() => TextInfoBuilder()..replace(this);
+  TextInfoBuilder toBuilder() => new TextInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1338,7 +1348,7 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
 
   RectangleBuilder? _globalRectangle;
   RectangleBuilder get globalRectangle =>
-      _$this._globalRectangle ??= RectangleBuilder();
+      _$this._globalRectangle ??= new RectangleBuilder();
   set globalRectangle(RectangleBuilder? globalRectangle) =>
       _$this._globalRectangle = globalRectangle;
 
@@ -1394,7 +1404,7 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
     _$TextInfo _$result;
     try {
       _$result = _$v ??
-          _$TextInfo._(
+          new _$TextInfo._(
               translationKey: BuiltValueNullFieldError.checkNotNull(
                   translationKey, r'TextInfo', 'translationKey'),
               rawTranslation: BuiltValueNullFieldError.checkNotNull(
@@ -1412,7 +1422,7 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
         _$failedField = 'globalRectangle';
         globalRectangle.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'TextInfo', _$failedField, e.toString());
       }
       rethrow;
@@ -1431,7 +1441,7 @@ class _$ScreenLink extends ScreenLink {
   final AnalyticEvent? analytic;
 
   factory _$ScreenLink([void Function(ScreenLinkBuilder)? updates]) =>
-      (ScreenLinkBuilder()..update(updates))._build();
+      (new ScreenLinkBuilder()..update(updates))._build();
 
   _$ScreenLink._({required this.to, this.tapRect, this.analytic}) : super._() {
     BuiltValueNullFieldError.checkNotNull(to, r'ScreenLink', 'to');
@@ -1442,7 +1452,7 @@ class _$ScreenLink extends ScreenLink {
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenLinkBuilder toBuilder() => ScreenLinkBuilder()..replace(this);
+  ScreenLinkBuilder toBuilder() => new ScreenLinkBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1481,12 +1491,12 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
   set to(String? to) => _$this._to = to;
 
   RectangleBuilder? _tapRect;
-  RectangleBuilder get tapRect => _$this._tapRect ??= RectangleBuilder();
+  RectangleBuilder get tapRect => _$this._tapRect ??= new RectangleBuilder();
   set tapRect(RectangleBuilder? tapRect) => _$this._tapRect = tapRect;
 
   AnalyticEventBuilder? _analytic;
   AnalyticEventBuilder get analytic =>
-      _$this._analytic ??= AnalyticEventBuilder();
+      _$this._analytic ??= new AnalyticEventBuilder();
   set analytic(AnalyticEventBuilder? analytic) => _$this._analytic = analytic;
 
   ScreenLinkBuilder();
@@ -1520,7 +1530,7 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
     _$ScreenLink _$result;
     try {
       _$result = _$v ??
-          _$ScreenLink._(
+          new _$ScreenLink._(
               to: BuiltValueNullFieldError.checkNotNull(
                   to, r'ScreenLink', 'to'),
               tapRect: _tapRect?.build(),
@@ -1533,7 +1543,7 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
         _$failedField = 'analytic';
         _analytic?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'ScreenLink', _$failedField, e.toString());
       }
       rethrow;
@@ -1550,7 +1560,7 @@ class _$AnalyticEvent extends AnalyticEvent {
   final BuiltMap<String, String> args;
 
   factory _$AnalyticEvent([void Function(AnalyticEventBuilder)? updates]) =>
-      (AnalyticEventBuilder()..update(updates))._build();
+      (new AnalyticEventBuilder()..update(updates))._build();
 
   _$AnalyticEvent._({required this.event, required this.args}) : super._() {
     BuiltValueNullFieldError.checkNotNull(event, r'AnalyticEvent', 'event');
@@ -1562,7 +1572,7 @@ class _$AnalyticEvent extends AnalyticEvent {
       (toBuilder()..update(updates)).build();
 
   @override
-  AnalyticEventBuilder toBuilder() => AnalyticEventBuilder()..replace(this);
+  AnalyticEventBuilder toBuilder() => new AnalyticEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1598,7 +1608,7 @@ class AnalyticEventBuilder
 
   MapBuilder<String, String>? _args;
   MapBuilder<String, String> get args =>
-      _$this._args ??= MapBuilder<String, String>();
+      _$this._args ??= new MapBuilder<String, String>();
   set args(MapBuilder<String, String>? args) => _$this._args = args;
 
   AnalyticEventBuilder();
@@ -1631,7 +1641,7 @@ class AnalyticEventBuilder
     _$AnalyticEvent _$result;
     try {
       _$result = _$v ??
-          _$AnalyticEvent._(
+          new _$AnalyticEvent._(
               event: BuiltValueNullFieldError.checkNotNull(
                   event, r'AnalyticEvent', 'event'),
               args: args.build());
@@ -1641,7 +1651,7 @@ class AnalyticEventBuilder
         _$failedField = 'args';
         args.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'AnalyticEvent', _$failedField, e.toString());
       }
       rethrow;
@@ -1660,7 +1670,7 @@ class _$BrowserInfo extends BrowserInfo {
   final bool useWebView;
 
   factory _$BrowserInfo([void Function(BrowserInfoBuilder)? updates]) =>
-      (BrowserInfoBuilder()..update(updates))._build();
+      (new BrowserInfoBuilder()..update(updates))._build();
 
   _$BrowserInfo._(
       {required this.url, required this.useSafariVC, required this.useWebView})
@@ -1677,7 +1687,7 @@ class _$BrowserInfo extends BrowserInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  BrowserInfoBuilder toBuilder() => BrowserInfoBuilder()..replace(this);
+  BrowserInfoBuilder toBuilder() => new BrowserInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1752,7 +1762,7 @@ class BrowserInfoBuilder implements Builder<BrowserInfo, BrowserInfoBuilder> {
 
   _$BrowserInfo _build() {
     final _$result = _$v ??
-        _$BrowserInfo._(
+        new _$BrowserInfo._(
             url: BuiltValueNullFieldError.checkNotNull(
                 url, r'BrowserInfo', 'url'),
             useSafariVC: BuiltValueNullFieldError.checkNotNull(
@@ -1777,7 +1787,7 @@ class _$EmailInfo extends EmailInfo {
   final String recipient;
 
   factory _$EmailInfo([void Function(EmailInfoBuilder)? updates]) =>
-      (EmailInfoBuilder()..update(updates))._build();
+      (new EmailInfoBuilder()..update(updates))._build();
 
   _$EmailInfo._(
       {required this.subject,
@@ -1799,7 +1809,7 @@ class _$EmailInfo extends EmailInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  EmailInfoBuilder toBuilder() => EmailInfoBuilder()..replace(this);
+  EmailInfoBuilder toBuilder() => new EmailInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1891,7 +1901,7 @@ class EmailInfoBuilder implements Builder<EmailInfo, EmailInfoBuilder> {
 
   _$EmailInfo _build() {
     final _$result = _$v ??
-        _$EmailInfo._(
+        new _$EmailInfo._(
             subject: BuiltValueNullFieldError.checkNotNull(
                 subject, r'EmailInfo', 'subject'),
             subjectTranslationKey: BuiltValueNullFieldError.checkNotNull(
@@ -1914,7 +1924,7 @@ class _$PdfInfo extends PdfInfo {
   final String fileName;
 
   factory _$PdfInfo([void Function(PdfInfoBuilder)? updates]) =>
-      (PdfInfoBuilder()..update(updates))._build();
+      (new PdfInfoBuilder()..update(updates))._build();
 
   _$PdfInfo._({required this.bytesBase64, required this.fileName}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -1927,7 +1937,7 @@ class _$PdfInfo extends PdfInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  PdfInfoBuilder toBuilder() => PdfInfoBuilder()..replace(this);
+  PdfInfoBuilder toBuilder() => new PdfInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1994,7 +2004,7 @@ class PdfInfoBuilder implements Builder<PdfInfo, PdfInfoBuilder> {
 
   _$PdfInfo _build() {
     final _$result = _$v ??
-        _$PdfInfo._(
+        new _$PdfInfo._(
             bytesBase64: BuiltValueNullFieldError.checkNotNull(
                 bytesBase64, r'PdfInfo', 'bytesBase64'),
             fileName: BuiltValueNullFieldError.checkNotNull(
@@ -2011,7 +2021,7 @@ class _$JsonInfo extends JsonInfo {
   final String fileName;
 
   factory _$JsonInfo([void Function(JsonInfoBuilder)? updates]) =>
-      (JsonInfoBuilder()..update(updates))._build();
+      (new JsonInfoBuilder()..update(updates))._build();
 
   _$JsonInfo._({required this.data, required this.fileName}) : super._() {
     BuiltValueNullFieldError.checkNotNull(data, r'JsonInfo', 'data');
@@ -2023,7 +2033,7 @@ class _$JsonInfo extends JsonInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  JsonInfoBuilder toBuilder() => JsonInfoBuilder()..replace(this);
+  JsonInfoBuilder toBuilder() => new JsonInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2090,7 +2100,7 @@ class JsonInfoBuilder implements Builder<JsonInfo, JsonInfoBuilder> {
 
   _$JsonInfo _build() {
     final _$result = _$v ??
-        _$JsonInfo._(
+        new _$JsonInfo._(
             data: BuiltValueNullFieldError.checkNotNull(
                 data, r'JsonInfo', 'data'),
             fileName: BuiltValueNullFieldError.checkNotNull(
@@ -2110,7 +2120,7 @@ class _$DocumentationScreen extends DocumentationScreen {
 
   factory _$DocumentationScreen(
           [void Function(DocumentationScreenBuilder)? updates]) =>
-      (DocumentationScreenBuilder()..update(updates))._build();
+      (new DocumentationScreenBuilder()..update(updates))._build();
 
   _$DocumentationScreen._(
       {this.screenshot, required this.screen, required this.args})
@@ -2127,7 +2137,7 @@ class _$DocumentationScreen extends DocumentationScreen {
 
   @override
   DocumentationScreenBuilder toBuilder() =>
-      DocumentationScreenBuilder()..replace(this);
+      new DocumentationScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2167,11 +2177,11 @@ class DocumentationScreenBuilder
   set screenshot(File? screenshot) => _$this._screenshot = screenshot;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   RunArgsBuilder? _args;
-  RunArgsBuilder get args => _$this._args ??= RunArgsBuilder();
+  RunArgsBuilder get args => _$this._args ??= new RunArgsBuilder();
   set args(RunArgsBuilder? args) => _$this._args = args;
 
   DocumentationScreenBuilder();
@@ -2205,7 +2215,7 @@ class DocumentationScreenBuilder
     _$DocumentationScreen _$result;
     try {
       _$result = _$v ??
-          _$DocumentationScreen._(
+          new _$DocumentationScreen._(
               screenshot: screenshot,
               screen: screen.build(),
               args: args.build());
@@ -2217,7 +2227,7 @@ class DocumentationScreenBuilder
         _$failedField = 'args';
         args.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'DocumentationScreen', _$failedField, e.toString());
       }
       rethrow;
@@ -2234,7 +2244,7 @@ class _$ScreenAndPath extends ScreenAndPath {
   final String path;
 
   factory _$ScreenAndPath([void Function(ScreenAndPathBuilder)? updates]) =>
-      (ScreenAndPathBuilder()..update(updates))._build();
+      (new ScreenAndPathBuilder()..update(updates))._build();
 
   _$ScreenAndPath._({required this.screen, required this.path}) : super._() {
     BuiltValueNullFieldError.checkNotNull(screen, r'ScreenAndPath', 'screen');
@@ -2246,7 +2256,7 @@ class _$ScreenAndPath extends ScreenAndPath {
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenAndPathBuilder toBuilder() => ScreenAndPathBuilder()..replace(this);
+  ScreenAndPathBuilder toBuilder() => new ScreenAndPathBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2279,7 +2289,7 @@ class ScreenAndPathBuilder
   _$ScreenAndPath? _$v;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   String? _path;
@@ -2316,7 +2326,7 @@ class ScreenAndPathBuilder
     _$ScreenAndPath _$result;
     try {
       _$result = _$v ??
-          _$ScreenAndPath._(
+          new _$ScreenAndPath._(
               screen: screen.build(),
               path: BuiltValueNullFieldError.checkNotNull(
                   path, r'ScreenAndPath', 'path'));
@@ -2326,7 +2336,7 @@ class ScreenAndPathBuilder
         _$failedField = 'screen';
         screen.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'ScreenAndPath', _$failedField, e.toString());
       }
       rethrow;

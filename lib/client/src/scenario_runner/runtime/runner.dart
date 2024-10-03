@@ -115,7 +115,7 @@ class Runner implements RunContext {
       var value = entry.value;
       var name = [...parents, entry.key];
       if (value is Scenario) {
-        yield ScenarioReference(name, description: value.description);
+        yield ScenarioReference(name, description: value.description, isDesktop: value.isDesktop);
       } else if (value is Map<String, dynamic>) {
         yield* _listScenarios(name, value);
       } else {
@@ -152,7 +152,7 @@ class Runner implements RunContext {
     }
 
     var run = ScenarioRun(
-        ScenarioReference(args.scenarioName, description: scenario.description),
+        ScenarioReference(args.scenarioName, description: scenario.description, isDesktop: scenario.isDesktop),
         args);
     _currentScenario[args] = scenario;
     return run;

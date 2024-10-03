@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:dev_studio/src/utils/router_outlet/loading_page.dart';
 import 'package:flutter/material.dart';
 import '../../client/internal.dart';
 import '../ui.dart';
@@ -121,18 +122,37 @@ class ProjectViewState extends State<ProjectView> {
               Expanded(
                 child: ToolBarScope(
                   project: widget.projectInfo,
-                  child: RouterOutlet(
-                    {
-                      'scenario/:scenarioId': (args) {
-                        return RunView(
-                          widget.service,
-                          widget.client,
-                          BuiltList(
-                              TreePath.fromEncoded(args['scenarioId']).nodes),
+                  child: StreamBuilder<
+                          BuiltMap<BuiltList<String>, ScenarioReference>>(
+                      stream: widget.client.listing.allScenarios,
+                      initialData: widget.client.listing.allScenarios.value,
+                      builder: (context, snapshot) {
+                        var loadingWidget = Center(child: CircularProgressIndicator());
+                        var allScenarios = snapshot.data;
+                        if (allScenarios == null) {
+                          return loadingWidget;
+                        }
+
+                        return RouterOutlet(
+                          {
+                            'scenario/:scenarioId': (args) {
+                              var id = args['scenarioId'];
+                              var name =
+                                  BuiltList(TreePath.fromEncoded(id).nodes);
+                              var scenario = allScenarios[name];
+                              if (scenario == null) {
+                                return loadingWidget;
+                              }
+
+                              return RunView(
+                                widget.service,
+                                widget.client,
+                                scenario,
+                              );
+                            },
+                          },
                         );
-                      },
-                    },
-                  ),
+                      }),
                 ),
               ),
             ],

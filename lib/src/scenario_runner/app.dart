@@ -1,3 +1,4 @@
+import 'package:dev_studio/src/utils/fitted_app.dart';
 import 'package:flutter/material.dart';
 import 'package:os_detect/os_detect.dart' as platform;
 import 'package:rxdart/rxdart.dart';
@@ -43,7 +44,10 @@ class _ScenarioAppWithServerState extends State<ScenarioAppWithServer> {
     if (service == null) {
       return _LoadingScreen();
     } else {
-      return ScenarioApp(service);
+      return FittedApp(
+        minimumSize: Size(750, 400),
+        child: ScenarioApp(service),
+      );
     }
   }
 }

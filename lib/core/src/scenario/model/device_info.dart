@@ -8,7 +8,7 @@ part 'device_info.g.dart';
 abstract class DeviceInfo implements Built<DeviceInfo, DeviceInfoBuilder> {
   static Serializer<DeviceInfo> get serializer => _$deviceInfoSerializer;
 
-  static final devices = <DeviceInfo>[
+  static final mobileDevices = <DeviceInfo>[
     iPhoneX,
     iPhone11ProMax,
     iPhoneSE,
@@ -20,6 +20,11 @@ abstract class DeviceInfo implements Built<DeviceInfo, DeviceInfoBuilder> {
     iPadPortrait,
     iPadPro12Landscape,
     iPadPro12Portrait
+  ];
+
+  static final desktopDevices = <DeviceInfo>[
+    laptop,
+    macBook,
   ];
 
   static final iPhoneX = DeviceInfo(
@@ -165,6 +170,32 @@ abstract class DeviceInfo implements Built<DeviceInfo, DeviceInfoBuilder> {
     ),
   );
 
+  static final laptop = DeviceInfo(
+    'laptop',
+    'Laptop',
+    width: 1300,
+    height: 780,
+    pixelRatio: 1,
+    platform: DevicePlatform.windows,
+    safeArea: Rectangle(
+      top: 0,
+      bottom: 0,
+    ),
+  );
+
+  static final macBook = DeviceInfo(
+    'mac_book',
+    'MacBook',
+    width: 1620,
+    height: 780,
+    pixelRatio: 2,
+    platform: DevicePlatform.macOS,
+    safeArea: Rectangle(
+      top: 0,
+      bottom: 0,
+    ),
+  );
+
   DeviceInfo._();
   factory DeviceInfo._builder([void Function(DeviceInfoBuilder) updates]) =
       _$DeviceInfo;
@@ -202,6 +233,9 @@ class DevicePlatform extends EnumClass {
 
   static const DevicePlatform android = _$android;
   static const DevicePlatform iOS = _$ios;
+  static const DevicePlatform macOS = _$macOS;
+  static const DevicePlatform windows = _$windows;
+  static const DevicePlatform linux = _$linux;
 
   const DevicePlatform._(super.name);
 
