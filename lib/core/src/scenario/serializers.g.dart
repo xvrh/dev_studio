@@ -6,7 +6,7 @@ part of 'serializers.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializers _$modelSerializers = (new Serializers().toBuilder()
+Serializers _$modelSerializers = (Serializers().toBuilder()
       ..add(AccessibilityConfig.serializer)
       ..add(AnalyticEvent.serializer)
       ..add(BrowserInfo.serializer)
@@ -28,38 +28,28 @@ Serializers _$modelSerializers = (new Serializers().toBuilder()
       ..add(ScreenAndPath.serializer)
       ..add(ScreenLink.serializer)
       ..add(TextInfo.serializer)
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(TextInfo)]),
+          () => ListBuilder<TextInfo>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(ScreenLink)]),
+          () => ListBuilder<ScreenLink>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(Screen)]),
+          () => ListBuilder<Screen>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
+          const FullType(BuiltMap, [FullType(String), FullType(Screen)]),
+          () => MapBuilder<String, Screen>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(TextInfo)]),
-          () => new ListBuilder<TextInfo>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ScreenLink)]),
-          () => new ListBuilder<ScreenLink>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Screen)]),
-          () => new ListBuilder<Screen>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltMap, const [const FullType(String), const FullType(Screen)]),
-          () => new MapBuilder<String, Screen>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltMap, const [const FullType(String), const FullType(String)]),
-          () => new MapBuilder<String, String>()))
+          const FullType(BuiltMap, [FullType(String), FullType(String)]),
+          () => MapBuilder<String, String>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

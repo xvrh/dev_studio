@@ -25,6 +25,7 @@ abstract class DeviceInfo implements Built<DeviceInfo, DeviceInfoBuilder> {
   static final desktopDevices = <DeviceInfo>[
     laptop,
     macBook,
+    iPadLandscape,
   ];
 
   static final iPhoneX = DeviceInfo(

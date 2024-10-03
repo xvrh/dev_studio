@@ -7,7 +7,7 @@ part of 'scenario.dart';
 // **************************************************************************
 
 Serializer<ScenarioReference> _$scenarioReferenceSerializer =
-    new _$ScenarioReferenceSerializer();
+    _$ScenarioReferenceSerializer();
 
 class _$ScenarioReferenceSerializer
     implements StructuredSerializer<ScenarioReference> {
@@ -22,8 +22,7 @@ class _$ScenarioReferenceSerializer
     final result = <Object?>[
       'name',
       serializers.serialize(object.name,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+          specifiedType: const FullType(BuiltList, [FullType(String)])),
       'isDesktop',
       serializers.serialize(object.isDesktop,
           specifiedType: const FullType(bool)),
@@ -43,7 +42,7 @@ class _$ScenarioReferenceSerializer
   ScenarioReference deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScenarioReferenceBuilder();
+    final result = ScenarioReferenceBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -53,8 +52,7 @@ class _$ScenarioReferenceSerializer
       switch (key) {
         case 'name':
           result.name.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
+                  specifiedType: const FullType(BuiltList, [FullType(String)]))!
               as BuiltList<Object?>);
           break;
         case 'description':
@@ -82,7 +80,7 @@ class _$ScenarioReference extends ScenarioReference {
 
   factory _$ScenarioReference(
           [void Function(ScenarioReferenceBuilder)? updates]) =>
-      (new ScenarioReferenceBuilder()..update(updates))._build();
+      (ScenarioReferenceBuilder()..update(updates))._build();
 
   _$ScenarioReference._(
       {required this.name, this.description, required this.isDesktop})
@@ -98,7 +96,7 @@ class _$ScenarioReference extends ScenarioReference {
 
   @override
   ScenarioReferenceBuilder toBuilder() =>
-      new ScenarioReferenceBuilder()..replace(this);
+      ScenarioReferenceBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -134,7 +132,7 @@ class ScenarioReferenceBuilder
   _$ScenarioReference? _$v;
 
   ListBuilder<String>? _name;
-  ListBuilder<String> get name => _$this._name ??= new ListBuilder<String>();
+  ListBuilder<String> get name => _$this._name ??= ListBuilder<String>();
   set name(ListBuilder<String>? name) => _$this._name = name;
 
   String? _description;
@@ -176,7 +174,7 @@ class ScenarioReferenceBuilder
     _$ScenarioReference _$result;
     try {
       _$result = _$v ??
-          new _$ScenarioReference._(
+          _$ScenarioReference._(
               name: name.build(),
               description: description,
               isDesktop: BuiltValueNullFieldError.checkNotNull(
@@ -187,7 +185,7 @@ class ScenarioReferenceBuilder
         _$failedField = 'name';
         name.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'ScenarioReference', _$failedField, e.toString());
       }
       rethrow;

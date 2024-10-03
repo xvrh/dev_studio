@@ -5,8 +5,8 @@ import 'package:package_config/package_config.dart';
 
 Future<String> commonFontsPath = (() async {
   var packageConfig = (await findPackageConfig(Directory.current))!;
-  var testUtilsPackage = packageConfig['dev_studio_client']!;
-  return testUtilsPackage.packageUriRoot.resolve('fonts').toFilePath();
+  var testUtilsPackage = packageConfig['dev_studio']!;
+  return testUtilsPackage.packageUriRoot.resolve('client/fonts').toFilePath();
 })();
 
 Future<Map<String, String>> get commonFonts async {

@@ -6,7 +6,7 @@ part of 'scenario_run.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ScenarioRun> _$scenarioRunSerializer = new _$ScenarioRunSerializer();
+Serializer<ScenarioRun> _$scenarioRunSerializer = _$ScenarioRunSerializer();
 
 class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
   @override
@@ -26,8 +26,8 @@ class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
           specifiedType: const FullType(RunArgs)),
       'screens',
       serializers.serialize(object.screens,
-          specifiedType: const FullType(BuiltMap,
-              const [const FullType(String), const FullType(Screen)])),
+          specifiedType:
+              const FullType(BuiltMap, [FullType(String), FullType(Screen)])),
     ];
     Object? value;
     value = object.result;
@@ -43,7 +43,7 @@ class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
   @override
   ScenarioRun deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScenarioRunBuilder();
+    final result = ScenarioRunBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -62,8 +62,8 @@ class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
           break;
         case 'screens':
           result.screens.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap,
-                  const [const FullType(String), const FullType(Screen)]))!);
+              specifiedType: const FullType(
+                  BuiltMap, [FullType(String), FullType(Screen)]))!);
           break;
         case 'result':
           result.result.replace(serializers.deserialize(value,
@@ -87,7 +87,7 @@ class _$ScenarioRun extends ScenarioRun {
   final RunResult? result;
 
   factory _$ScenarioRun([void Function(ScenarioRunBuilder)? updates]) =>
-      (new ScenarioRunBuilder()..update(updates))._build();
+      (ScenarioRunBuilder()..update(updates))._build();
 
   _$ScenarioRun._(
       {required this.scenario,
@@ -105,7 +105,7 @@ class _$ScenarioRun extends ScenarioRun {
       (toBuilder()..update(updates)).build();
 
   @override
-  ScenarioRunBuilder toBuilder() => new ScenarioRunBuilder()..replace(this);
+  ScenarioRunBuilder toBuilder() => ScenarioRunBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -144,21 +144,21 @@ class ScenarioRunBuilder implements Builder<ScenarioRun, ScenarioRunBuilder> {
 
   ScenarioReferenceBuilder? _scenario;
   ScenarioReferenceBuilder get scenario =>
-      _$this._scenario ??= new ScenarioReferenceBuilder();
+      _$this._scenario ??= ScenarioReferenceBuilder();
   set scenario(ScenarioReferenceBuilder? scenario) =>
       _$this._scenario = scenario;
 
   RunArgsBuilder? _args;
-  RunArgsBuilder get args => _$this._args ??= new RunArgsBuilder();
+  RunArgsBuilder get args => _$this._args ??= RunArgsBuilder();
   set args(RunArgsBuilder? args) => _$this._args = args;
 
   MapBuilder<String, Screen>? _screens;
   MapBuilder<String, Screen> get screens =>
-      _$this._screens ??= new MapBuilder<String, Screen>();
+      _$this._screens ??= MapBuilder<String, Screen>();
   set screens(MapBuilder<String, Screen>? screens) => _$this._screens = screens;
 
   RunResultBuilder? _result;
-  RunResultBuilder get result => _$this._result ??= new RunResultBuilder();
+  RunResultBuilder get result => _$this._result ??= RunResultBuilder();
   set result(RunResultBuilder? result) => _$this._result = result;
 
   ScenarioRunBuilder();
@@ -193,7 +193,7 @@ class ScenarioRunBuilder implements Builder<ScenarioRun, ScenarioRunBuilder> {
     _$ScenarioRun _$result;
     try {
       _$result = _$v ??
-          new _$ScenarioRun._(
+          _$ScenarioRun._(
               scenario: scenario.build(),
               args: args.build(),
               screens: screens.build(),
@@ -210,7 +210,7 @@ class ScenarioRunBuilder implements Builder<ScenarioRun, ScenarioRunBuilder> {
         _$failedField = 'result';
         _result?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'ScenarioRun', _$failedField, e.toString());
       }
       rethrow;
