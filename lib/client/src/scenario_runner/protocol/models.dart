@@ -10,6 +10,12 @@ extension DevicePlatformExtension on DevicePlatform {
         return TargetPlatform.android;
       case DevicePlatform.iOS:
         return TargetPlatform.iOS;
+      case DevicePlatform.macOS:
+        return TargetPlatform.macOS;
+      case DevicePlatform.windows:
+        return TargetPlatform.windows;
+      case DevicePlatform.linux:
+        return TargetPlatform.linux;
     }
     throw StateError('Unknown platform $this');
   }

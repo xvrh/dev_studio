@@ -23,6 +23,9 @@ class _$ScenarioReferenceSerializer
       'name',
       serializers.serialize(object.name,
           specifiedType: const FullType(BuiltList, [FullType(String)])),
+      'isDesktop',
+      serializers.serialize(object.isDesktop,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.description;
@@ -56,6 +59,10 @@ class _$ScenarioReferenceSerializer
           result.description = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'isDesktop':
+          result.isDesktop = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
       }
     }
 
@@ -68,13 +75,19 @@ class _$ScenarioReference extends ScenarioReference {
   final BuiltList<String> name;
   @override
   final String? description;
+  @override
+  final bool isDesktop;
 
   factory _$ScenarioReference(
           [void Function(ScenarioReferenceBuilder)? updates]) =>
       (ScenarioReferenceBuilder()..update(updates))._build();
 
-  _$ScenarioReference._({required this.name, this.description}) : super._() {
+  _$ScenarioReference._(
+      {required this.name, this.description, required this.isDesktop})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'ScenarioReference', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        isDesktop, r'ScenarioReference', 'isDesktop');
   }
 
   @override
@@ -90,7 +103,8 @@ class _$ScenarioReference extends ScenarioReference {
     if (identical(other, this)) return true;
     return other is ScenarioReference &&
         name == other.name &&
-        description == other.description;
+        description == other.description &&
+        isDesktop == other.isDesktop;
   }
 
   @override
@@ -98,6 +112,7 @@ class _$ScenarioReference extends ScenarioReference {
     var _$hash = 0;
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, isDesktop.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -106,7 +121,8 @@ class _$ScenarioReference extends ScenarioReference {
   String toString() {
     return (newBuiltValueToStringHelper(r'ScenarioReference')
           ..add('name', name)
-          ..add('description', description))
+          ..add('description', description)
+          ..add('isDesktop', isDesktop))
         .toString();
   }
 }
@@ -123,6 +139,10 @@ class ScenarioReferenceBuilder
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
+  bool? _isDesktop;
+  bool? get isDesktop => _$this._isDesktop;
+  set isDesktop(bool? isDesktop) => _$this._isDesktop = isDesktop;
+
   ScenarioReferenceBuilder();
 
   ScenarioReferenceBuilder get _$this {
@@ -130,6 +150,7 @@ class ScenarioReferenceBuilder
     if ($v != null) {
       _name = $v.name.toBuilder();
       _description = $v.description;
+      _isDesktop = $v.isDesktop;
       _$v = null;
     }
     return this;
@@ -153,7 +174,11 @@ class ScenarioReferenceBuilder
     _$ScenarioReference _$result;
     try {
       _$result = _$v ??
-          _$ScenarioReference._(name: name.build(), description: description);
+          _$ScenarioReference._(
+              name: name.build(),
+              description: description,
+              isDesktop: BuiltValueNullFieldError.checkNotNull(
+                  isDesktop, r'ScenarioReference', 'isDesktop'));
     } catch (_) {
       late String _$failedField;
       try {

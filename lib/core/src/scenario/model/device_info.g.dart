@@ -8,6 +8,9 @@ part of 'device_info.dart';
 
 const DevicePlatform _$android = DevicePlatform._('android');
 const DevicePlatform _$ios = DevicePlatform._('iOS');
+const DevicePlatform _$macOS = DevicePlatform._('macOS');
+const DevicePlatform _$windows = DevicePlatform._('windows');
+const DevicePlatform _$linux = DevicePlatform._('linux');
 
 DevicePlatform _$vlOf(String name) {
   switch (name) {
@@ -15,6 +18,12 @@ DevicePlatform _$vlOf(String name) {
       return _$android;
     case 'iOS':
       return _$ios;
+    case 'macOS':
+      return _$macOS;
+    case 'windows':
+      return _$windows;
+    case 'linux':
+      return _$linux;
     default:
       throw ArgumentError(name);
   }
@@ -24,6 +33,9 @@ final BuiltSet<DevicePlatform> _$vls =
     BuiltSet<DevicePlatform>(const <DevicePlatform>[
   _$android,
   _$ios,
+  _$macOS,
+  _$windows,
+  _$linux,
 ]);
 
 Serializer<DeviceInfo> _$deviceInfoSerializer = _$DeviceInfoSerializer();

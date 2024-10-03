@@ -3,7 +3,7 @@ import 'package:dev_studio/core/scenario_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var scenario = ScenarioReference(['Home', 'Login']);
+  var scenario = ScenarioReference(['Home', 'Login'], isDesktop: false);
   var run = ScenarioRun(
     scenario,
     RunArgs(

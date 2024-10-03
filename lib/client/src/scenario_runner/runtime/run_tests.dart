@@ -10,7 +10,6 @@ import 'package:path/path.dart' as p;
 import 'package:puppeteer/puppeteer.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
-import '../../../../core/documentation.dart' show coverageDetectorEnvironment;
 import '../../../../core/utils_string.dart';
 import '../../fonts.dart';
 import '../html_screenshot/puppeteer.dart' as screenshot;
@@ -25,12 +24,14 @@ class TestRunner {
   final Map<String, dynamic> scenarios;
   final List<String> languages;
   final List<DeviceInfo> devices;
+  final List<DeviceInfo>? desktopDevices;
   final String? projectRoot;
 
   TestRunner(
     this.scenarios, {
     required this.languages,
     required this.devices,
+    required this.desktopDevices,
     this.projectRoot,
   });
 
@@ -63,24 +64,22 @@ class TestRunner {
     });
   }
 
+  List<DeviceInfo> devicesForScenario(Scenario scenario) {
+    return (scenario.isDesktop ? desktopDevices : null) ?? devices;
+  }
+
   void runTests() {
     var runContext = _EmptyRunContext();
 
     _setup();
-
-    var devices = this.devices;
-    if (Platform.environment[coverageDetectorEnvironment] != null ||
-        Platform.environment['QUICK_TEST'] != null) {
-      devices = devices.take(1).toList();
-    }
 
     var project = ProjectInfo('',
         rootPath: projectRoot,
         currentDirectory: Directory.current.path,
         supportedLanguages: languages);
     for (var language in languages) {
-      for (var device in devices) {
-        for (var ref in ScenarioRef.flatten(scenarios)) {
+      for (var ref in ScenarioRef.flatten(scenarios)) {
+        for (var device in devicesForScenario(ref.scenario)) {
           var args = RunArgs(
             ref.name,
             device: device,
@@ -122,8 +121,8 @@ class TestRunner {
           currentDirectory: Directory.current.path,
           supportedLanguages: languages);
       for (var language in languages) {
-        for (var device in devices) {
-          for (var ref in ScenarioRef.flatten(scenarios)) {
+        for (var ref in ScenarioRef.flatten(scenarios)) {
+          for (var device in devicesForScenario(ref.scenario)) {
             var args = RunArgs(
               ref.name,
               device: device,

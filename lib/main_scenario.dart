@@ -11,14 +11,18 @@ void main() {
   Logger.root
     ..level = Level.INFO
     ..onRecord.listen(print);
-  runApp(StandaloneScenarioApp(ScenarioAppWithServer(
-    serviceFactory: (clients) => ScenarioService(
-      clients,
-      ScenarioContext(),
-      htmlScreenshot: CachedHtmlScreenshotService(
-        LocalHtmlScreenshotService(),
-        maxSize: 100,
+  runApp(
+    StandaloneScenarioApp(
+      ScenarioAppWithServer(
+        serviceFactory: (clients) => ScenarioService(
+          clients,
+          ScenarioContext(),
+          htmlScreenshot: CachedHtmlScreenshotService(
+            LocalHtmlScreenshotService(),
+            maxSize: 100,
+          ),
+        ),
       ),
     ),
-  )));
+  );
 }

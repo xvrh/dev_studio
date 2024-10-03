@@ -57,6 +57,8 @@ abstract class Scenario {
 
   ScenarioBundle get bundle => _bundle;
 
+  bool get isDesktop => false;
+
   Widget? _widget;
   Future<void> pumpWidget(Widget widget) async {
     _widget = widget;
@@ -474,10 +476,6 @@ abstract class Scenario {
         () async {
           binding.reset();
 
-          if (kDebugMode) {
-            debugDefaultTargetPlatformOverride =
-                device.platform.toTargetPlatform();
-          }
           debugDisableShadows = false;
 
           try {
@@ -503,9 +501,6 @@ abstract class Scenario {
             await screen('<Before Error>');
             await pumpWidget(ErrorWidget(e));
             await screen('<Error>');
-          }
-          if (kDebugMode) {
-            debugDefaultTargetPlatformOverride = null;
           }
           debugDisableShadows = true;
         },
