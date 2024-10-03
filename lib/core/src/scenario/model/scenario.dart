@@ -13,10 +13,12 @@ abstract class ScenarioReference
       [void Function(ScenarioReferenceBuilder)? updates]) = _$ScenarioReference;
   ScenarioReference._();
 
-  factory ScenarioReference(Iterable<String> name, {String? description, required bool isDesktop}) =>
+  factory ScenarioReference(Iterable<String> name,
+          {String? description, required bool isDesktop}) =>
       ScenarioReference._builder((b) => b
         ..name.replace(name)
-        ..description = description..isDesktop = isDesktop);
+        ..description = description
+        ..isDesktop = isDesktop);
 
   BuiltList<String> get name;
   String? get description;

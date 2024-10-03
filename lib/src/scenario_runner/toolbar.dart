@@ -86,7 +86,8 @@ class _RunToolbarState extends State<RunToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    var devices = widget.isDesktop ? DeviceInfo.desktopDevices : DeviceInfo.mobileDevices;
+    var devices =
+        widget.isDesktop ? DeviceInfo.desktopDevices : DeviceInfo.mobileDevices;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -120,15 +121,12 @@ class _RunToolbarState extends State<RunToolbar> {
                     if (widget.isDesktop) {
                       _desktopDevice = v;
                     } else {
-
                       _mobileDevice = v;
                     }
                   });
                   _onChanged();
                 },
-                items: {
-                  for (var value in devices) value: Text(value.name)
-                },
+                items: {for (var value in devices) value: Text(value.name)},
               ),
               ToolbarPanel(
                 button: Row(

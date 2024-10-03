@@ -1,4 +1,3 @@
-import 'package:dev_studio/src/utils/fitted_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';

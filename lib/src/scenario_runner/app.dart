@@ -1,8 +1,8 @@
-import 'package:dev_studio/src/utils/fitted_app.dart';
 import 'package:flutter/material.dart';
 import 'package:os_detect/os_detect.dart' as platform;
 import 'package:rxdart/rxdart.dart';
 import '../../client/internal.dart' show ScenarioApi;
+import '../utils/fitted_app.dart';
 import 'app_connected.dart';
 import 'server.dart';
 import 'service.dart';

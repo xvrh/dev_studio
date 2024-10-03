@@ -1,5 +1,4 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:dev_studio/src/utils/router_outlet/loading_page.dart';
 import 'package:flutter/material.dart';
 import '../../client/internal.dart';
 import '../ui.dart';
@@ -127,7 +126,8 @@ class ProjectViewState extends State<ProjectView> {
                       stream: widget.client.listing.allScenarios,
                       initialData: widget.client.listing.allScenarios.value,
                       builder: (context, snapshot) {
-                        var loadingWidget = Center(child: CircularProgressIndicator());
+                        var loadingWidget =
+                            Center(child: CircularProgressIndicator());
                         var allScenarios = snapshot.data;
                         if (allScenarios == null) {
                           return loadingWidget;
