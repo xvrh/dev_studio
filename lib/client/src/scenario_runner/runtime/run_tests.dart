@@ -31,7 +31,7 @@ class TestRunner {
     this.scenarios, {
     required this.languages,
     required this.devices,
-    required this.desktopDevices,
+    this.desktopDevices,
     this.projectRoot,
   });
 

@@ -17,7 +17,7 @@ class BreadcrumbExample extends StatelessWidget {
               children: [
                 BreadcrumbItemWithMenu(
                   Text(
-                    'Pal',
+                    'App',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   options: {},
@@ -50,7 +50,7 @@ class BreadcrumbExample extends StatelessWidget {
               children: [
                 BreadcrumbItemWithMenu(
                   Text(
-                    'Pal',
+                    'App',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   options: {},
