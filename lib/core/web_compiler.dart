@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:package_config/package_config.dart';
 import 'package:path/path.dart' as p;
 import 'package:process_runner/process_runner.dart';
 import 'package:yaml/yaml.dart';
@@ -10,6 +9,7 @@ export 'src/web_manifest.dart'
 
 Future<void> buildWebBundle(
   String clientEntryPoint, {
+  required String appEntryPoint,
   required FlutterSdk flutter,
   required String destination,
   required String appName,
@@ -28,6 +28,7 @@ Future<void> buildWebBundle(
 
   await _buildScenarioApp(
     destinationDir,
+    appEntryPoint: appEntryPoint,
     flutter: flutter,
     appName: appName,
     rootPackageDirectory: rootPackageDirectory,
@@ -63,20 +64,14 @@ Future<void> buildWebBundle(
 
 Future<void> _buildScenarioApp(
   Directory destination, {
+  required String appEntryPoint,
   required FlutterSdk flutter,
   required String appName,
   required Directory rootPackageDirectory,
   required List<RelatedProject> relatedProjects,
   required String? manifestPath,
 }) async {
-  var packageConfig = (await findPackageConfig(Directory.current))!;
-  var testUtilsPackage = packageConfig['dev_studio_client']!;
-
-  // One level up the "client" directory
-  var devStudioDir = Directory(testUtilsPackage.root.toFilePath()).parent;
-
-  var processRunner = ProcessRunner(
-      printOutputDefault: true, defaultWorkingDirectory: devStudioDir);
+  var processRunner = ProcessRunner(printOutputDefault: true);
   await processRunner.runProcess([flutter.flutter, 'pub', 'get']);
   await processRunner.runProcess([
     flutter.flutter,
@@ -86,11 +81,10 @@ Future<void> _buildScenarioApp(
     '--web-renderer',
     'canvaskit',
     '--target',
-    'lib/main_scenario_web.dart',
+    appEntryPoint,
   ]);
 
-  _copyDirectory(
-      Directory(p.join(devStudioDir.path, 'build/web')), destination);
+  _copyDirectory(Directory('build/web'), destination);
 
   var buildInfo = BuildInfo(
     ManifestEntry(
