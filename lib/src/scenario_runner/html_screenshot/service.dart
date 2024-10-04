@@ -11,6 +11,18 @@ abstract class HtmlScreenshotService {
   Future<PdfScreenshotResponse> pdfScreenshot(PdfScreenshotRequest request);
 }
 
+class UnimplementedHtmlScreenshotService implements HtmlScreenshotService {
+  @override
+  Future<HtmlScreenshotResponse> htmlScreenshot(HtmlScreenshotRequest request) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PdfScreenshotResponse> pdfScreenshot(PdfScreenshotRequest request) {
+    throw UnimplementedError();
+  }
+}
+
 class RemoteHtmlScreenshotService implements HtmlScreenshotService {
   final Uri serverUri;
 

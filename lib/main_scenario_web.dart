@@ -13,7 +13,15 @@ import 'src/scenario_runner/html_screenshot/service.dart';
 import 'src/scenario_runner/service.dart';
 import 'src/scenario_runner/standalone.dart';
 
-void main() async {
+export 'src/scenario_runner/html_screenshot/service.dart'
+    show
+        HtmlScreenshotService,
+        CachedHtmlScreenshotService,
+        RemoteHtmlScreenshotService;
+export 'src/scenario_runner/html_screenshot/service_local.dart'
+    show LocalHtmlScreenshotService;
+
+void main({HtmlScreenshotService? htmlScreenshotService}) async {
   var buildInfoRaw = document.body?.attributes['build-info'];
   BuildInfo? buildInfo;
   WebManifest? manifest;
@@ -58,13 +66,8 @@ void main() async {
       build: buildInfo,
       manifest: manifest,
     ),
-    htmlScreenshot: CachedHtmlScreenshotService(
-      RemoteHtmlScreenshotService(
-        Uri.https('lt100o5bki.execute-api.eu-central-1.amazonaws.com',
-            'prod/html-screenshot/capture'),
-      ),
-      maxSize: 20,
-    ),
+    htmlScreenshot:
+        htmlScreenshotService ?? UnimplementedHtmlScreenshotService(),
   );
   runApp(StandaloneScenarioApp(ScenarioApp(service)));
 }
