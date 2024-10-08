@@ -174,8 +174,8 @@ abstract class DeviceInfo implements Built<DeviceInfo, DeviceInfoBuilder> {
   static final laptop = DeviceInfo(
     'laptop',
     'Laptop',
-    width: 1300,
-    height: 780,
+    width: 1024,
+    height: 768,
     pixelRatio: 1,
     platform: DevicePlatform.windows,
     safeArea: Rectangle(
