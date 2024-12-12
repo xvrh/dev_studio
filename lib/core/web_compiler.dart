@@ -41,8 +41,6 @@ Future<void> buildWebBundle(
     'build',
     'web',
     '--release',
-    '--web-renderer',
-    'canvaskit',
     '--target',
     clientEntryPoint,
   ]);
@@ -78,8 +76,6 @@ Future<void> _buildScenarioApp(
     'build',
     'web',
     '--release',
-    '--web-renderer',
-    'canvaskit',
     '--target',
     appEntryPoint,
   ]);
