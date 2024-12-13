@@ -302,7 +302,7 @@ class _TranslationKeyEntry extends StatelessWidget {
       },
       child: Container(
         color: context.router.isSelected('keys/$name')
-            ? Colors.blueAccent.withOpacity(0.5)
+            ? Colors.blueAccent.withValues(alpha:0.5)
             : null,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
