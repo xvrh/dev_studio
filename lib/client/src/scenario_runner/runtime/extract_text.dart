@@ -1,7 +1,7 @@
-import 'package:dev_studio/src/utils/color.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_test/flutter_test.dart' show MatchFinder;
+import '../../../../src/utils/color.dart';
 import '../protocol/models.dart';
 
 TextInfo textInfoFromElement(String translationKey, Element element,

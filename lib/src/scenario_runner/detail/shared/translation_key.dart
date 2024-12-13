@@ -86,7 +86,7 @@ class TranslationKeyRowState extends State<TranslationKeyRow> {
     var poEditorProject = widget.project.poEditorProjectId;
 
     return Container(
-      color: Colors.black.withValues(alpha:0.04),
+      color: Colors.black.withValues(alpha: 0.04),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
