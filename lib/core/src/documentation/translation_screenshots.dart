@@ -47,7 +47,8 @@ class TranslationScreenshotUtilities {
       code.writeln('},');
     }
     code.writeln(');');
-    return DartFormatter().format('$code');
+    return DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+        .format('$code');
   }
 
   static String generateListCode(List<Screen> screens) {
@@ -150,6 +151,7 @@ const ${translationKey.words.toUpperCamel()}(this.screenId);
       }
     }
 
-    return DartFormatter().format('$code');
+    return DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+        .format('$code');
   }
 }

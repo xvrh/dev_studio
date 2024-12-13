@@ -112,7 +112,7 @@ class DetailSkeleton extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

@@ -31,7 +31,10 @@ final screenshots = screenshotsForTranslations(
       'accountLogoutButton': ['account/Preference_Account', 'Other Code'],
       'accountTitle': ['Account/Preference Account'],
     });
-    expect(code, DartFormatter().format('''
+    expect(
+        code,
+        DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+            .format('''
 import 'translations_screenshots.gen.dart';
 
 final screenshots = screenshotsForTranslations(

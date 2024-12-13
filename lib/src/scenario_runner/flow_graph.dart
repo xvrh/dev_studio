@@ -208,7 +208,7 @@ class _FlowMaster extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                color: Colors.black.withOpacity(0.02),
+                color: Colors.black.withValues(alpha: 0.02),
                 child: _FlowGraph(parent.widget.service, run),
               ),
               Positioned(
@@ -355,7 +355,7 @@ class __FlowGraphState extends State<_FlowGraph> {
           return EdgeTooltip(
             pathName,
             style: TextStyle(
-                color: Colors.blueGrey.withOpacity(0.8), fontSize: 15),
+                color: Colors.blueGrey.withValues(alpha: 0.8), fontSize: 15),
           );
         }
         return null;
@@ -403,7 +403,7 @@ class _ScreenView extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: Colors.blueGrey.withOpacity(0.5), width: 1),
+                    color: Colors.blueGrey.withValues(alpha: 0.5), width: 1),
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
               ),
