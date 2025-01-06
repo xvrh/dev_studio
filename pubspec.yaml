@@ -50,10 +50,7 @@ dev_dependencies:
   built_value_generator:
   json_serializable:
   lints:
-  project_tools:
-    git:
-      url: https://github.com/xvrh/project_tools.dart.git
-      ref: '76d200c'
+  project_tools: {git: 'https://github.com/xvrh/project_tools.dart.git'}
 
 flutter:
   uses-material-design: true
