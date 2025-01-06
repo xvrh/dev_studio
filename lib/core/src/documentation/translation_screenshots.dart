@@ -72,7 +72,7 @@ class TranslationScreenshotUtilities {
         '// GENERATED CODE: flutter test tool/generate_translation_screenshot_code.dart');
     code.writeln();
     code.writeln(
-        "import 'package:dev_studio_core/documentation.dart' show ScreenIdentifier;");
+        "import 'package:dev_studio/core/documentation.dart' show ScreenIdentifier;");
 
     code.writeln(
         'Map<String, Set<ScreenIdentifier>?> screenshotsForTranslations({');

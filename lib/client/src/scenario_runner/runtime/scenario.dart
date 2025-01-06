@@ -60,7 +60,8 @@ abstract class Scenario {
   bool get isDesktop => false;
 
   Widget? _widget;
-  Future<void> pumpWidget(Widget widget) async {
+  Future<void> pumpWidget(Widget widget, {bool? pumpFrames}) async {
+    pumpFrames ??= true;
     _widget = widget;
 
     widget = PhoneStatusBar(
@@ -79,6 +80,9 @@ abstract class Scenario {
         child: RepaintBoundary(key: _boundaryKey, child: widget),
       ),
     );
+    if (pumpFrames) {
+      await _tester.pumpAndSettle();
+    }
   }
 
   Widget wrapWidget(Widget child) => child;
@@ -86,7 +90,7 @@ abstract class Scenario {
   Future<void> rePumpWidget() async {
     var widget = _widget;
     if (widget != null) {
-      await pumpWidget(widget);
+      await pumpWidget(widget, pumpFrames: false);
     }
   }
 
@@ -118,12 +122,10 @@ abstract class Scenario {
 
   Future<void> screen(
     String name, {
-    bool? pumpFrames,
     String? documentationKey,
     Finder? translationAncestor,
     bool? detail,
   }) async {
-    pumpFrames ??= true;
     var index = ++_screenIndex;
     var parentIds = _pathTracker.id;
 
@@ -135,9 +137,6 @@ abstract class Scenario {
     var parentRectangle = _previousTap;
     _previousTap = null;
 
-    if (pumpFrames) {
-      await tester.pumpAndSettle();
-    }
     await waitForAssets();
 
     var isDuplicatedScreen = _previousScreens.contains(screenId);
@@ -402,7 +401,8 @@ abstract class Scenario {
     await _tester.pumpAndSettle();
   }
 
-  Future<void> back() async {
+  Future<void> back({bool? pumpFrame}) async {
+    pumpFrame ??= true;
     var backButton = find.byType(BackButton);
     if (backButton.evaluate().isEmpty) {
       backButton = find.byType(CupertinoNavigationBarBackButton);
@@ -411,6 +411,9 @@ abstract class Scenario {
       backButton = find.byType(CloseButton);
     }
     await _tap(backButton);
+    if (pumpFrame) {
+      await pumpAndSettle();
+    }
   }
 
   T elementByKey<T extends Element>(Key key) =>
