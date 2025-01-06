@@ -6,11 +6,11 @@ part of 'device_info.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const DevicePlatform _$android = DevicePlatform._('android');
-const DevicePlatform _$ios = DevicePlatform._('iOS');
-const DevicePlatform _$macOS = DevicePlatform._('macOS');
-const DevicePlatform _$windows = DevicePlatform._('windows');
-const DevicePlatform _$linux = DevicePlatform._('linux');
+const DevicePlatform _$android = const DevicePlatform._('android');
+const DevicePlatform _$ios = const DevicePlatform._('iOS');
+const DevicePlatform _$macOS = const DevicePlatform._('macOS');
+const DevicePlatform _$windows = const DevicePlatform._('windows');
+const DevicePlatform _$linux = const DevicePlatform._('linux');
 
 DevicePlatform _$vlOf(String name) {
   switch (name) {
@@ -25,12 +25,12 @@ DevicePlatform _$vlOf(String name) {
     case 'linux':
       return _$linux;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<DevicePlatform> _$vls =
-    BuiltSet<DevicePlatform>(const <DevicePlatform>[
+    new BuiltSet<DevicePlatform>(const <DevicePlatform>[
   _$android,
   _$ios,
   _$macOS,
@@ -38,9 +38,9 @@ final BuiltSet<DevicePlatform> _$vls =
   _$linux,
 ]);
 
-Serializer<DeviceInfo> _$deviceInfoSerializer = _$DeviceInfoSerializer();
+Serializer<DeviceInfo> _$deviceInfoSerializer = new _$DeviceInfoSerializer();
 Serializer<DevicePlatform> _$devicePlatformSerializer =
-    _$DevicePlatformSerializer();
+    new _$DevicePlatformSerializer();
 
 class _$DeviceInfoSerializer implements StructuredSerializer<DeviceInfo> {
   @override
@@ -79,7 +79,7 @@ class _$DeviceInfoSerializer implements StructuredSerializer<DeviceInfo> {
   @override
   DeviceInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = DeviceInfoBuilder();
+    final result = new DeviceInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -157,7 +157,7 @@ class _$DeviceInfo extends DeviceInfo {
   final Rectangle safeArea;
 
   factory _$DeviceInfo([void Function(DeviceInfoBuilder)? updates]) =>
-      (DeviceInfoBuilder()..update(updates))._build();
+      (new DeviceInfoBuilder()..update(updates))._build();
 
   _$DeviceInfo._(
       {required this.id,
@@ -183,7 +183,7 @@ class _$DeviceInfo extends DeviceInfo {
       (toBuilder()..update(updates)).build();
 
   @override
-  DeviceInfoBuilder toBuilder() => DeviceInfoBuilder()..replace(this);
+  DeviceInfoBuilder toBuilder() => new DeviceInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -254,7 +254,7 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
   set pixelRatio(double? pixelRatio) => _$this._pixelRatio = pixelRatio;
 
   RectangleBuilder? _safeArea;
-  RectangleBuilder get safeArea => _$this._safeArea ??= RectangleBuilder();
+  RectangleBuilder get safeArea => _$this._safeArea ??= new RectangleBuilder();
   set safeArea(RectangleBuilder? safeArea) => _$this._safeArea = safeArea;
 
   DeviceInfoBuilder();
@@ -292,27 +292,27 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
     _$DeviceInfo _$result;
     try {
       _$result = _$v ??
-          _$DeviceInfo._(
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'DeviceInfo', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'DeviceInfo', 'name'),
-              platform: BuiltValueNullFieldError.checkNotNull(
-                  platform, r'DeviceInfo', 'platform'),
-              width: BuiltValueNullFieldError.checkNotNull(
-                  width, r'DeviceInfo', 'width'),
-              height: BuiltValueNullFieldError.checkNotNull(
-                  height, r'DeviceInfo', 'height'),
-              pixelRatio: BuiltValueNullFieldError.checkNotNull(
-                  pixelRatio, r'DeviceInfo', 'pixelRatio'),
-              safeArea: safeArea.build());
+          new _$DeviceInfo._(
+            id: BuiltValueNullFieldError.checkNotNull(id, r'DeviceInfo', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'DeviceInfo', 'name'),
+            platform: BuiltValueNullFieldError.checkNotNull(
+                platform, r'DeviceInfo', 'platform'),
+            width: BuiltValueNullFieldError.checkNotNull(
+                width, r'DeviceInfo', 'width'),
+            height: BuiltValueNullFieldError.checkNotNull(
+                height, r'DeviceInfo', 'height'),
+            pixelRatio: BuiltValueNullFieldError.checkNotNull(
+                pixelRatio, r'DeviceInfo', 'pixelRatio'),
+            safeArea: safeArea.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'safeArea';
         safeArea.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'DeviceInfo', _$failedField, e.toString());
       }
       rethrow;
