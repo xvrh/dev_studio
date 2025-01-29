@@ -298,10 +298,10 @@ class _TranslationKeyEntry extends StatelessWidget {
     var isOk = filteredCount != null || totalScreenshots == 1;
     return InkWell(
       onTap: () {
-        context.router.go('keys/$name');
+        context.router.go('keys/${Uri.encodeComponent(name)}');
       },
       child: Container(
-        color: context.router.isSelected('keys/$name')
+        color: context.router.isSelected('keys/${Uri.encodeComponent(name)}')
             ? Colors.blueAccent.withValues(alpha: 0.5)
             : null,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
