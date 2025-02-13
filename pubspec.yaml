@@ -1,7 +1,7 @@
 name: dev_studio
 
 environment:
-  sdk: '^3.7.0'
+  sdk: '^3.7.0-0'
 
 dependencies:
   analyzer:
