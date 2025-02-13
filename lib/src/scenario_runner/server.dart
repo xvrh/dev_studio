@@ -36,7 +36,7 @@ class Server {
   }
 
   FutureOr<Response> _scenarioSocketHandler(Request request) {
-    return webSocketHandler((WebSocketChannel channel) =>
+    return webSocketHandler((channel, _) =>
         _onScenarioConnect(request, channel))(request);
   }
 

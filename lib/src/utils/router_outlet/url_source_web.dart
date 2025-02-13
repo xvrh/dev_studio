@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:html' as html;
-import 'dart:ui';
+import 'dart:js_interop';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:web/web.dart' as html;
 import 'path.dart';
 import 'url_source.dart';
 
@@ -10,14 +10,15 @@ UrlSource createSource() => UrlSourceWeb();
 class UrlSourceWeb implements UrlSource {
   final _onChangeController = StreamController<PagePath>.broadcast();
   late PagePath _current;
-  late StreamSubscription _hashChangeSubscription;
 
   UrlSourceWeb() {
-    setUrlStrategy(NoOpUrlStrategy());
+    setUrlStrategy(null);
 
-    _hashChangeSubscription = html.window.onHashChange.listen((_) {
-      go(_getHash());
-    });
+    html.window.addEventListener(
+        'hashchange',
+            () {
+          go(_getHash());
+        }.toJS);
 
     _current = _getHash();
   }
@@ -50,37 +51,5 @@ class UrlSourceWeb implements UrlSource {
   @override
   void dispose() {
     _onChangeController.close();
-    _hashChangeSubscription.cancel();
   }
-}
-
-class NoOpUrlStrategy extends UrlStrategy {
-  @override
-  VoidCallback addPopStateListener(html.EventListener fn) {
-    return () {};
-  }
-
-  @override
-  String getPath() {
-    return '';
-  }
-
-  @override
-  Object? getState() {
-    return {'serialCount': 0};
-  }
-
-  @override
-  Future<void> go(int count) async {}
-
-  @override
-  String prepareExternalUrl(String internalUrl) {
-    return internalUrl;
-  }
-
-  @override
-  void pushState(Object? state, String title, String url) {}
-
-  @override
-  void replaceState(Object? state, String title, String url) {}
 }

@@ -35,13 +35,14 @@ dependencies:
   shelf:
   shelf_router:
   shelf_static:
-  shelf_web_socket:
+  shelf_web_socket: '>=3.0.0'
   stream_channel:
   stream_transform:
   test:
   test_api:
   url_launcher:
   vector_math:
+  web:
   web_socket_channel:
   yaml:
 
