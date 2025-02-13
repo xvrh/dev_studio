@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:html';
+import 'dart:js_interop';
+import 'package:web/web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
@@ -22,7 +23,8 @@ export 'src/scenario_runner/html_screenshot/service_local.dart'
     show LocalHtmlScreenshotService;
 
 void main({HtmlScreenshotService? htmlScreenshotService}) async {
-  var buildInfoRaw = document.body?.attributes['build-info'];
+  var buildInfoRaw =
+      document.body?.attributes.getNamedItem('build-info')?.value;
   BuildInfo? buildInfo;
   WebManifest? manifest;
   if (buildInfoRaw != null && buildInfoRaw.isNotEmpty) {
@@ -38,7 +40,7 @@ void main({HtmlScreenshotService? htmlScreenshotService}) async {
 
   late BehaviorSubject<List<ScenarioApi>> subject;
 
-  var iframe = IFrameElement()
+  var iframe = HTMLIFrameElement()
     //ignore: unsafe_html
     ..src = 'client/index.html'
     ..height = '0'
@@ -46,7 +48,8 @@ void main({HtmlScreenshotService? htmlScreenshotService}) async {
 
   late StreamSubscription onMessageSubscription;
   onMessageSubscription = window.onMessage.listen((e) {
-    if (e.data == onConnectedMessage) {
+    var data = e.data;
+    if (data.dartify() == onConnectedMessage) {
       onMessageSubscription.cancel();
       var channel = createWebChannel(iframe.contentWindow!);
       var client = ScenarioApi(channel, onClose: () {
@@ -56,7 +59,7 @@ void main({HtmlScreenshotService? htmlScreenshotService}) async {
     }
   });
 
-  document.body!.children.add(iframe);
+  document.body!.appendChild(iframe);
 
   subject = BehaviorSubject.seeded([]);
 

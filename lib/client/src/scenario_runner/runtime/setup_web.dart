@@ -1,4 +1,6 @@
-import 'dart:html';
+import 'dart:js_interop';
+
+import 'package:web/web.dart';
 import 'package:stream_channel/stream_channel.dart';
 import '../web_channel.dart';
 import 'asset_bundle.dart';
@@ -26,5 +28,5 @@ StreamChannel<String> createChannel() {
 const onConnectedMessage = 'onClientConnected';
 
 void onConnected() {
-  window.parent!.postMessage(onConnectedMessage, '*');
+  window.parent!.postMessage(onConnectedMessage.toJS, '*'.toJS);
 }

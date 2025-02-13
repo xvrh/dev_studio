@@ -305,10 +305,12 @@ abstract class Scenario {
     await _tester.pump(Duration.zero);
   }
 
-  Future<void> refreshIndicator() async {
+  Future<void> refreshIndicator({bool pumpFrames = true}) async {
     await tester.fling(find.byType(RefreshIndicator),
         Offset(0, tester.view.physicalSize.height * 0.6), 1000.0);
-    await pumpAndSettle();
+    if (pumpFrames) {
+      await pumpAndSettle();
+    }
   }
 
   Finder _targetToFinder(dynamic target, {bool skipOffStage = true}) {

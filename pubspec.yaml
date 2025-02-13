@@ -1,7 +1,7 @@
 name: dev_studio
 
 environment:
-  sdk: '^3.6.0'
+  sdk: '^3.7.0'
 
 dependencies:
   analyzer:
@@ -42,6 +42,7 @@ dependencies:
   test_api:
   url_launcher:
   vector_math:
+  web:
   web_socket_channel:
   yaml:
 
