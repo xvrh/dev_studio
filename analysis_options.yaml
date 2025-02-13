@@ -29,7 +29,6 @@ linter:
     unnecessary_late: true
     unnecessary_parenthesis: true
     unnecessary_statements: true
-    unsafe_html: true
     use_raw_strings: true
     implicit_call_tearoffs: true
     invalid_case_patterns: true

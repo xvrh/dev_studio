@@ -1,7 +1,7 @@
 name: dev_studio
 
 environment:
-  sdk: '^3.6.0'
+  sdk: '^3.7.0'
 
 dependencies:
   analyzer:
@@ -35,7 +35,7 @@ dependencies:
   shelf:
   shelf_router:
   shelf_static:
-  shelf_web_socket: '>=3.0.0'
+  shelf_web_socket:
   stream_channel:
   stream_transform:
   test:

@@ -23,7 +23,8 @@ export 'src/scenario_runner/html_screenshot/service_local.dart'
     show LocalHtmlScreenshotService;
 
 void main({HtmlScreenshotService? htmlScreenshotService}) async {
-  var buildInfoRaw = document.body?.attributes.getNamedItem('build-info')?.value;
+  var buildInfoRaw =
+      document.body?.attributes.getNamedItem('build-info')?.value;
   BuildInfo? buildInfo;
   WebManifest? manifest;
   if (buildInfoRaw != null && buildInfoRaw.isNotEmpty) {
