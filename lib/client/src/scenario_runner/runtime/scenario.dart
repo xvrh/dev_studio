@@ -102,8 +102,10 @@ abstract class Scenario {
     await _tester.pumpAndSettle();
   }
 
-  Future<List<TextInfo>> captureTexts(
-      {Finder? ancestor, required bool onlyReset}) async {
+  Future<List<TextInfo>> captureTexts({
+    Finder? ancestor,
+    required bool onlyReset,
+  }) async {
     // Need to be overridden per project to bind to the translation system.
     return [];
   }
@@ -130,6 +132,7 @@ abstract class Scenario {
     var parentIds = _pathTracker.id;
 
     var screenId = [...parentIds, index].join('-');
+    name = name = _validateScreenName(name);
 
     var parentId = _previousId;
     _previousId = screenId;
@@ -141,7 +144,9 @@ abstract class Scenario {
 
     var isDuplicatedScreen = _previousScreens.contains(screenId);
     var texts = await captureTexts(
-        ancestor: translationAncestor, onlyReset: isDuplicatedScreen);
+      ancestor: translationAncestor,
+      onlyReset: isDuplicatedScreen,
+    );
     var analyticEvent = lastAnalyticEvent();
 
     if (isDuplicatedScreen) {
@@ -152,8 +157,9 @@ abstract class Scenario {
     }
     _previousScreens.add(screenId);
 
-    var boundary = _boundaryKey.currentContext!.findRenderObject()!
-        as RenderRepaintBoundary;
+    var boundary =
+        _boundaryKey.currentContext!.findRenderObject()!
+            as RenderRepaintBoundary;
     await _refreshStatusBar(boundary);
 
     var captureScreenshot =
@@ -168,13 +174,19 @@ abstract class Scenario {
         pngBytes = byteData.buffer.asUint8List();
       }
 
-      var screen =
-          Screen(args.scenarioName, screenId, name, isCollapsable: detail)
-              .rebuild((s) => s
-                ..texts.replace(texts)
-                ..documentationKey = documentationKey
-                ..pathName = _currentPathName
-                ..pathTrail.replace(_pathTrail));
+      var screen = Screen(
+        args.scenarioName,
+        screenId,
+        name,
+        isCollapsable: detail,
+      ).rebuild(
+        (s) =>
+            s
+              ..texts.replace(texts)
+              ..documentationKey = documentationKey
+              ..pathName = _currentPathName
+              ..pathTrail.replace(_pathTrail),
+      );
       _currentPathName = null;
 
       var newScreen = NewScreen((b) {
@@ -184,16 +196,22 @@ abstract class Scenario {
           ..parent = parentId
           ..analyticEvent = analyticEvent?.toBuilder();
         if (parentRectangle != null) {
-          b.parentRectangle.replace(Rectangle.fromLTRB(
+          b.parentRectangle.replace(
+            Rectangle.fromLTRB(
               parentRectangle.left,
               parentRectangle.top,
               parentRectangle.right,
-              parentRectangle.bottom));
+              parentRectangle.bottom,
+            ),
+          );
         }
       });
       _logger.info('Add screen [$name] (id: $screenId, parent: $parentId)');
-      unawaited(_uploadScreenPool
-          .withResource(() => _runContext.addScreen(_args, newScreen)));
+      unawaited(
+        _uploadScreenPool.withResource(
+          () => _runContext.addScreen(_args, newScreen),
+        ),
+      );
     });
   }
 
@@ -206,16 +224,23 @@ abstract class Scenario {
     required String recipient,
     String? documentationKey,
   }) async {
-    await _addScreen(name, 'email',
-        updates: (s) => s
-          ..documentationKey = documentationKey
-          ..email.replace(EmailInfo(
-            subject: subject,
-            subjectTranslationKey: subjectTranslationKey,
-            body: body,
-            sender: sender,
-            recipient: recipient,
-          )));
+    await _addScreen(
+      name,
+      'email',
+      updates:
+          (s) =>
+              s
+                ..documentationKey = documentationKey
+                ..email.replace(
+                  EmailInfo(
+                    subject: subject,
+                    subjectTranslationKey: subjectTranslationKey,
+                    body: body,
+                    sender: sender,
+                    recipient: recipient,
+                  ),
+                ),
+    );
   }
 
   Future<void> pdfScreen(
@@ -223,12 +248,11 @@ abstract class Scenario {
     required Uint8List bytes,
     required String fileName,
   }) async {
-    await _addScreen(name, 'pdf',
-        updates: (s) => s
-          ..pdf.replace(PdfInfo(
-            bytes: bytes,
-            fileName: fileName,
-          )));
+    await _addScreen(
+      name,
+      'pdf',
+      updates: (s) => s..pdf.replace(PdfInfo(bytes: bytes, fileName: fileName)),
+    );
   }
 
   Future<void> jsonScreen(
@@ -236,20 +260,36 @@ abstract class Scenario {
     required String data,
     required String fileName,
   }) async {
-    await _addScreen(name, 'json',
-        updates: (s) => s
-          ..json.replace(JsonInfo(
-            data: data,
-            fileName: fileName,
-          )));
+    await _addScreen(
+      name,
+      'json',
+      updates: (s) => s..json.replace(JsonInfo(data: data, fileName: fileName)),
+    );
   }
 
-  Future<void> _addScreen(String name, String type,
-      {required void Function(ScreenBuilder) updates}) async {
+  final _screenNames = <String, int>{};
+  String _validateScreenName(String name) {
+    var parentIds = _pathTracker.id;
+    var usedScreenName = [...parentIds, name].join('-');
+    _screenNames[usedScreenName] ??= 0;
+    var screenNameIndex =
+        _screenNames[usedScreenName] = _screenNames[usedScreenName]! + 1;
+    if (screenNameIndex > 1) {
+      name = '$name $screenNameIndex';
+    }
+    return name;
+  }
+
+  Future<void> _addScreen(
+    String name,
+    String type, {
+    required void Function(ScreenBuilder) updates,
+  }) async {
     var index = ++_screenIndex;
     var parentIds = _pathTracker.id;
 
     var screenId = [...parentIds, index].join('-');
+    name = _validateScreenName(name);
 
     var parentId = _previousId;
     _previousId = screenId;
@@ -266,9 +306,12 @@ abstract class Scenario {
 
     await _tester.runAsync(() async {
       var screen = Screen(args.scenarioName, screenId, name)
-          .rebuild((s) => s
-            ..pathName = _currentPathName
-            ..pathTrail.replace(_pathTrail))
+          .rebuild(
+            (s) =>
+                s
+                  ..pathName = _currentPathName
+                  ..pathTrail.replace(_pathTrail),
+          )
           .rebuild(updates);
       _currentPathName = null;
 
@@ -278,8 +321,11 @@ abstract class Scenario {
           ..parent = parentId;
       });
       _logger.info('Add $type [$name] (id: $screenId, parent: $parentId)');
-      unawaited(_uploadScreenPool
-          .withResource(() => _runContext.addScreen(_args, newScreen)));
+      unawaited(
+        _uploadScreenPool.withResource(
+          () => _runContext.addScreen(_args, newScreen),
+        ),
+      );
     });
   }
 
@@ -306,8 +352,11 @@ abstract class Scenario {
   }
 
   Future<void> refreshIndicator({bool pumpFrames = true}) async {
-    await tester.fling(find.byType(RefreshIndicator),
-        Offset(0, tester.view.physicalSize.height * 0.6), 1000.0);
+    await tester.fling(
+      find.byType(RefreshIndicator),
+      Offset(0, tester.view.physicalSize.height * 0.6),
+      1000.0,
+    );
     if (pumpFrames) {
       await pumpAndSettle();
     }
@@ -329,12 +378,18 @@ abstract class Scenario {
     }
   }
 
-  Future<void> dragUntilVisible(dynamic target, dynamic scrollview,
-      {Offset? moveStep}) async {
+  Future<void> dragUntilVisible(
+    dynamic target,
+    dynamic scrollview, {
+    Offset? moveStep,
+  }) async {
     var finder = _targetToFinder(target);
     var scrollFinder = _targetToFinder(scrollview);
     await tester.dragUntilVisible(
-        finder, scrollFinder, moveStep ?? Offset(0, -100));
+      finder,
+      scrollFinder,
+      moveStep ?? Offset(0, -100),
+    );
     await pumpAndSettle();
   }
 
@@ -368,31 +423,32 @@ abstract class Scenario {
     await _tester.longPressAt(center);
   }
 
-  RenderBox _getElementBox(
-    Finder finder, {
-    required String callee,
-  }) {
+  RenderBox _getElementBox(Finder finder, {required String callee}) {
     TestAsyncUtils.guardSync();
     final elements = finder.evaluate();
     if (elements.isEmpty) {
       throw FlutterError(
-          'The finder "$finder" (used in a call to "$callee()") could not find any matching widgets.');
+        'The finder "$finder" (used in a call to "$callee()") could not find any matching widgets.',
+      );
     }
     if (elements.length > 1) {
       throw FlutterError(
-          'The finder "$finder" (used in a call to "$callee()") ambiguously found multiple matching widgets. The "$callee()" method needs a single target.');
+        'The finder "$finder" (used in a call to "$callee()") ambiguously found multiple matching widgets. The "$callee()" method needs a single target.',
+      );
     }
     final element = elements.single;
     final renderObject = element.renderObject;
     if (renderObject == null) {
       throw FlutterError(
-          'The finder "$finder" (used in a call to "$callee()") found an element, but it does not have a corresponding render object. '
-          'Maybe the element has not yet been rendered?');
+        'The finder "$finder" (used in a call to "$callee()") found an element, but it does not have a corresponding render object. '
+        'Maybe the element has not yet been rendered?',
+      );
     }
     if (renderObject is! RenderBox) {
       throw FlutterError(
-          'The finder "$finder" (used in a call to "$callee()") found an element whose corresponding render object is not a RenderBox (it is a ${renderObject.runtimeType}: "$renderObject"). '
-          'Unfortunately "$callee()" only supports targeting widgets that correspond to RenderBox objects in the rendering.');
+        'The finder "$finder" (used in a call to "$callee()") found an element whose corresponding render object is not a RenderBox (it is a ${renderObject.runtimeType}: "$renderObject"). '
+        'Unfortunately "$callee()" only supports targeting widgets that correspond to RenderBox objects in the rendering.',
+      );
     }
     final box = element.renderObject! as RenderBox;
     return box;
@@ -434,11 +490,12 @@ abstract class Scenario {
   late PathTracker _pathTracker;
 
   Future<Object?> execute(
-      RunContext runContext,
-      AutomatedTestWidgetsFlutterBinding binding,
-      ScenarioBundle bundle,
-      ProjectInfo project,
-      RunArgs args) async {
+    RunContext runContext,
+    AutomatedTestWidgetsFlutterBinding binding,
+    ScenarioBundle bundle,
+    ProjectInfo project,
+    RunArgs args,
+  ) async {
     _runContext = runContext;
     _bundle = bundle;
     _project = project;
@@ -452,7 +509,9 @@ abstract class Scenario {
     var view = tester.view;
     var platformDispatcher = binding.platformDispatcher;
     view.physicalSize = Size(
-        device.width * device.pixelRatio, device.height * device.pixelRatio);
+      device.width * device.pixelRatio,
+      device.height * device.pixelRatio,
+    );
     view.devicePixelRatio = device.pixelRatio;
     view.padding = FakeViewPadding(
       left: device.safeArea.left * device.pixelRatio,
@@ -476,50 +535,58 @@ abstract class Scenario {
       FlutterError.presentError(e);
     };
 
-    await runZonedGuarded(() async {
-      await binding.runTest(
-        () async {
-          binding.reset();
+    await runZonedGuarded(
+      () async {
+        await binding.runTest(
+          () async {
+            binding.reset();
 
-          debugDisableShadows = false;
+            debugDisableShadows = false;
 
-          try {
-            await _bundle.runWithNetworkOverride(() async {
-              do {
-                _pathTrail.clear();
-                _screenIndex = 0;
-                _previousTap = null;
-                // Reset between the runs
-                await tester.pumpWidget(const SizedBox());
-                await withClock(Clock(() {
-                  return currentDate;
-                }), () async {
-                  await setUp();
-                  await run();
-                });
-              } while (_pathTracker.resetAndCheck());
-            });
-          } catch (e, stackTrace) {
-            error = e;
-            _logger.info(
-                'Test ${args.scenarioName.join('/')} failed with error:\n$e\n$stackTrace');
-            await screen('<Before Error>');
-            await pumpWidget(ErrorWidget(e));
-            await screen('<Error>');
-          }
-          debugDisableShadows = true;
-        },
-        () {},
-        description: args.scenarioName.join('/'),
-      );
-      if (error == null) {
-        tester.endOfTestVerifications();
-      }
-      binding.postTest();
-    }, (e, stackTrace) {
-      error = e;
-      _logger.warning('Zone error $e $stackTrace');
-    });
+            try {
+              await _bundle.runWithNetworkOverride(() async {
+                do {
+                  _pathTrail.clear();
+                  _screenIndex = 0;
+                  _previousTap = null;
+                  _screenNames.clear();
+                  // Reset between the runs
+                  await tester.pumpWidget(const SizedBox());
+                  await withClock(
+                    Clock(() {
+                      return currentDate;
+                    }),
+                    () async {
+                      await setUp();
+                      await run();
+                    },
+                  );
+                } while (_pathTracker.resetAndCheck());
+              });
+            } catch (e, stackTrace) {
+              error = e;
+              _logger.info(
+                'Test ${args.scenarioName.join('/')} failed with error:\n$e\n$stackTrace',
+              );
+              await screen('<Before Error>');
+              await pumpWidget(ErrorWidget(e));
+              await screen('<Error>');
+            }
+            debugDisableShadows = true;
+          },
+          () {},
+          description: args.scenarioName.join('/'),
+        );
+        if (error == null) {
+          tester.endOfTestVerifications();
+        }
+        binding.postTest();
+      },
+      (e, stackTrace) {
+        error = e;
+        _logger.warning('Zone error $e $stackTrace');
+      },
+    );
     await _uploadScreenPool.close();
 
     return error;

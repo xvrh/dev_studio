@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:process_runner/process_runner.dart';
 import 'package:yaml/yaml.dart';
+import 'flutter_sdk.dart';
 import 'src/web_manifest.dart';
 
+export 'flutter_sdk.dart' show FlutterSdk;
 export 'src/web_manifest.dart'
     show WebManifest, ManifestEntry, BuildInfo, RelatedProject;
 
@@ -54,9 +56,12 @@ Future<void> buildWebBundle(
 
   if (rootPackageName != null) {
     var rootPackageAsset = Directory(
-        p.join(clientOutput.path, 'assets/packages/$rootPackageName'));
+      p.join(clientOutput.path, 'assets/packages/$rootPackageName'),
+    );
     _copyDirectory(
-        rootPackageAsset, Directory(p.join(clientOutput.path, 'assets')));
+      rootPackageAsset,
+      Directory(p.join(clientOutput.path, 'assets')),
+    );
   }
 }
 
@@ -94,14 +99,16 @@ Future<void> _buildScenarioApp(
   );
 
   File(p.join(destination.path, 'index.html')).writeAsStringSync(
-      htmlEntryPoint(appName: appName, basePath: '', buildInfo: buildInfo));
+    htmlEntryPoint(appName: appName, basePath: '', buildInfo: buildInfo),
+  );
 }
 
 void _copyDirectory(Directory source, Directory destination) {
   for (var entity in source.listSync(recursive: false)) {
     if (entity is Directory) {
-      var newDirectory =
-          Directory(p.join(destination.absolute.path, p.basename(entity.path)));
+      var newDirectory = Directory(
+        p.join(destination.absolute.path, p.basename(entity.path)),
+      );
       newDirectory.createSync(recursive: true);
 
       _copyDirectory(entity.absolute, newDirectory);
@@ -143,48 +150,4 @@ String htmlEntryPoint({
 </body>
 </html>  
 ''';
-}
-
-class FlutterSdk {
-  final String root;
-
-  FlutterSdk(String path) : root = p.canonicalize(path);
-
-  static FlutterSdk get current {
-    var sdk = tryFind(Platform.resolvedExecutable);
-    if (sdk != null) {
-      return sdk;
-    }
-    throw StateError('Flutter SDK not found. Dart executable: '
-        '${Platform.resolvedExecutable}');
-  }
-
-  static FlutterSdk? tryFind(String path) {
-    if (FileSystemEntity.isDirectorySync(path)) {
-      var dir = Directory(path);
-      while (dir.existsSync()) {
-        var sdk = FlutterSdk(dir.path);
-        if (isValid(sdk)) {
-          return sdk;
-        } else {
-          var parent = dir.parent;
-          if (parent.path == dir.path) return null;
-          dir = parent;
-        }
-      }
-    } else if (FileSystemEntity.isFileSync(path)) {
-      return tryFind(File(path).parent.path);
-    }
-    return null;
-  }
-
-  String get flutter =>
-      p.join(root, 'bin', 'flutter${Platform.isWindows ? '.bat' : ''}');
-
-  String get dart =>
-      p.join(root, 'bin', 'dart${Platform.isWindows ? '.bat' : ''}');
-
-  static bool isValid(FlutterSdk sdk) {
-    return File(sdk.flutter).existsSync();
-  }
 }

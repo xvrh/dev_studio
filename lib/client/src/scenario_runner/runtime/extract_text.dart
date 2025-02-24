@@ -4,8 +4,12 @@ import 'package:flutter_test/flutter_test.dart' show MatchFinder;
 import '../../../../src/utils/color.dart';
 import '../protocol/models.dart';
 
-TextInfo textInfoFromElement(String translationKey, Element element,
-    {required String rawTranslation, required double pixelRatio}) {
+TextInfo textInfoFromElement(
+  String translationKey,
+  Element element, {
+  required String rawTranslation,
+  required double pixelRatio,
+}) {
   var box = element.renderObject! as RenderBox;
   var topLeft = box.localToGlobal(Offset.zero);
   var bottomRight = box.localToGlobal(box.size.bottomRight(Offset.zero));
@@ -15,19 +19,23 @@ TextInfo textInfoFromElement(String translationKey, Element element,
   var text = textFromElement(element)!;
 
   return TextInfo(
-          text: text,
-          translationKey: translationKey,
-          rawTranslation: rawTranslation,
-          globalRectangle: Rectangle.fromLTRB(
-              topLeft.dx * pixelRatio,
-              topLeft.dy * pixelRatio,
-              bottomRight.dx * pixelRatio,
-              bottomRight.dy * pixelRatio))
-      .rebuild((b) => b
-        ..color = style.color != null ? colorToInt(style.color!) : null
-        ..fontSize = style.fontSize
-        ..fontFamily = style.fontFamily
-        ..fontWeight = style.fontWeight?.index);
+    text: text,
+    translationKey: translationKey,
+    rawTranslation: rawTranslation,
+    globalRectangle: Rectangle.fromLTRB(
+      topLeft.dx * pixelRatio,
+      topLeft.dy * pixelRatio,
+      bottomRight.dx * pixelRatio,
+      bottomRight.dy * pixelRatio,
+    ),
+  ).rebuild(
+    (b) =>
+        b
+          ..color = style.color != null ? colorToInt(style.color!) : null
+          ..fontSize = style.fontSize
+          ..fontFamily = style.fontFamily
+          ..fontWeight = style.fontWeight?.index,
+  );
 }
 
 String? textFromElement(Element candidate) {
@@ -39,6 +47,8 @@ String? textFromElement(Element candidate) {
     } else {
       return widget.textSpan!.toPlainText();
     }
+  } else if (widget is RichText) {
+    return widget.text.toPlainText();
   } else if (widget is EditableText) {
     return widget.controller.text;
   } else if (widget is MarkdownBody) {
@@ -54,11 +64,12 @@ TextStyle styleFromElement(Element candidate) {
   final widget = candidate.widget;
   TextStyle? style;
 
-  //TODO(xha): support rich text?
   if (widget is Text) {
     style = widget.style;
   } else if (widget is EditableText) {
     style = widget.style;
+  } else if (widget is RichText) {
+    style = widget.text.style;
   }
   var defaultStyle = DefaultTextStyle.of(candidate).style;
   if (style != null) {
@@ -82,17 +93,3 @@ class TextFinder extends MatchFinder {
     return found == text;
   }
 }
-
-// TODO: use that with Flutter >=3.26
-/*
-int _colorToInt(Color color) {
-  return _floatToInt8(color.a) << 24 |
-      _floatToInt8(color.r) << 16 |
-      _floatToInt8(color.g) << 8 |
-      _floatToInt8(color.b) << 0;
-}
-
-int _floatToInt8(double x) {
-  return ((x * 255.0).round()) & 0xff;
-}
-*/
