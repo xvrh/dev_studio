@@ -29,12 +29,11 @@ TextInfo textInfoFromElement(
       bottomRight.dy * pixelRatio,
     ),
   ).rebuild(
-    (b) =>
-        b
-          ..color = style.color != null ? colorToInt(style.color!) : null
-          ..fontSize = style.fontSize
-          ..fontFamily = style.fontFamily
-          ..fontWeight = style.fontWeight?.index,
+    (b) => b
+      ..color = style.color != null ? colorToInt(style.color!) : null
+      ..fontSize = style.fontSize
+      ..fontFamily = style.fontFamily
+      ..fontWeight = style.fontWeight?.index,
   );
 }
 

@@ -157,9 +157,8 @@ abstract class Scenario {
     }
     _previousScreens.add(screenId);
 
-    var boundary =
-        _boundaryKey.currentContext!.findRenderObject()!
-            as RenderRepaintBoundary;
+    var boundary = _boundaryKey.currentContext!.findRenderObject()!
+        as RenderRepaintBoundary;
     await _refreshStatusBar(boundary);
 
     var captureScreenshot =
@@ -180,12 +179,11 @@ abstract class Scenario {
         name,
         isCollapsable: detail,
       ).rebuild(
-        (s) =>
-            s
-              ..texts.replace(texts)
-              ..documentationKey = documentationKey
-              ..pathName = _currentPathName
-              ..pathTrail.replace(_pathTrail),
+        (s) => s
+          ..texts.replace(texts)
+          ..documentationKey = documentationKey
+          ..pathName = _currentPathName
+          ..pathTrail.replace(_pathTrail),
       );
       _currentPathName = null;
 
@@ -227,19 +225,17 @@ abstract class Scenario {
     await _addScreen(
       name,
       'email',
-      updates:
-          (s) =>
-              s
-                ..documentationKey = documentationKey
-                ..email.replace(
-                  EmailInfo(
-                    subject: subject,
-                    subjectTranslationKey: subjectTranslationKey,
-                    body: body,
-                    sender: sender,
-                    recipient: recipient,
-                  ),
-                ),
+      updates: (s) => s
+        ..documentationKey = documentationKey
+        ..email.replace(
+          EmailInfo(
+            subject: subject,
+            subjectTranslationKey: subjectTranslationKey,
+            body: body,
+            sender: sender,
+            recipient: recipient,
+          ),
+        ),
     );
   }
 
@@ -307,10 +303,9 @@ abstract class Scenario {
     await _tester.runAsync(() async {
       var screen = Screen(args.scenarioName, screenId, name)
           .rebuild(
-            (s) =>
-                s
-                  ..pathName = _currentPathName
-                  ..pathTrail.replace(_pathTrail),
+            (s) => s
+              ..pathName = _currentPathName
+              ..pathTrail.replace(_pathTrail),
           )
           .rebuild(updates);
       _currentPathName = null;

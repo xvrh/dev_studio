@@ -38,10 +38,9 @@ void onConnected() {
 }
 
 Future<void> _buildBundle(FlutterSdk sdk) async {
-  var emptyFile =
-      File('lib/__empty__.dart')
-        ..createSync()
-        ..writeAsStringSync('void main() {}');
+  var emptyFile = File('lib/__empty__.dart')
+    ..createSync()
+    ..writeAsStringSync('void main() {}');
 
   var processRunner = ProcessRunner(printOutputDefault: false);
 
