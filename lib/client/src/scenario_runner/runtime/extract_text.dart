@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_test/flutter_test.dart' show MatchFinder;
-import '../../../../src/utils/color.dart';
 import '../protocol/models.dart';
 
 TextInfo textInfoFromElement(
@@ -30,7 +29,7 @@ TextInfo textInfoFromElement(
     ),
   ).rebuild(
     (b) => b
-      ..color = style.color != null ? colorToInt(style.color!) : null
+      ..color = style.color?.toARGB32()
       ..fontSize = style.fontSize
       ..fontFamily = style.fontFamily
       ..fontWeight = style.fontWeight?.index,
@@ -46,8 +45,6 @@ String? textFromElement(Element candidate) {
     } else {
       return widget.textSpan!.toPlainText();
     }
-  } else if (widget is RichText) {
-    return widget.text.toPlainText();
   } else if (widget is EditableText) {
     return widget.controller.text;
   } else if (widget is MarkdownBody) {
@@ -67,8 +64,6 @@ TextStyle styleFromElement(Element candidate) {
     style = widget.style;
   } else if (widget is EditableText) {
     style = widget.style;
-  } else if (widget is RichText) {
-    style = widget.text.style;
   }
   var defaultStyle = DefaultTextStyle.of(candidate).style;
   if (style != null) {

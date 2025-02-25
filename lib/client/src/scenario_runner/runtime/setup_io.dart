@@ -13,8 +13,8 @@ final _logger = Logger('setup_io');
 Future<ScenarioBundle> createBundle(BundleParameters params) async {
   try {
     await _buildBundle(FlutterSdk.current);
-  } catch (e, s) {
-    _logger.info('Failed to run flutter build bundle', e, s);
+  } catch (e) {
+    _logger.info('Failed to run flutter build bundle', e);
   }
 
   return IOAssetBundle('build/flutter_assets', bundleParams: params);

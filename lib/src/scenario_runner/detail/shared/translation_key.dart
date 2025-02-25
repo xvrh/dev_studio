@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../client/internal.dart';
 import '../../../../core/link_generator.dart';
-import '../../../utils/color.dart';
 import '../../ui/side_bar.dart';
 
 class TranslationsSidebar extends StatelessWidget {
@@ -75,7 +74,7 @@ class TranslationKeyRowState extends State<TranslationKeyRow> {
     String? colorString;
     if (rawColor != null) {
       var color = Color(rawColor);
-      colorString = '#${colorToInt(color).toRadixString(16)}';
+      colorString = '#${color.toARGB32().toRadixString(16)}';
     }
     var fontWeightRaw = text.fontWeight;
     String? fontWeightString;

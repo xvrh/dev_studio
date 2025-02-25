@@ -67,12 +67,12 @@ abstract class Scenario {
     widget = wrapWidget(widget);
 
     widget = PhoneStatusBar(
-     leftText:
-         '${currentDate.hour.toString().padLeft(2, '0')}:${currentDate.minute.toString().padLeft(2, '0')}',
-     key: _statusBarKey,
-     viewPadding: args.device.safeArea.toEdgeInsets(),
-     child: widget,
-   );
+      leftText:
+          '${currentDate.hour.toString().padLeft(2, '0')}:${currentDate.minute.toString().padLeft(2, '0')}',
+      key: _statusBarKey,
+      viewPadding: args.device.safeArea.toEdgeInsets(),
+      child: widget,
+    );
 
     await _tester.pumpWidget(
       DefaultAssetBundle(
