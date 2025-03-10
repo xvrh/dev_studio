@@ -58,9 +58,7 @@ class TestRunner {
 
     setUpAll(() async {
       await loadAppFonts(_bundle);
-      await loadFonts({
-        ...await commonFonts,
-      });
+      await loadFonts({...await commonFonts});
     });
   }
 
@@ -73,10 +71,12 @@ class TestRunner {
 
     _setup();
 
-    var project = ProjectInfo('',
-        rootPath: projectRoot,
-        currentDirectory: Directory.current.path,
-        supportedLanguages: languages);
+    var project = ProjectInfo(
+      '',
+      rootPath: projectRoot,
+      currentDirectory: Directory.current.path,
+      supportedLanguages: languages,
+    );
     for (var language in languages) {
       for (var ref in ScenarioRef.flatten(scenarios)) {
         for (var device in devicesForScenario(ref.scenario)) {
@@ -116,10 +116,12 @@ class TestRunner {
     _setup();
 
     test('Run all', () async {
-      var project = ProjectInfo('',
-          rootPath: projectRoot,
-          currentDirectory: Directory.current.path,
-          supportedLanguages: languages);
+      var project = ProjectInfo(
+        '',
+        rootPath: projectRoot,
+        currentDirectory: Directory.current.path,
+        supportedLanguages: languages,
+      );
       for (var language in languages) {
         for (var ref in ScenarioRef.flatten(scenarios)) {
           for (var device in devicesForScenario(ref.scenario)) {
@@ -183,8 +185,15 @@ class _DocumentationRunContext implements RunContext {
       file = File(filePath)..writeAsBytesSync(image);
     } else if (email != null) {
       var browser = _browser;
+
+      var browserPath = Platform.environment['CHROME_EXECUTABLE_PATH'] ??
+          const String.fromEnvironment(
+            'CHROME_EXECUTABLE_PATH',
+          ).nonEmptyOrNull ??
+          BrowserPath.chrome;
+
       browser ??=
-          _browser = await puppeteer.launch(executablePath: BrowserPath.chrome);
+          _browser = await puppeteer.launch(executablePath: browserPath);
       var screenshotResponse = await screenshot.htmlScreenshot(
         screenshot.HtmlScreenshotRequest(
           html: _wrapEmailBody(email),
@@ -198,9 +207,8 @@ class _DocumentationRunContext implements RunContext {
       );
       file = File(filePath)..writeAsBytesSync(screenshotResponse.image);
       screen = screen.rebuild(
-        (s) => s.texts.addAll(
-          screenshotResponse.texts.map((t) => t.toTextInfo()),
-        ),
+        (s) =>
+            s.texts.addAll(screenshotResponse.texts.map((t) => t.toTextInfo())),
       );
     }
 
