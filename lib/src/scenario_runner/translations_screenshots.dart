@@ -180,7 +180,8 @@ class _TranslationsScreenshotsToolState
       });
 
       var runReference = widget.api.run.start(RunArgs(entry.key,
-          device: DeviceInfo.iPhoneX,
+          device:
+              entry.value.isDesktop ? DeviceInfo.laptop : DeviceInfo.iPhoneX,
           accessibility: AccessibilityConfig.defaultValue,
           language: 'en',
           imageRatio: 0.5));
