@@ -25,17 +25,17 @@ DevicePlatform _$vlOf(String name) {
     case 'linux':
       return _$linux;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
-final BuiltSet<DevicePlatform> _$vls = new BuiltSet<DevicePlatform>(
+final BuiltSet<DevicePlatform> _$vls = BuiltSet<DevicePlatform>(
   const <DevicePlatform>[_$android, _$ios, _$macOS, _$windows, _$linux],
 );
 
-Serializer<DeviceInfo> _$deviceInfoSerializer = new _$DeviceInfoSerializer();
+Serializer<DeviceInfo> _$deviceInfoSerializer = _$DeviceInfoSerializer();
 Serializer<DevicePlatform> _$devicePlatformSerializer =
-    new _$DevicePlatformSerializer();
+    _$DevicePlatformSerializer();
 
 class _$DeviceInfoSerializer implements StructuredSerializer<DeviceInfo> {
   @override
@@ -90,7 +90,7 @@ class _$DeviceInfoSerializer implements StructuredSerializer<DeviceInfo> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new DeviceInfoBuilder();
+    final result = DeviceInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -201,7 +201,7 @@ class _$DeviceInfo extends DeviceInfo {
   final Rectangle safeArea;
 
   factory _$DeviceInfo([void Function(DeviceInfoBuilder)? updates]) =>
-      (new DeviceInfoBuilder()..update(updates))._build();
+      (DeviceInfoBuilder()..update(updates))._build();
 
   _$DeviceInfo._({
     required this.id,
@@ -211,26 +211,13 @@ class _$DeviceInfo extends DeviceInfo {
     required this.height,
     required this.pixelRatio,
     required this.safeArea,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'DeviceInfo', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, r'DeviceInfo', 'name');
-    BuiltValueNullFieldError.checkNotNull(platform, r'DeviceInfo', 'platform');
-    BuiltValueNullFieldError.checkNotNull(width, r'DeviceInfo', 'width');
-    BuiltValueNullFieldError.checkNotNull(height, r'DeviceInfo', 'height');
-    BuiltValueNullFieldError.checkNotNull(
-      pixelRatio,
-      r'DeviceInfo',
-      'pixelRatio',
-    );
-    BuiltValueNullFieldError.checkNotNull(safeArea, r'DeviceInfo', 'safeArea');
-  }
-
+  }) : super._();
   @override
   DeviceInfo rebuild(void Function(DeviceInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DeviceInfoBuilder toBuilder() => new DeviceInfoBuilder()..replace(this);
+  DeviceInfoBuilder toBuilder() => DeviceInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -301,7 +288,7 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
   set pixelRatio(double? pixelRatio) => _$this._pixelRatio = pixelRatio;
 
   RectangleBuilder? _safeArea;
-  RectangleBuilder get safeArea => _$this._safeArea ??= new RectangleBuilder();
+  RectangleBuilder get safeArea => _$this._safeArea ??= RectangleBuilder();
   set safeArea(RectangleBuilder? safeArea) => _$this._safeArea = safeArea;
 
   DeviceInfoBuilder();
@@ -323,7 +310,6 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
 
   @override
   void replace(DeviceInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$DeviceInfo;
   }
 
@@ -340,7 +326,7 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
     try {
       _$result =
           _$v ??
-          new _$DeviceInfo._(
+          _$DeviceInfo._(
             id: BuiltValueNullFieldError.checkNotNull(id, r'DeviceInfo', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(
               name,
@@ -375,7 +361,7 @@ class DeviceInfoBuilder implements Builder<DeviceInfo, DeviceInfoBuilder> {
         _$failedField = 'safeArea';
         safeArea.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'DeviceInfo',
           _$failedField,
           e.toString(),

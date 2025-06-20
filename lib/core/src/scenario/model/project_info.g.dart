@@ -6,11 +6,10 @@ part of 'project_info.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ProjectInfo> _$projectInfoSerializer = new _$ProjectInfoSerializer();
+Serializer<ProjectInfo> _$projectInfoSerializer = _$ProjectInfoSerializer();
 Serializer<ConfluenceInfo> _$confluenceInfoSerializer =
-    new _$ConfluenceInfoSerializer();
-Serializer<FirebaseInfo> _$firebaseInfoSerializer =
-    new _$FirebaseInfoSerializer();
+    _$ConfluenceInfoSerializer();
+Serializer<FirebaseInfo> _$firebaseInfoSerializer = _$FirebaseInfoSerializer();
 
 class _$ProjectInfoSerializer implements StructuredSerializer<ProjectInfo> {
   @override
@@ -92,7 +91,7 @@ class _$ProjectInfoSerializer implements StructuredSerializer<ProjectInfo> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new ProjectInfoBuilder();
+    final result = ProjectInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -207,7 +206,7 @@ class _$ConfluenceInfoSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new ConfluenceInfoBuilder();
+    final result = ConfluenceInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -280,7 +279,7 @@ class _$FirebaseInfoSerializer implements StructuredSerializer<FirebaseInfo> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new FirebaseInfoBuilder();
+    final result = FirebaseInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -330,7 +329,7 @@ class _$ProjectInfo extends ProjectInfo {
   final FirebaseInfo? firebase;
 
   factory _$ProjectInfo([void Function(ProjectInfoBuilder)? updates]) =>
-      (new ProjectInfoBuilder()..update(updates))._build();
+      (ProjectInfoBuilder()..update(updates))._build();
 
   _$ProjectInfo._({
     required this.name,
@@ -341,26 +340,13 @@ class _$ProjectInfo extends ProjectInfo {
     this.poEditorProjectId,
     this.confluence,
     this.firebase,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'ProjectInfo', 'name');
-    BuiltValueNullFieldError.checkNotNull(
-      currentDirectory,
-      r'ProjectInfo',
-      'currentDirectory',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      supportedLanguages,
-      r'ProjectInfo',
-      'supportedLanguages',
-    );
-  }
-
+  }) : super._();
   @override
   ProjectInfo rebuild(void Function(ProjectInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ProjectInfoBuilder toBuilder() => new ProjectInfoBuilder()..replace(this);
+  ProjectInfoBuilder toBuilder() => ProjectInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -424,7 +410,7 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
 
   ListBuilder<String>? _supportedLanguages;
   ListBuilder<String> get supportedLanguages =>
-      _$this._supportedLanguages ??= new ListBuilder<String>();
+      _$this._supportedLanguages ??= ListBuilder<String>();
   set supportedLanguages(ListBuilder<String>? supportedLanguages) =>
       _$this._supportedLanguages = supportedLanguages;
 
@@ -440,13 +426,13 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
 
   ConfluenceInfoBuilder? _confluence;
   ConfluenceInfoBuilder get confluence =>
-      _$this._confluence ??= new ConfluenceInfoBuilder();
+      _$this._confluence ??= ConfluenceInfoBuilder();
   set confluence(ConfluenceInfoBuilder? confluence) =>
       _$this._confluence = confluence;
 
   FirebaseInfoBuilder? _firebase;
   FirebaseInfoBuilder get firebase =>
-      _$this._firebase ??= new FirebaseInfoBuilder();
+      _$this._firebase ??= FirebaseInfoBuilder();
   set firebase(FirebaseInfoBuilder? firebase) => _$this._firebase = firebase;
 
   ProjectInfoBuilder();
@@ -469,7 +455,6 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
 
   @override
   void replace(ProjectInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ProjectInfo;
   }
 
@@ -486,7 +471,7 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
     try {
       _$result =
           _$v ??
-          new _$ProjectInfo._(
+          _$ProjectInfo._(
             name: BuiltValueNullFieldError.checkNotNull(
               name,
               r'ProjectInfo',
@@ -515,7 +500,7 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
         _$failedField = 'firebase';
         _firebase?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'ProjectInfo',
           _$failedField,
           e.toString(),
@@ -537,29 +522,19 @@ class _$ConfluenceInfo extends ConfluenceInfo {
   final String docPrefix;
 
   factory _$ConfluenceInfo([void Function(ConfluenceInfoBuilder)? updates]) =>
-      (new ConfluenceInfoBuilder()..update(updates))._build();
+      (ConfluenceInfoBuilder()..update(updates))._build();
 
   _$ConfluenceInfo._({
     required this.site,
     required this.space,
     required this.docPrefix,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(site, r'ConfluenceInfo', 'site');
-    BuiltValueNullFieldError.checkNotNull(space, r'ConfluenceInfo', 'space');
-    BuiltValueNullFieldError.checkNotNull(
-      docPrefix,
-      r'ConfluenceInfo',
-      'docPrefix',
-    );
-  }
-
+  }) : super._();
   @override
   ConfluenceInfo rebuild(void Function(ConfluenceInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ConfluenceInfoBuilder toBuilder() =>
-      new ConfluenceInfoBuilder()..replace(this);
+  ConfluenceInfoBuilder toBuilder() => ConfluenceInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -621,7 +596,6 @@ class ConfluenceInfoBuilder
 
   @override
   void replace(ConfluenceInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ConfluenceInfo;
   }
 
@@ -636,7 +610,7 @@ class ConfluenceInfoBuilder
   _$ConfluenceInfo _build() {
     final _$result =
         _$v ??
-        new _$ConfluenceInfo._(
+        _$ConfluenceInfo._(
           site: BuiltValueNullFieldError.checkNotNull(
             site,
             r'ConfluenceInfo',
@@ -665,28 +639,16 @@ class _$FirebaseInfo extends FirebaseInfo {
   final String androidAppId;
 
   factory _$FirebaseInfo([void Function(FirebaseInfoBuilder)? updates]) =>
-      (new FirebaseInfoBuilder()..update(updates))._build();
+      (FirebaseInfoBuilder()..update(updates))._build();
 
   _$FirebaseInfo._({required this.projectId, required this.androidAppId})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      projectId,
-      r'FirebaseInfo',
-      'projectId',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      androidAppId,
-      r'FirebaseInfo',
-      'androidAppId',
-    );
-  }
-
+    : super._();
   @override
   FirebaseInfo rebuild(void Function(FirebaseInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  FirebaseInfoBuilder toBuilder() => new FirebaseInfoBuilder()..replace(this);
+  FirebaseInfoBuilder toBuilder() => FirebaseInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -740,7 +702,6 @@ class FirebaseInfoBuilder
 
   @override
   void replace(FirebaseInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$FirebaseInfo;
   }
 
@@ -755,7 +716,7 @@ class FirebaseInfoBuilder
   _$FirebaseInfo _build() {
     final _$result =
         _$v ??
-        new _$FirebaseInfo._(
+        _$FirebaseInfo._(
           projectId: BuiltValueNullFieldError.checkNotNull(
             projectId,
             r'FirebaseInfo',

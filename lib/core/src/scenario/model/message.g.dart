@@ -19,21 +19,21 @@ MessageType _$valueOf(String name) {
     case 'error':
       return _$error;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
-final BuiltSet<MessageType> _$values = new BuiltSet<MessageType>(
+final BuiltSet<MessageType> _$values = BuiltSet<MessageType>(
   const <MessageType>[_$request, _$response, _$error],
 );
 
 Serializers _$messageSerializers =
-    (new Serializers().toBuilder()
+    (Serializers().toBuilder()
           ..add(Message.serializer)
           ..add(MessageType.serializer))
         .build();
-Serializer<Message> _$messageSerializer = new _$MessageSerializer();
-Serializer<MessageType> _$messageTypeSerializer = new _$MessageTypeSerializer();
+Serializer<Message> _$messageSerializer = _$MessageSerializer();
+Serializer<MessageType> _$messageTypeSerializer = _$MessageTypeSerializer();
 
 class _$MessageSerializer implements StructuredSerializer<Message> {
   @override
@@ -97,7 +97,7 @@ class _$MessageSerializer implements StructuredSerializer<Message> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new MessageBuilder();
+    final result = MessageBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -206,7 +206,7 @@ class _$Message extends Message {
   final String? serializedParameter3;
 
   factory _$Message([void Function(MessageBuilder)? updates]) =>
-      (new MessageBuilder()..update(updates))._build();
+      (MessageBuilder()..update(updates))._build();
 
   _$Message._({
     required this.type,
@@ -216,24 +216,13 @@ class _$Message extends Message {
     required this.serializedParameter1,
     this.serializedParameter2,
     this.serializedParameter3,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(type, r'Message', 'type');
-    BuiltValueNullFieldError.checkNotNull(id, r'Message', 'id');
-    BuiltValueNullFieldError.checkNotNull(channel, r'Message', 'channel');
-    BuiltValueNullFieldError.checkNotNull(method, r'Message', 'method');
-    BuiltValueNullFieldError.checkNotNull(
-      serializedParameter1,
-      r'Message',
-      'serializedParameter1',
-    );
-  }
-
+  }) : super._();
   @override
   Message rebuild(void Function(MessageBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MessageBuilder toBuilder() => new MessageBuilder()..replace(this);
+  MessageBuilder toBuilder() => MessageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -329,7 +318,6 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
 
   @override
   void replace(Message other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Message;
   }
 
@@ -344,7 +332,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
   _$Message _build() {
     final _$result =
         _$v ??
-        new _$Message._(
+        _$Message._(
           type: BuiltValueNullFieldError.checkNotNull(type, r'Message', 'type'),
           id: BuiltValueNullFieldError.checkNotNull(id, r'Message', 'id'),
           channel: BuiltValueNullFieldError.checkNotNull(

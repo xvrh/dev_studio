@@ -6,7 +6,7 @@ part of 'rectangle.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Rectangle> _$rectangleSerializer = new _$RectangleSerializer();
+Serializer<Rectangle> _$rectangleSerializer = _$RectangleSerializer();
 
 class _$RectangleSerializer implements StructuredSerializer<Rectangle> {
   @override
@@ -46,7 +46,7 @@ class _$RectangleSerializer implements StructuredSerializer<Rectangle> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new RectangleBuilder();
+    final result = RectangleBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -104,26 +104,20 @@ class _$Rectangle extends Rectangle {
   final double bottom;
 
   factory _$Rectangle([void Function(RectangleBuilder)? updates]) =>
-      (new RectangleBuilder()..update(updates))._build();
+      (RectangleBuilder()..update(updates))._build();
 
   _$Rectangle._({
     required this.left,
     required this.top,
     required this.right,
     required this.bottom,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(left, r'Rectangle', 'left');
-    BuiltValueNullFieldError.checkNotNull(top, r'Rectangle', 'top');
-    BuiltValueNullFieldError.checkNotNull(right, r'Rectangle', 'right');
-    BuiltValueNullFieldError.checkNotNull(bottom, r'Rectangle', 'bottom');
-  }
-
+  }) : super._();
   @override
   Rectangle rebuild(void Function(RectangleBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RectangleBuilder toBuilder() => new RectangleBuilder()..replace(this);
+  RectangleBuilder toBuilder() => RectangleBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -192,7 +186,6 @@ class RectangleBuilder implements Builder<Rectangle, RectangleBuilder> {
 
   @override
   void replace(Rectangle other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Rectangle;
   }
 
@@ -207,7 +200,7 @@ class RectangleBuilder implements Builder<Rectangle, RectangleBuilder> {
   _$Rectangle _build() {
     final _$result =
         _$v ??
-        new _$Rectangle._(
+        _$Rectangle._(
           left: BuiltValueNullFieldError.checkNotNull(
             left,
             r'Rectangle',

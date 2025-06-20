@@ -6,7 +6,7 @@ part of 'run_args.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<RunArgs> _$runArgsSerializer = new _$RunArgsSerializer();
+Serializer<RunArgs> _$runArgsSerializer = _$RunArgsSerializer();
 
 class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
   @override
@@ -66,7 +66,7 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new RunArgsBuilder();
+    final result = RunArgsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -159,7 +159,7 @@ class _$RunArgs extends RunArgs {
   final bool onlyWithDocumentationKey;
 
   factory _$RunArgs([void Function(RunArgsBuilder)? updates]) =>
-      (new RunArgsBuilder()..update(updates))._build();
+      (RunArgsBuilder()..update(updates))._build();
 
   _$RunArgs._({
     required this.id,
@@ -169,34 +169,13 @@ class _$RunArgs extends RunArgs {
     required this.imageRatio,
     required this.language,
     required this.onlyWithDocumentationKey,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'RunArgs', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-      scenarioName,
-      r'RunArgs',
-      'scenarioName',
-    );
-    BuiltValueNullFieldError.checkNotNull(device, r'RunArgs', 'device');
-    BuiltValueNullFieldError.checkNotNull(
-      accessibility,
-      r'RunArgs',
-      'accessibility',
-    );
-    BuiltValueNullFieldError.checkNotNull(imageRatio, r'RunArgs', 'imageRatio');
-    BuiltValueNullFieldError.checkNotNull(language, r'RunArgs', 'language');
-    BuiltValueNullFieldError.checkNotNull(
-      onlyWithDocumentationKey,
-      r'RunArgs',
-      'onlyWithDocumentationKey',
-    );
-  }
-
+  }) : super._();
   @override
   RunArgs rebuild(void Function(RunArgsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RunArgsBuilder toBuilder() => new RunArgsBuilder()..replace(this);
+  RunArgsBuilder toBuilder() => RunArgsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -248,17 +227,17 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
 
   ListBuilder<String>? _scenarioName;
   ListBuilder<String> get scenarioName =>
-      _$this._scenarioName ??= new ListBuilder<String>();
+      _$this._scenarioName ??= ListBuilder<String>();
   set scenarioName(ListBuilder<String>? scenarioName) =>
       _$this._scenarioName = scenarioName;
 
   DeviceInfoBuilder? _device;
-  DeviceInfoBuilder get device => _$this._device ??= new DeviceInfoBuilder();
+  DeviceInfoBuilder get device => _$this._device ??= DeviceInfoBuilder();
   set device(DeviceInfoBuilder? device) => _$this._device = device;
 
   AccessibilityConfigBuilder? _accessibility;
   AccessibilityConfigBuilder get accessibility =>
-      _$this._accessibility ??= new AccessibilityConfigBuilder();
+      _$this._accessibility ??= AccessibilityConfigBuilder();
   set accessibility(AccessibilityConfigBuilder? accessibility) =>
       _$this._accessibility = accessibility;
 
@@ -294,7 +273,6 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
 
   @override
   void replace(RunArgs other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RunArgs;
   }
 
@@ -311,7 +289,7 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
     try {
       _$result =
           _$v ??
-          new _$RunArgs._(
+          _$RunArgs._(
             id: BuiltValueNullFieldError.checkNotNull(id, r'RunArgs', 'id'),
             scenarioName: scenarioName.build(),
             device: device.build(),
@@ -342,7 +320,7 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
         _$failedField = 'accessibility';
         accessibility.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'RunArgs',
           _$failedField,
           e.toString(),

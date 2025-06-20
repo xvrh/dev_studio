@@ -7,7 +7,7 @@ part of 'scenario.dart';
 // **************************************************************************
 
 Serializer<ScenarioReference> _$scenarioReferenceSerializer =
-    new _$ScenarioReferenceSerializer();
+    _$ScenarioReferenceSerializer();
 
 class _$ScenarioReferenceSerializer
     implements StructuredSerializer<ScenarioReference> {
@@ -54,7 +54,7 @@ class _$ScenarioReferenceSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new ScenarioReferenceBuilder();
+    final result = ScenarioReferenceBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -106,28 +106,20 @@ class _$ScenarioReference extends ScenarioReference {
 
   factory _$ScenarioReference([
     void Function(ScenarioReferenceBuilder)? updates,
-  ]) => (new ScenarioReferenceBuilder()..update(updates))._build();
+  ]) => (ScenarioReferenceBuilder()..update(updates))._build();
 
   _$ScenarioReference._({
     required this.name,
     this.description,
     required this.isDesktop,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'ScenarioReference', 'name');
-    BuiltValueNullFieldError.checkNotNull(
-      isDesktop,
-      r'ScenarioReference',
-      'isDesktop',
-    );
-  }
-
+  }) : super._();
   @override
   ScenarioReference rebuild(void Function(ScenarioReferenceBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   ScenarioReferenceBuilder toBuilder() =>
-      new ScenarioReferenceBuilder()..replace(this);
+      ScenarioReferenceBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -163,7 +155,7 @@ class ScenarioReferenceBuilder
   _$ScenarioReference? _$v;
 
   ListBuilder<String>? _name;
-  ListBuilder<String> get name => _$this._name ??= new ListBuilder<String>();
+  ListBuilder<String> get name => _$this._name ??= ListBuilder<String>();
   set name(ListBuilder<String>? name) => _$this._name = name;
 
   String? _description;
@@ -189,7 +181,6 @@ class ScenarioReferenceBuilder
 
   @override
   void replace(ScenarioReference other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ScenarioReference;
   }
 
@@ -206,7 +197,7 @@ class ScenarioReferenceBuilder
     try {
       _$result =
           _$v ??
-          new _$ScenarioReference._(
+          _$ScenarioReference._(
             name: name.build(),
             description: description,
             isDesktop: BuiltValueNullFieldError.checkNotNull(
@@ -221,7 +212,7 @@ class ScenarioReferenceBuilder
         _$failedField = 'name';
         name.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'ScenarioReference',
           _$failedField,
           e.toString(),

@@ -7,7 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$modelSerializers =
-    (new Serializers().toBuilder()
+    (Serializers().toBuilder()
           ..add(AccessibilityConfig.serializer)
           ..add(AnalyticEvent.serializer)
           ..add(BrowserInfo.serializer)
@@ -31,49 +31,49 @@ Serializers _$modelSerializers =
           ..add(TextInfo.serializer)
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(TextInfo)]),
-            () => new ListBuilder<TextInfo>(),
+            () => ListBuilder<TextInfo>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(ScreenLink)]),
-            () => new ListBuilder<ScreenLink>(),
+            () => ListBuilder<ScreenLink>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(Screen)]),
-            () => new ListBuilder<Screen>(),
+            () => ListBuilder<Screen>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltMap, const [
               const FullType(String),
               const FullType(Screen),
             ]),
-            () => new MapBuilder<String, Screen>(),
+            () => MapBuilder<String, Screen>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltMap, const [
               const FullType(String),
               const FullType(String),
             ]),
-            () => new MapBuilder<String, String>(),
+            () => MapBuilder<String, String>(),
           ))
         .build();
 

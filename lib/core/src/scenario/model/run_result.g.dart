@@ -6,7 +6,7 @@ part of 'run_result.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<RunResult> _$runResultSerializer = new _$RunResultSerializer();
+Serializer<RunResult> _$runResultSerializer = _$RunResultSerializer();
 
 class _$RunResultSerializer implements StructuredSerializer<RunResult> {
   @override
@@ -63,7 +63,7 @@ class _$RunResultSerializer implements StructuredSerializer<RunResult> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new RunResultBuilder();
+    final result = RunResultBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -121,17 +121,16 @@ class _$RunResult extends RunResult {
   final Duration? duration;
 
   factory _$RunResult([void Function(RunResultBuilder)? updates]) =>
-      (new RunResultBuilder()..update(updates))._build();
+      (RunResultBuilder()..update(updates))._build();
 
   _$RunResult._({this.error, this.errorType, this.stackTrace, this.duration})
     : super._();
-
   @override
   RunResult rebuild(void Function(RunResultBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RunResultBuilder toBuilder() => new RunResultBuilder()..replace(this);
+  RunResultBuilder toBuilder() => RunResultBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -200,7 +199,6 @@ class RunResultBuilder implements Builder<RunResult, RunResultBuilder> {
 
   @override
   void replace(RunResult other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RunResult;
   }
 
@@ -215,7 +213,7 @@ class RunResultBuilder implements Builder<RunResult, RunResultBuilder> {
   _$RunResult _build() {
     final _$result =
         _$v ??
-        new _$RunResult._(
+        _$RunResult._(
           error: error,
           errorType: errorType,
           stackTrace: stackTrace,
