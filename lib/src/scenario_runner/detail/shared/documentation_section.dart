@@ -25,10 +25,7 @@ class DocumentationSection extends StatelessWidget {
           dense: true,
           leading: SizedBox(
             width: 20,
-            child: Image.asset(
-              'assets/confluence.png',
-              package: 'dev_studio',
-            ),
+            child: Image.asset('assets/confluence.png', package: 'dev_studio'),
           ),
           minLeadingWidth: 20,
           title: Text(documentationKey),
@@ -38,16 +35,17 @@ class DocumentationSection extends StatelessWidget {
               //https://riiotlabs.atlassian.net/wiki/search?text=FP%20doc%20-%20Onboarding%20%3E%20Splash
 
               var confluenceUrl = Uri.https(
-                  '${confluenceInfo.site}.atlassian.net', 'wiki/search', {
-                'text': '${confluenceInfo.docPrefix} ${[
-                  ...run.scenario.name,
-                  documentationKey
-                ].join(' > ')}',
-              });
+                '${confluenceInfo.site}.atlassian.net',
+                'wiki/search',
+                {
+                  'text':
+                      '${confluenceInfo.docPrefix} ${[...run.scenario.name, documentationKey].join(' > ')}',
+                },
+              );
               launchUrl(confluenceUrl);
             }
           },
-        )
+        ),
       ],
     );
   }

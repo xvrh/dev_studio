@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          channel: stable
+          channel: beta
       - run: flutter doctor
       - run: flutter --version
       - run: flutter pub get

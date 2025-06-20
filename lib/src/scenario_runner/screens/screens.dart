@@ -7,8 +7,11 @@ import 'email.dart';
 import 'json.dart';
 import 'pdf.dart';
 
-Widget? widgetForScreen(ScenarioRun run, Screen screen,
-    {required ScenarioService service}) {
+Widget? widgetForScreen(
+  ScenarioRun run,
+  Screen screen, {
+  required ScenarioService service,
+}) {
   var bytes = screen.imageBytes;
   if (bytes != null) {
     return Image.memory(bytes);
@@ -42,10 +45,7 @@ Widget? widgetForScreen(ScenarioRun run, Screen screen,
 
   var json = screen.json;
   if (json != null) {
-    return DeviceFrame(
-      run: run,
-      child: JsonBody(run, json),
-    );
+    return DeviceFrame(run: run, child: JsonBody(run, json));
   }
 
   return null;

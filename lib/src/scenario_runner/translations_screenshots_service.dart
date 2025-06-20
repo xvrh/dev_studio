@@ -16,12 +16,14 @@ class TranslationsScreenshotsService {
     required Map<String, List<Screen>> filters,
   }) : _filters = filters;
 
-  static Future<TranslationsScreenshotsService> load(
-      {required File filterFile,
-      required File definitionFile,
-      required List<Screen> screens}) async {
+  static Future<TranslationsScreenshotsService> load({
+    required File filterFile,
+    required File definitionFile,
+    required List<Screen> screens,
+  }) async {
     var filters = TranslationScreenshotUtilities.parseFiltersCode(
-        filterFile.readAsStringSync());
+      filterFile.readAsStringSync(),
+    );
 
     var initialFilters = <String, List<Screen>>{};
     for (var filter in filters.entries) {
@@ -34,12 +36,14 @@ class TranslationsScreenshotsService {
     }
 
     definitionFile.writeAsStringSync(
-        TranslationScreenshotUtilities.generateListCode(screens));
+      TranslationScreenshotUtilities.generateListCode(screens),
+    );
 
     return TranslationsScreenshotsService._(
-        filterFile: filterFile,
-        definitionFile: definitionFile,
-        filters: initialFilters);
+      filterFile: filterFile,
+      definitionFile: definitionFile,
+      filters: initialFilters,
+    );
   }
 
   int? filterCount(String translationKey) {
@@ -76,10 +80,12 @@ class TranslationsScreenshotsService {
   }
 
   void _saveFilters() {
-    var filters = _filters
-        .map((key, value) => MapEntry(key, value.map(_screenName).toList()));
+    var filters = _filters.map(
+      (key, value) => MapEntry(key, value.map(_screenName).toList()),
+    );
     filterFile.writeAsStringSync(
-        TranslationScreenshotUtilities.generateFiltersCode(filters));
+      TranslationScreenshotUtilities.generateFiltersCode(filters),
+    );
   }
 
   static String _normalizeKey(String key) {

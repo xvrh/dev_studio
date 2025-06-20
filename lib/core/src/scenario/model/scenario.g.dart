@@ -7,7 +7,7 @@ part of 'scenario.dart';
 // **************************************************************************
 
 Serializer<ScenarioReference> _$scenarioReferenceSerializer =
-    new _$ScenarioReferenceSerializer();
+    _$ScenarioReferenceSerializer();
 
 class _$ScenarioReferenceSerializer
     implements StructuredSerializer<ScenarioReference> {
@@ -17,33 +17,44 @@ class _$ScenarioReferenceSerializer
   final String wireName = 'ScenarioReference';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ScenarioReference object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ScenarioReference object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'name',
-      serializers.serialize(object.name,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.name,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
       'isDesktop',
-      serializers.serialize(object.isDesktop,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isDesktop,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.description;
     if (value != null) {
       result
         ..add('description')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   ScenarioReference deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScenarioReferenceBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ScenarioReferenceBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -52,18 +63,31 @@ class _$ScenarioReferenceSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.name.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.description =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'isDesktop':
-          result.isDesktop = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isDesktop =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -80,25 +104,22 @@ class _$ScenarioReference extends ScenarioReference {
   @override
   final bool isDesktop;
 
-  factory _$ScenarioReference(
-          [void Function(ScenarioReferenceBuilder)? updates]) =>
-      (new ScenarioReferenceBuilder()..update(updates))._build();
+  factory _$ScenarioReference([
+    void Function(ScenarioReferenceBuilder)? updates,
+  ]) => (ScenarioReferenceBuilder()..update(updates))._build();
 
-  _$ScenarioReference._(
-      {required this.name, this.description, required this.isDesktop})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'ScenarioReference', 'name');
-    BuiltValueNullFieldError.checkNotNull(
-        isDesktop, r'ScenarioReference', 'isDesktop');
-  }
-
+  _$ScenarioReference._({
+    required this.name,
+    this.description,
+    required this.isDesktop,
+  }) : super._();
   @override
   ScenarioReference rebuild(void Function(ScenarioReferenceBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   ScenarioReferenceBuilder toBuilder() =>
-      new ScenarioReferenceBuilder()..replace(this);
+      ScenarioReferenceBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -134,7 +155,7 @@ class ScenarioReferenceBuilder
   _$ScenarioReference? _$v;
 
   ListBuilder<String>? _name;
-  ListBuilder<String> get name => _$this._name ??= new ListBuilder<String>();
+  ListBuilder<String> get name => _$this._name ??= ListBuilder<String>();
   set name(ListBuilder<String>? name) => _$this._name = name;
 
   String? _description;
@@ -160,7 +181,6 @@ class ScenarioReferenceBuilder
 
   @override
   void replace(ScenarioReference other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ScenarioReference;
   }
 
@@ -175,12 +195,16 @@ class ScenarioReferenceBuilder
   _$ScenarioReference _build() {
     _$ScenarioReference _$result;
     try {
-      _$result = _$v ??
-          new _$ScenarioReference._(
+      _$result =
+          _$v ??
+          _$ScenarioReference._(
             name: name.build(),
             description: description,
             isDesktop: BuiltValueNullFieldError.checkNotNull(
-                isDesktop, r'ScenarioReference', 'isDesktop'),
+              isDesktop,
+              r'ScenarioReference',
+              'isDesktop',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -188,8 +212,11 @@ class ScenarioReferenceBuilder
         _$failedField = 'name';
         name.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'ScenarioReference', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'ScenarioReference',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -11,10 +11,13 @@ class TranslationScreenshotUtilities {
     var parsed = parseString(content: dartCode);
     var variableDeclaration = parsed.unit.declarations
         .whereType<TopLevelVariableDeclaration>()
-        .firstWhere((e) =>
-            e.variables.variables.any((v) => v.name.value() == 'screenshots'));
-    var initializer = variableDeclaration.variables.variables.first.initializer!
-        as MethodInvocation;
+        .firstWhere(
+          (e) =>
+              e.variables.variables.any((v) => v.name.value() == 'screenshots'),
+        );
+    var initializer =
+        variableDeclaration.variables.variables.first.initializer!
+            as MethodInvocation;
 
     var result = <String, List<String>>{};
     for (var argument
@@ -47,14 +50,16 @@ class TranslationScreenshotUtilities {
       code.writeln('},');
     }
     code.writeln(');');
-    return DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
-        .format('$code');
+    return DartFormatter(
+      languageVersion: DartFormatter.latestLanguageVersion,
+    ).format('$code');
   }
 
   static String generateListCode(List<Screen> screens) {
     Iterable<Screen> screensForKey(String translationKey) {
-      return screens
-          .where((e) => e.texts.any((t) => t.translationKey == translationKey));
+      return screens.where(
+        (e) => e.texts.any((t) => t.translationKey == translationKey),
+      );
     }
 
     String screenNameFor(Screen screen) {
@@ -69,13 +74,16 @@ class TranslationScreenshotUtilities {
 
     var code = StringBuffer();
     code.writeln(
-        '// GENERATED CODE: flutter test tool/generate_translation_screenshot_code.dart');
+      '// GENERATED CODE: flutter test tool/generate_translation_screenshot_code.dart',
+    );
     code.writeln();
     code.writeln(
-        "import 'package:dev_studio/core/documentation.dart' show ScreenIdentifier;");
+      "import 'package:dev_studio/core/documentation.dart' show ScreenIdentifier;",
+    );
 
     code.writeln(
-        'Map<String, Set<ScreenIdentifier>?> screenshotsForTranslations({');
+      'Map<String, Set<ScreenIdentifier>?> screenshotsForTranslations({',
+    );
     for (var translationKey in translationKeys) {
       var screenshots = screensForKey(translationKey);
       assert(translationKey.isNotEmpty);
@@ -85,7 +93,8 @@ class TranslationScreenshotUtilities {
       var isOptional = screenshots.length == 1;
 
       code.writeln(
-          '${isOptional ? '' : 'required'} Set<${translationKey.words.toUpperCamel()}>${isOptional ? '?' : ''} ${translationKey.words.toLowerCamel()},');
+        '${isOptional ? '' : 'required'} Set<${translationKey.words.toUpperCamel()}>${isOptional ? '?' : ''} ${translationKey.words.toLowerCamel()},',
+      );
     }
     code.writeln('}) {');
     code.writeln('return {');
@@ -94,7 +103,8 @@ class TranslationScreenshotUtilities {
 
       if (screenshots.isNotEmpty) {
         code.writeln(
-            '${escapeDartString(translationKey)}: ${translationKey.words.toLowerCamel()},');
+          '${escapeDartString(translationKey)}: ${translationKey.words.toLowerCamel()},',
+        );
       }
     }
     code.writeln('}; }');
@@ -119,10 +129,11 @@ mixin TranslationKey implements ScreenIdentifier {
         var screenName = screenNameFor(screen);
 
         code.writeln(
-            'const _${screenName.words.toLowerCamel()} = ScreenIdentifier('
-            '[${screen.scenarioName.map(escapeDartString).join(', ')}],'
-            '[${screen.pathTrail.map(escapeDartString).join(', ')}],'
-            '${escapeDartString(screen.name)});');
+          'const _${screenName.words.toLowerCamel()} = ScreenIdentifier('
+          '[${screen.scenarioName.map(escapeDartString).join(', ')}],'
+          '[${screen.pathTrail.map(escapeDartString).join(', ')}],'
+          '${escapeDartString(screen.name)});',
+        );
       }
     }
 
@@ -131,12 +142,14 @@ mixin TranslationKey implements ScreenIdentifier {
 
       if (screenshots.isNotEmpty) {
         code.writeln(
-            'enum ${translationKey.words.toUpperCamel()} with TranslationKey {');
+          'enum ${translationKey.words.toUpperCamel()} with TranslationKey {',
+        );
         for (var screenshot in screenshots) {
           var screenName = screenNameFor(screenshot);
 
           code.writeln(
-              '${screenName.words.toLowerCamel()}(_${screenName.words.toLowerCamel()}),');
+            '${screenName.words.toLowerCamel()}(_${screenName.words.toLowerCamel()}),',
+          );
         }
 
         code.writeln('''
@@ -151,7 +164,8 @@ const ${translationKey.words.toUpperCamel()}(this.screenId);
       }
     }
 
-    return DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
-        .format('$code');
+    return DartFormatter(
+      languageVersion: DartFormatter.latestLanguageVersion,
+    ).format('$code');
   }
 }

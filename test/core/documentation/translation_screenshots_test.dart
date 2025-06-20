@@ -20,7 +20,7 @@ final screenshots = screenshotsForTranslations(
       'accountTitle': ['accountPreferencesAccount'],
       'accountVersion': [
         'accountPreferencesAccount',
-        'accountPreferencesOther'
+        'accountPreferencesOther',
       ],
       'mfaTitleStepXOfTotal': ['accountProfile2FA'],
     });
@@ -32,15 +32,17 @@ final screenshots = screenshotsForTranslations(
       'accountTitle': ['Account/Preference Account'],
     });
     expect(
-        code,
-        DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
-            .format('''
+      code,
+      DartFormatter(
+        languageVersion: DartFormatter.latestLanguageVersion,
+      ).format('''
 import 'translations_screenshots.gen.dart';
 
 final screenshots = screenshotsForTranslations(
   accountLogoutButton: {AccountLogoutButton.accountPreferenceAccount, AccountLogoutButton.otherCode,},
   accountTitle: {AccountTitle.accountPreferenceAccount,},
 );
-'''));
+'''),
+    );
   });
 }

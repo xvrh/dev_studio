@@ -8,7 +8,7 @@ class RunHost {
   final _currentRuns = <int, RunReference>{};
 
   RunHost(Connection connection)
-      : _channel = connection.createChannel('ScenarioRun') {
+    : _channel = connection.createChannel('ScenarioRun') {
     _channel.registerMethod('addScreen', _addScreen);
     _channel.registerMethod('complete', _onCompleted);
   }
@@ -16,13 +16,16 @@ class RunHost {
   RunReference start(RunArgs args) {
     var run = RunReference(args, this);
     _currentRuns[args.id] = run;
-    _channel.sendRequest<ScenarioRun>('create', args).then((r) {
-      run._scenario.add(r);
-      _channel.sendRequest('execute', args);
-    }).onError((e, stackTrace) {
-      // Finish the run early
-      run._completeWithError(e!);
-    });
+    _channel
+        .sendRequest<ScenarioRun>('create', args)
+        .then((r) {
+          run._scenario.add(r);
+          _channel.sendRequest('execute', args);
+        })
+        .onError((e, stackTrace) {
+          // Finish the run early
+          run._completeWithError(e!);
+        });
 
     return run;
   }

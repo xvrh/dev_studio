@@ -65,14 +65,16 @@ class _RouterOutletState extends State<RouterOutlet> {
       }
     } on Exception catch (e, stackTrace) {
       debugPrint(
-          'Fail to build widget for route $parentPath:\n$e\n$stackTrace');
+        'Fail to build widget for route $parentPath:\n$e\n$stackTrace',
+      );
       error = e;
     }
     tracker.removeSubMatch(_lastMatched);
     _lastMatched = null;
 
-    var redirect =
-        widget.onNotFound?.call(OnNotFoundEvent(parentPath, error: error));
+    var redirect = widget.onNotFound?.call(
+      OnNotFoundEvent(parentPath, error: error),
+    );
     if (redirect != null) {
       context.go(redirect);
     } else {

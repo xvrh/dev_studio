@@ -157,8 +157,9 @@ abstract class Scenario {
     }
     _previousScreens.add(screenId);
 
-    var boundary = _boundaryKey.currentContext!.findRenderObject()!
-        as RenderRepaintBoundary;
+    var boundary =
+        _boundaryKey.currentContext!.findRenderObject()!
+            as RenderRepaintBoundary;
     await _refreshStatusBar(boundary);
 
     var captureScreenshot =
@@ -168,23 +169,25 @@ abstract class Scenario {
       Uint8List? pngBytes;
       if (_args.imageRatio > 0 && captureScreenshot) {
         var image = await boundary.toImage(pixelRatio: _args.imageRatio);
-        var byteData =
-            (await image.toByteData(format: ui.ImageByteFormat.png))!;
+        var byteData = (await image.toByteData(
+          format: ui.ImageByteFormat.png,
+        ))!;
         pngBytes = byteData.buffer.asUint8List();
       }
 
-      var screen = Screen(
-        args.scenarioName,
-        screenId,
-        name,
-        isCollapsable: detail,
-      ).rebuild(
-        (s) => s
-          ..texts.replace(texts)
-          ..documentationKey = documentationKey
-          ..pathName = _currentPathName
-          ..pathTrail.replace(_pathTrail),
-      );
+      var screen =
+          Screen(
+            args.scenarioName,
+            screenId,
+            name,
+            isCollapsable: detail,
+          ).rebuild(
+            (s) => s
+              ..texts.replace(texts)
+              ..documentationKey = documentationKey
+              ..pathName = _currentPathName
+              ..pathTrail.replace(_pathTrail),
+          );
       _currentPathName = null;
 
       var newScreen = NewScreen((b) {
@@ -268,8 +271,8 @@ abstract class Scenario {
     var parentIds = _pathTracker.id;
     var usedScreenName = [...parentIds, name].join('-');
     _screenNames[usedScreenName] ??= 0;
-    var screenNameIndex =
-        _screenNames[usedScreenName] = _screenNames[usedScreenName]! + 1;
+    var screenNameIndex = _screenNames[usedScreenName] =
+        _screenNames[usedScreenName]! + 1;
     if (screenNameIndex > 1) {
       name = '$name $screenNameIndex';
     }
@@ -613,4 +616,7 @@ class _FakeAccessibilityFeatures implements ui.AccessibilityFeatures {
 
   @override
   bool get onOffSwitchLabels => false;
+
+  @override
+  bool get announce => false;
 }

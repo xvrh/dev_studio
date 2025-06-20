@@ -18,16 +18,28 @@ class WebAssetBundle extends CachingAssetBundle implements ScenarioBundle {
       specification: ZoneSpecification(
         scheduleMicrotask:
             (Zone self, ZoneDelegate parent, Zone zone, void Function() f) {
-          Zone.root.scheduleMicrotask(f);
-        },
-        createTimer: (Zone self, ZoneDelegate parent, Zone zone,
-            Duration duration, void Function() f) {
-          return Zone.root.createTimer(duration, f);
-        },
-        createPeriodicTimer: (Zone self, ZoneDelegate parent, Zone zone,
-            Duration period, void Function(Timer timer) f) {
-          return Zone.root.createPeriodicTimer(period, f);
-        },
+              Zone.root.scheduleMicrotask(f);
+            },
+        createTimer:
+            (
+              Zone self,
+              ZoneDelegate parent,
+              Zone zone,
+              Duration duration,
+              void Function() f,
+            ) {
+              return Zone.root.createTimer(duration, f);
+            },
+        createPeriodicTimer:
+            (
+              Zone self,
+              ZoneDelegate parent,
+              Zone zone,
+              Duration period,
+              void Function(Timer timer) f,
+            ) {
+              return Zone.root.createPeriodicTimer(period, f);
+            },
       ),
     );
 

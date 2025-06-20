@@ -40,12 +40,13 @@ class Runner implements RunContext {
   final Future<ScenarioBundle> Function() _bundleFactory;
   late final ScenarioBundle _bundle;
 
-  Runner(this.connectionFactory,
-      {required this.scenarios,
-      required this.project,
-      required Future<ScenarioBundle> Function() bundle,
-      this.onConnected})
-      : _bundleFactory = bundle {
+  Runner(
+    this.connectionFactory, {
+    required this.scenarios,
+    required this.project,
+    required Future<ScenarioBundle> Function() bundle,
+    this.onConnected,
+  }) : _bundleFactory = bundle {
     FlutterError.onError = (error) {
       _logger.severe('FLUTTER ERROR: $error');
     };
@@ -82,20 +83,25 @@ class Runner implements RunContext {
     _logger.info('Start connecting to server');
     var channel = connectionFactory();
     var connection = Connection(channel, modelSerializers);
-    connection.listen(onClose: () {
-      _project = null;
-      _runClient = null;
-      _logger.warning('Connection to server closed');
-      Timer(const Duration(milliseconds: 1000), _startConnection);
-    });
+    connection.listen(
+      onClose: () {
+        _project = null;
+        _runClient = null;
+        _logger.warning('Connection to server closed');
+        Timer(const Duration(milliseconds: 1000), _startConnection);
+      },
+    );
     _onConnected(connection);
   }
 
   void _onConnected(Connection connection) {
     _project = ProjectClient(connection, load: () => project);
     ListingClient(connection, list: _list);
-    _runClient =
-        RunClient(connection, create: _createRun, execute: _executeRun);
+    _runClient = RunClient(
+      connection,
+      create: _createRun,
+      execute: _executeRun,
+    );
 
     onConnected?.call();
   }
@@ -110,18 +116,24 @@ class Runner implements RunContext {
   }
 
   Iterable<ScenarioReference> _listScenarios(
-      List<String> parents, Map<String, dynamic> scenarios) sync* {
+    List<String> parents,
+    Map<String, dynamic> scenarios,
+  ) sync* {
     for (var entry in scenarios.entries) {
       var value = entry.value;
       var name = [...parents, entry.key];
       if (value is Scenario) {
-        yield ScenarioReference(name,
-            description: value.description, isDesktop: value.isDesktop);
+        yield ScenarioReference(
+          name,
+          description: value.description,
+          isDesktop: value.isDesktop,
+        );
       } else if (value is Map<String, dynamic>) {
         yield* _listScenarios(name, value);
       } else {
         throw StateError(
-            'Scenarios map should only contains Scenario or Map<String, dynamic>');
+          'Scenarios map should only contains Scenario or Map<String, dynamic>',
+        );
       }
     }
   }
@@ -131,7 +143,9 @@ class Runner implements RunContext {
       _runClient!.addScreen(run, screen);
 
   Scenario? _findScenario(
-      Map<String, dynamic> scenarios, BuiltList<String> name) {
+    Map<String, dynamic> scenarios,
+    BuiltList<String> name,
+  ) {
     for (var namePart in name) {
       var value = scenarios[namePart];
       if (value is Scenario) {
@@ -153,9 +167,13 @@ class Runner implements RunContext {
     }
 
     var run = ScenarioRun(
-        ScenarioReference(args.scenarioName,
-            description: scenario.description, isDesktop: scenario.isDesktop),
-        args);
+      ScenarioReference(
+        args.scenarioName,
+        description: scenario.description,
+        isDesktop: scenario.isDesktop,
+      ),
+      args,
+    );
     _currentScenario[args] = scenario;
     return run;
   }
@@ -168,8 +186,13 @@ class Runner implements RunContext {
       var stopwatch = Stopwatch()..start();
       late RunResult result;
       try {
-        var zoneError =
-            await scenario.execute(this, binding, bundle, project, args);
+        var zoneError = await scenario.execute(
+          this,
+          binding,
+          bundle,
+          project,
+          args,
+        );
         if (zoneError == null) {
           result = RunResult.success();
         } else {
@@ -181,8 +204,9 @@ class Runner implements RunContext {
       } finally {
         result = result.rebuild((b) => b..duration = stopwatch.elapsed);
         await runClient.complete(args, result);
-        _logger
-            .finer('End scenario ${args.scenarioName} in ${stopwatch.elapsed}');
+        _logger.finer(
+          'End scenario ${args.scenarioName} in ${stopwatch.elapsed}',
+        );
         _currentScenario.remove(args);
       }
     });

@@ -12,9 +12,7 @@ class SideBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SidebarHeader(
-          title: header,
-        ),
+        SidebarHeader(title: header),
         Expanded(child: child),
       ],
     );
@@ -37,9 +35,7 @@ class SidebarHeader extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       child: DefaultTextStyle.merge(
-        style: const TextStyle(
-          fontSize: 12,
-        ),
+        style: const TextStyle(fontSize: 12),
         child: title,
       ),
     );

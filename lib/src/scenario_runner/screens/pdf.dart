@@ -56,9 +56,7 @@ class _PdfBodyState extends State<PdfBody> {
     if (error != null) {
       return ErrorWidget(error);
     } else if (response == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
+      return Center(child: CircularProgressIndicator());
     } else {
       return Image.memory(response.image);
     }

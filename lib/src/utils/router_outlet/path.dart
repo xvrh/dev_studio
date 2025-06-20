@@ -11,7 +11,7 @@ class PagePath {
   final bool isAbsolute;
 
   PagePath._(this._segments, {required this.isAbsolute})
-      : assert(_segments.every((s) => s.isNotEmpty));
+    : assert(_segments.every((s) => s.isNotEmpty));
 
   factory PagePath(String path, {bool? isAbsolute}) {
     path = path.trim();
@@ -48,8 +48,10 @@ class PagePath {
 
   PagePath subPath(PagePath subPath) {
     assert(!subPath.isAbsolute);
-    return PagePath(p.url.join(toString(), subPath.toString()),
-        isAbsolute: isAbsolute);
+    return PagePath(
+      p.url.join(toString(), subPath.toString()),
+      isAbsolute: isAbsolute,
+    );
   }
 
   @override
@@ -106,8 +108,8 @@ class MatchedPath {
     required this.current,
     required this.remaining,
     required this.args,
-  })  : assert(matched.isAbsolute),
-        assert(full.isAbsolute);
+  }) : assert(matched.isAbsolute),
+       assert(full.isAbsolute);
 
   String operator [](String key) {
     return args[key] ?? '';
@@ -146,23 +148,30 @@ class MatchedPath {
 
     var matchedSegments = <String>[];
     var parameters = {...args};
-    for (var segmentIndex = 0;
-        segmentIndex < pattern._segments.length;
-        segmentIndex++) {
+    for (
+      var segmentIndex = 0;
+      segmentIndex < pattern._segments.length;
+      segmentIndex++
+    ) {
       var patternSegment = pattern._segments[segmentIndex];
       var actualSegment = remainingSegments[segmentIndex];
 
-      var matcher = RegExp(r'^' +
-          patternSegment.replaceAll(_findParameters,
-              r"((?:[\w'\.\-~!\$&\(\)\*\+,;=:@]|%[0-9a-fA-F]{2})+)") +
-          r'$');
+      var matcher = RegExp(
+        r'^' +
+            patternSegment.replaceAll(
+              _findParameters,
+              r"((?:[\w'\.\-~!\$&\(\)\*\+,;=:@]|%[0-9a-fA-F]{2})+)",
+            ) +
+            r'$',
+      );
       var match = matcher.firstMatch(actualSegment);
       if (match == null) {
         return null;
       }
       matchedSegments.add(actualSegment);
-      var parameterNames =
-          _findParameters.allMatches(patternSegment).map((m) => m.group(1)!);
+      var parameterNames = _findParameters
+          .allMatches(patternSegment)
+          .map((m) => m.group(1)!);
       var i = 0;
       for (var parameterName in parameterNames) {
         parameters[parameterName] = Uri.decodeComponent(match.group(i + 1)!);
@@ -173,12 +182,15 @@ class MatchedPath {
     return MatchedPath._(
       full: full,
       current: PagePath._(matchedSegments, isAbsolute: false),
-      matched: PagePath._([...matched._segments, ...matchedSegments],
-          isAbsolute: true),
+      matched: PagePath._([
+        ...matched._segments,
+        ...matchedSegments,
+      ], isAbsolute: true),
       pattern: pattern,
       remaining: PagePath._(
-          remainingSegments.skip(pattern._segments.length).toList(),
-          isAbsolute: false),
+        remainingSegments.skip(pattern._segments.length).toList(),
+        isAbsolute: false,
+      ),
       args: parameters,
     );
   }
@@ -198,8 +210,14 @@ class MatchedPath {
       const MapEquality().equals(other.args, args);
 
   @override
-  core.int get hashCode => Object.hash(pattern, full, matched, current,
-      remaining, const MapEquality().hash(args));
+  core.int get hashCode => Object.hash(
+    pattern,
+    full,
+    matched,
+    current,
+    remaining,
+    const MapEquality().hash(args),
+  );
 
   core.int? selectedIndex(Iterable<String> urls) {
     var i = 0;

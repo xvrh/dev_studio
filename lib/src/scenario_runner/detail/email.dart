@@ -91,10 +91,7 @@ class _EmailDetailState extends State<EmailDetail> {
       widget.project,
       widget.run,
       screen,
-      main: Gmail(
-        info: widget.email,
-        body: body,
-      ),
+      main: Gmail(info: widget.email, body: body),
       sidebar: [
         Expanded(
           flex: 2,
@@ -154,20 +151,19 @@ class _EmailDetailState extends State<EmailDetail> {
               padding: EdgeInsets.symmetric(horizontal: 4),
               children: [
                 for (var next in screen.next)
-                  LinkRow(
-                    widget.project,
-                    widget.run.screens[next.to]!,
-                    next,
-                  ),
+                  LinkRow(widget.project, widget.run.screens[next.to]!, next),
               ],
             ),
           ),
         ),
         if (documentationKey != null) ...[
           DetailSkeleton.separator,
-          DocumentationSection(widget.project, widget.run,
-              documentationKey: documentationKey),
-        ]
+          DocumentationSection(
+            widget.project,
+            widget.run,
+            documentationKey: documentationKey,
+          ),
+        ],
       ],
     );
   }
@@ -199,10 +195,7 @@ class _EmailBody extends StatelessWidget {
           height: screenshot.imageHeight.toDouble(),
           child: Stack(
             children: [
-              Image.memory(
-                screenshot.image,
-                fit: BoxFit.none,
-              ),
+              Image.memory(screenshot.image, fit: BoxFit.none),
               if (selectedTextInfo != null) _TextRect(selectedTextInfo!),
               for (var link in screenshot.links)
                 _LinkRect(link, isSelected: link == selectedLink),
@@ -300,10 +293,7 @@ class _HtmlLinkRow extends StatelessWidget {
               link.href,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 11,
-                color: Colors.black45,
-              ),
+              style: const TextStyle(fontSize: 11, color: Colors.black45),
             ),
           ],
         ),
@@ -326,10 +316,7 @@ class _LinkDialog extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            ListTile(
-              title: Text('Text'),
-              subtitle: Text(link.text),
-            ),
+            ListTile(title: Text('Text'), subtitle: Text(link.text)),
             ListTile(
               title: Text('Url'),
               subtitle: Text(link.href),

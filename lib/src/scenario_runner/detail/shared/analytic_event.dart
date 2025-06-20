@@ -29,10 +29,7 @@ class AnalyticEventDialog extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            ListTile(
-              title: Text('Event'),
-              subtitle: Text(event.event),
-            ),
+            ListTile(title: Text('Event'), subtitle: Text(event.event)),
             ListTile(
               title: Text('Parameters'),
               subtitle: Text(event.args.toString()),

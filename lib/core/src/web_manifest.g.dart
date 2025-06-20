@@ -7,18 +7,14 @@ part of 'web_manifest.dart';
 // **************************************************************************
 
 WebManifest _$WebManifestFromJson(Map<String, dynamic> json) => WebManifest(
-      (json['versions'] as Map<String, dynamic>).map(
-        (k, e) =>
-            MapEntry(k, ManifestEntry.fromJson(e as Map<String, dynamic>)),
-      ),
-      latest: json['latest'] as String,
-    );
+  (json['versions'] as Map<String, dynamic>).map(
+    (k, e) => MapEntry(k, ManifestEntry.fromJson(e as Map<String, dynamic>)),
+  ),
+  latest: json['latest'] as String,
+);
 
 Map<String, dynamic> _$WebManifestToJson(WebManifest instance) =>
-    <String, dynamic>{
-      'versions': instance.versions,
-      'latest': instance.latest,
-    };
+    <String, dynamic>{'versions': instance.versions, 'latest': instance.latest};
 
 ManifestEntry _$ManifestEntryFromJson(Map<String, dynamic> json) =>
     ManifestEntry(
@@ -37,27 +33,21 @@ Map<String, dynamic> _$ManifestEntryToJson(ManifestEntry instance) =>
     };
 
 BuildInfo _$BuildInfoFromJson(Map<String, dynamic> json) => BuildInfo(
-      ManifestEntry.fromJson(json['version'] as Map<String, dynamic>),
-      relatedProjects: (json['relatedProjects'] as List<dynamic>)
-          .map((e) => RelatedProject.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      manifestPath: json['manifestPath'] as String?,
-    );
+  ManifestEntry.fromJson(json['version'] as Map<String, dynamic>),
+  relatedProjects: (json['relatedProjects'] as List<dynamic>)
+      .map((e) => RelatedProject.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  manifestPath: json['manifestPath'] as String?,
+);
 
 Map<String, dynamic> _$BuildInfoToJson(BuildInfo instance) => <String, dynamic>{
-      'version': instance.version,
-      'relatedProjects': instance.relatedProjects,
-      'manifestPath': instance.manifestPath,
-    };
+  'version': instance.version,
+  'relatedProjects': instance.relatedProjects,
+  'manifestPath': instance.manifestPath,
+};
 
 RelatedProject _$RelatedProjectFromJson(Map<String, dynamic> json) =>
-    RelatedProject(
-      json['name'] as String,
-      url: json['url'] as String,
-    );
+    RelatedProject(json['name'] as String, url: json['url'] as String);
 
 Map<String, dynamic> _$RelatedProjectToJson(RelatedProject instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'url': instance.url,
-    };
+    <String, dynamic>{'name': instance.name, 'url': instance.url};

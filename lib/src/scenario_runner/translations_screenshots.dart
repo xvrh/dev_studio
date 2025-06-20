@@ -51,14 +51,17 @@ class _TranslationsScreenshotsToolState
     } else if (screens == null) {
       mainScreen = _StartView(onStart: _start);
     } else {
-      var translationKeys =
-          screens.expand((s) => s.texts).map((t) => t.translationKey).toSet();
+      var translationKeys = screens
+          .expand((s) => s.texts)
+          .map((t) => t.translationKey)
+          .toSet();
       var searchTerm = _searchController.text.toLowerCase();
       var service = _service!;
       menuEntries = [
-        for (var key in translationKeys
-            .where((t) => t.toLowerCase().contains(searchTerm))
-            .sortedBy((e) => e))
+        for (var key
+            in translationKeys
+                .where((t) => t.toLowerCase().contains(searchTerm))
+                .sortedBy((e) => e))
           _TranslationKeyEntry(
             name: key,
             totalScreenshots: screens
@@ -150,23 +153,24 @@ class _TranslationsScreenshotsToolState
     Future<Screen> prepareScreen(Screen screen) async {
       var email = screen.email;
       if (email != null) {
-        var nonNullableBrowser = browser ??=
-            await pup.puppeteer.launch(executablePath: pup.BrowserPath.chrome);
+        var nonNullableBrowser = browser ??= await pup.puppeteer.launch(
+          executablePath: pup.BrowserPath.chrome,
+        );
         var screenshot = await html.htmlScreenshot(
-            html.HtmlScreenshotRequest(
-                html: _wrapEmailBody(email),
-                device: html.DeviceInfo(
-                  width: DeviceInfo.iPhoneX.width.toInt(),
-                  height: DeviceInfo.iPhoneX.height.toInt(),
-                  pixelRatio: 0.5,
-                )),
-            browser: nonNullableBrowser);
+          html.HtmlScreenshotRequest(
+            html: _wrapEmailBody(email),
+            device: html.DeviceInfo(
+              width: DeviceInfo.iPhoneX.width.toInt(),
+              height: DeviceInfo.iPhoneX.height.toInt(),
+              pixelRatio: 0.5,
+            ),
+          ),
+          browser: nonNullableBrowser,
+        );
         screen = screen.rebuild(
           (s) => s
             ..imageBytes = screenshot.image
-            ..texts.addAll(
-              screenshot.texts.map((t) => t.toTextInfo()),
-            ),
+            ..texts.addAll(screenshot.texts.map((t) => t.toTextInfo())),
         );
       }
       return screen;
@@ -179,12 +183,17 @@ class _TranslationsScreenshotsToolState
         _runningMessage = '${i + 1}/$count: ${entry.key.join('/')}';
       });
 
-      var runReference = widget.api.run.start(RunArgs(entry.key,
-          device:
-              entry.value.isDesktop ? DeviceInfo.laptop : DeviceInfo.iPhoneX,
+      var runReference = widget.api.run.start(
+        RunArgs(
+          entry.key,
+          device: entry.value.isDesktop
+              ? DeviceInfo.laptop
+              : DeviceInfo.iPhoneX,
           accessibility: AccessibilityConfig.defaultValue,
           language: 'en',
-          imageRatio: 0.5));
+          imageRatio: 0.5,
+        ),
+      );
       await for (var update in runReference.onUpdated) {
         if (update.isCompleted) {
           for (var screen in update.screens.values) {
@@ -204,13 +213,18 @@ class _TranslationsScreenshotsToolState
     }
 
     try {
-      File codeFile(String name) => File(p.join(widget.project.currentDirectory,
-              widget.project.rootPath!, 'tool/$name.dart'))
-          .absolute;
+      File codeFile(String name) => File(
+        p.join(
+          widget.project.currentDirectory,
+          widget.project.rootPath!,
+          'tool/$name.dart',
+        ),
+      ).absolute;
       var service = await TranslationsScreenshotsService.load(
-          filterFile: codeFile('translations_screenshots'),
-          definitionFile: codeFile('translations_screenshots.gen'),
-          screens: screens);
+        filterFile: codeFile('translations_screenshots'),
+        definitionFile: codeFile('translations_screenshots.gen'),
+        screens: screens,
+      );
 
       setState(() {
         _service = service;
@@ -237,10 +251,7 @@ class _StartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FilledButton(
-        onPressed: onStart,
-        child: Text('Run all tests'),
-      ),
+      child: FilledButton(onPressed: onStart, child: Text('Run all tests')),
     );
   }
 }
@@ -259,10 +270,7 @@ class _RunningView extends StatelessWidget {
         const SizedBox(height: 10),
         Center(child: CircularProgressIndicator()),
         const SizedBox(height: 10),
-        Text(
-          message,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        Text(message, style: const TextStyle(fontWeight: FontWeight.bold)),
         for (var scenario in scenarios.entries)
           Row(
             children: [
@@ -272,10 +280,7 @@ class _RunningView extends StatelessWidget {
               else if (scenario.value != null && scenario.value!.isEmpty)
                 Icon(Icons.error_outline)
               else
-                Icon(
-                  Icons.add,
-                  color: Colors.transparent,
-                ),
+                Icon(Icons.add, color: Colors.transparent),
             ],
           ),
       ],
@@ -343,8 +348,11 @@ class _ScreenshotsPage extends StatelessWidget {
   final String translationKey;
   final List<Screen> screens;
 
-  const _ScreenshotsPage(this.service,
-      {required this.screens, required this.translationKey});
+  const _ScreenshotsPage(
+    this.service, {
+    required this.screens,
+    required this.translationKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -395,11 +403,14 @@ class _ScreenshotTileState extends State<_ScreenshotTile> {
       image = Container(color: Colors.red);
     }
 
-    var text = widget.screen.texts
-        .firstWhere((t) => t.translationKey == widget.translationKey);
+    var text = widget.screen.texts.firstWhere(
+      (t) => t.translationKey == widget.translationKey,
+    );
 
-    var isChecked =
-        widget.service.isFiltered(widget.translationKey, widget.screen);
+    var isChecked = widget.service.isFiltered(
+      widget.translationKey,
+      widget.screen,
+    );
     image = Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -409,16 +420,14 @@ class _ScreenshotTileState extends State<_ScreenshotTile> {
       ),
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 30),
-            child: image,
-          ),
+          Padding(padding: const EdgeInsets.only(bottom: 30), child: image),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: Text(
-                '${widget.screen.scenarioName.join('/')} - ${widget.screen.pathTrail.join('-')} - ${widget.screen.name}'),
+              '${widget.screen.scenarioName.join('/')} - ${widget.screen.pathTrail.join('-')} - ${widget.screen.name}',
+            ),
           ),
         ],
       ),
@@ -446,8 +455,11 @@ class _ScreenshotTileState extends State<_ScreenshotTile> {
             value: isChecked,
             onChanged: (v) {
               setState(() {
-                widget.service
-                    .toggleFilter(widget.translationKey, widget.screen, v!);
+                widget.service.toggleFilter(
+                  widget.translationKey,
+                  widget.screen,
+                  v!,
+                );
               });
             },
           ),

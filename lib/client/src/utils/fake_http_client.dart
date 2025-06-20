@@ -8,8 +8,8 @@ import 'dart:io';
 // ignore_for_file: avoid_setters_without_getters
 
 /// Fakes a server response for the [FakeHttpClient].
-typedef RequestCallback = FutureOr<FakeHttpResponse> Function(
-    HttpClientRequest, FakeHttpClient);
+typedef RequestCallback =
+    FutureOr<FakeHttpResponse> Function(HttpClientRequest, FakeHttpClient);
 
 /// A fake [HttpClient] for testing Flutter or Dart VM applications.
 ///
@@ -88,27 +88,37 @@ class FakeHttpClient implements HttpClient {
 
   @override
   void addCredentials(
-      Uri url, String realm, HttpClientCredentials credentials) {}
+    Uri url,
+    String realm,
+    HttpClientCredentials credentials,
+  ) {}
 
   @override
   void addProxyCredentials(
-      String host, int port, String realm, HttpClientCredentials credentials) {}
+    String host,
+    int port,
+    String realm,
+    HttpClientCredentials credentials,
+  ) {}
 
   @override
   set authenticate(
-      Future<bool> Function(Uri url, String scheme, String realm)? f) {}
+    Future<bool> Function(Uri url, String scheme, String realm)? f,
+  ) {}
 
   @override
   set authenticateProxy(
-      Future<bool> Function(String host, int port, String scheme, String realm)?
-          f) {}
+    Future<bool> Function(String host, int port, String scheme, String realm)?
+    f,
+  ) {}
 
   @override
   set findProxy(String Function(Uri url)? f) {}
 
   @override
   set badCertificateCallback(
-      bool Function(X509Certificate cert, String host, int port)? callback) {}
+    bool Function(X509Certificate cert, String host, int port)? callback,
+  ) {}
 
   @override
   void close({bool force = false}) {}
@@ -163,7 +173,11 @@ class FakeHttpClient implements HttpClient {
 
   @override
   Future<HttpClientRequest> open(
-      String method, String host, int port, String path) {
+    String method,
+    String host,
+    int port,
+    String path,
+  ) {
     throw UnsupportedError('');
   }
 
@@ -231,9 +245,13 @@ class FakeHttpClient implements HttpClient {
 
   @override
   set connectionFactory(
-      Future<ConnectionTask<Socket>> Function(
-              Uri url, String? proxyHost, int? proxyPort)?
-          f) {}
+    Future<ConnectionTask<Socket>> Function(
+      Uri url,
+      String? proxyHost,
+      int? proxyPort,
+    )?
+    f,
+  ) {}
 
   @override
   set keyLog(Function(String line)? callback) {}
@@ -285,11 +303,7 @@ class FakeHttpResponse extends Stream<List<int>> implements HttpClientResponse {
     return FakeHttpResponse._(codeUnits, statusCode, testHeaders);
   }
 
-  FakeHttpResponse._(
-    this._body,
-    this._statusCode,
-    this._headers,
-  );
+  FakeHttpResponse._(this._body, this._statusCode, this._headers);
 
   final List<int>? _body;
   final int _statusCode;
@@ -325,10 +339,15 @@ class FakeHttpResponse extends Stream<List<int>> implements HttpClientResponse {
   bool get isRedirect => false;
 
   @override
-  StreamSubscription<List<int>> listen(void Function(List<int> event)? onData,
-      {Function? onError, void Function()? onDone, bool? cancelOnError}) {
-    return Stream<List<int>>.fromIterable(<List<int>>[_body ?? const <int>[]])
-        .listen(
+  StreamSubscription<List<int>> listen(
+    void Function(List<int> event)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
+    return Stream<List<int>>.fromIterable(<List<int>>[
+      _body ?? const <int>[],
+    ]).listen(
       onData,
       onError: onError,
       onDone: onDone,
@@ -343,8 +362,11 @@ class FakeHttpResponse extends Stream<List<int>> implements HttpClientResponse {
   String get reasonPhrase => '';
 
   @override
-  Future<HttpClientResponse> redirect(
-      [String? method, Uri? url, bool? followLoops]) {
+  Future<HttpClientResponse> redirect([
+    String? method,
+    Uri? url,
+    bool? followLoops,
+  ]) {
     throw UnsupportedError('');
   }
 

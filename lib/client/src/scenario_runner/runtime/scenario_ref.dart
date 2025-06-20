@@ -11,7 +11,9 @@ class ScenarioRef {
   }
 
   static Iterable<ScenarioRef> _listScenarios(
-      List<String> parents, Map<String, dynamic> scenarios) sync* {
+    List<String> parents,
+    Map<String, dynamic> scenarios,
+  ) sync* {
     for (var entry in scenarios.entries) {
       var value = entry.value;
       var name = [...parents, entry.key];
@@ -21,7 +23,8 @@ class ScenarioRef {
         yield* _listScenarios(name, value);
       } else {
         throw StateError(
-            'Scenarios map should only contains Scenario or Map<String, dynamic>');
+          'Scenarios map should only contains Scenario or Map<String, dynamic>',
+        );
       }
     }
   }

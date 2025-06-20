@@ -5,9 +5,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: OnboardingScreen(),
-    );
+    return MaterialApp(home: OnboardingScreen());
   }
 }
 
@@ -23,30 +21,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var pages = [
-      Page1(),
-      Page2(),
-    ];
+    var pages = [Page1(), Page2()];
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Onboarding'),
-      ),
+      appBar: AppBar(title: Text('Onboarding')),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: PageView(
-              controller: _controller,
-              children: pages,
-            ),
+            child: PageView(controller: _controller, children: pages),
           ),
           FilledButton(
             onPressed: () {
               _controller.animateToPage(
-                  (_controller.page!.round() + 1) % pages.length,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOut);
+                (_controller.page!.round() + 1) % pages.length,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOut,
+              );
             },
             child: Text('NEXT'),
           ),
@@ -69,13 +60,7 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.green,
-      child: Center(
-        child: Icon(
-          Icons.warning,
-          color: Colors.white,
-          size: 100,
-        ),
-      ),
+      child: Center(child: Icon(Icons.warning, color: Colors.white, size: 100)),
     );
   }
 }
@@ -88,11 +73,7 @@ class Page2 extends StatelessWidget {
     return Container(
       color: Colors.orange,
       child: Center(
-        child: Icon(
-          Icons.description,
-          color: Colors.white,
-          size: 100,
-        ),
+        child: Icon(Icons.description, color: Colors.white, size: 100),
       ),
     );
   }

@@ -6,18 +6,18 @@ part of 'screen.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<NewScreen> _$newScreenSerializer = new _$NewScreenSerializer();
-Serializer<Screen> _$screenSerializer = new _$ScreenSerializer();
-Serializer<TextInfo> _$textInfoSerializer = new _$TextInfoSerializer();
-Serializer<ScreenLink> _$screenLinkSerializer = new _$ScreenLinkSerializer();
+Serializer<NewScreen> _$newScreenSerializer = _$NewScreenSerializer();
+Serializer<Screen> _$screenSerializer = _$ScreenSerializer();
+Serializer<TextInfo> _$textInfoSerializer = _$TextInfoSerializer();
+Serializer<ScreenLink> _$screenLinkSerializer = _$ScreenLinkSerializer();
 Serializer<AnalyticEvent> _$analyticEventSerializer =
-    new _$AnalyticEventSerializer();
-Serializer<BrowserInfo> _$browserInfoSerializer = new _$BrowserInfoSerializer();
-Serializer<EmailInfo> _$emailInfoSerializer = new _$EmailInfoSerializer();
-Serializer<PdfInfo> _$pdfInfoSerializer = new _$PdfInfoSerializer();
-Serializer<JsonInfo> _$jsonInfoSerializer = new _$JsonInfoSerializer();
+    _$AnalyticEventSerializer();
+Serializer<BrowserInfo> _$browserInfoSerializer = _$BrowserInfoSerializer();
+Serializer<EmailInfo> _$emailInfoSerializer = _$EmailInfoSerializer();
+Serializer<PdfInfo> _$pdfInfoSerializer = _$PdfInfoSerializer();
+Serializer<JsonInfo> _$jsonInfoSerializer = _$JsonInfoSerializer();
 Serializer<ScreenAndPath> _$screenAndPathSerializer =
-    new _$ScreenAndPathSerializer();
+    _$ScreenAndPathSerializer();
 
 class _$NewScreenSerializer implements StructuredSerializer<NewScreen> {
   @override
@@ -26,49 +26,67 @@ class _$NewScreenSerializer implements StructuredSerializer<NewScreen> {
   final String wireName = 'NewScreen';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, NewScreen object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    NewScreen object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'screen',
-      serializers.serialize(object.screen,
-          specifiedType: const FullType(Screen)),
+      serializers.serialize(
+        object.screen,
+        specifiedType: const FullType(Screen),
+      ),
     ];
     Object? value;
     value = object.parent;
     if (value != null) {
       result
         ..add('parent')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.parentRectangle;
     if (value != null) {
       result
         ..add('parentRectangle')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(Rectangle)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Rectangle),
+          ),
+        );
     }
     value = object.analyticEvent;
     if (value != null) {
       result
         ..add('analyticEvent')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(AnalyticEvent)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(AnalyticEvent),
+          ),
+        );
     }
     value = object.imageBase64;
     if (value != null) {
       result
         ..add('imageBase64')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
-  NewScreen deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new NewScreenBuilder();
+  NewScreen deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = NewScreenBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -77,24 +95,47 @@ class _$NewScreenSerializer implements StructuredSerializer<NewScreen> {
       final Object? value = iterator.current;
       switch (key) {
         case 'screen':
-          result.screen.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Screen))! as Screen);
+          result.screen.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(Screen),
+                )!
+                as Screen,
+          );
           break;
         case 'parent':
-          result.parent = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.parent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'parentRectangle':
-          result.parentRectangle.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Rectangle))! as Rectangle);
+          result.parentRectangle.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(Rectangle),
+                )!
+                as Rectangle,
+          );
           break;
         case 'analyticEvent':
-          result.analyticEvent.replace(serializers.deserialize(value,
-              specifiedType: const FullType(AnalyticEvent))! as AnalyticEvent);
+          result.analyticEvent.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(AnalyticEvent),
+                )!
+                as AnalyticEvent,
+          );
           break;
         case 'imageBase64':
-          result.imageBase64 = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.imageBase64 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -110,97 +151,138 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
   final String wireName = 'Screen';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, Screen object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    Screen object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'scenarioName',
-      serializers.serialize(object.scenarioName,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.scenarioName,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'texts',
-      serializers.serialize(object.texts,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(TextInfo)])),
+      serializers.serialize(
+        object.texts,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(TextInfo),
+        ]),
+      ),
       'next',
-      serializers.serialize(object.next,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(ScreenLink)])),
+      serializers.serialize(
+        object.next,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(ScreenLink),
+        ]),
+      ),
       'pathTrail',
-      serializers.serialize(object.pathTrail,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.pathTrail,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'isCollapsable',
-      serializers.serialize(object.isCollapsable,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isCollapsable,
+        specifiedType: const FullType(bool),
+      ),
       'isCollapsed',
-      serializers.serialize(object.isCollapsed,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isCollapsed,
+        specifiedType: const FullType(bool),
+      ),
       'collapsedScreens',
-      serializers.serialize(object.collapsedScreens,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(Screen)])),
+      serializers.serialize(
+        object.collapsedScreens,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(Screen),
+        ]),
+      ),
     ];
     Object? value;
     value = object.pathName;
     if (value != null) {
       result
         ..add('pathName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.imageBytes;
     if (value != null) {
       result
         ..add('imageBytes')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(Uint8List)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Uint8List),
+          ),
+        );
     }
     value = object.documentationKey;
     if (value != null) {
       result
         ..add('documentationKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.browser;
     if (value != null) {
       result
         ..add('browser')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(BrowserInfo)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(BrowserInfo),
+          ),
+        );
     }
     value = object.email;
     if (value != null) {
       result
         ..add('email')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(EmailInfo)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(EmailInfo),
+          ),
+        );
     }
     value = object.pdf;
     if (value != null) {
       result
         ..add('pdf')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(PdfInfo)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(PdfInfo)),
+        );
     }
     value = object.json;
     if (value != null) {
       result
         ..add('json')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(JsonInfo)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(JsonInfo)),
+        );
     }
     return result;
   }
 
   @override
-  Screen deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScreenBuilder();
+  Screen deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ScreenBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -209,78 +291,151 @@ class _$ScreenSerializer implements StructuredSerializer<Screen> {
       final Object? value = iterator.current;
       switch (key) {
         case 'scenarioName':
-          result.scenarioName.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.scenarioName.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'texts':
-          result.texts.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(TextInfo)]))!
-              as BuiltList<Object?>);
+          result.texts.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(TextInfo),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'next':
-          result.next.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(ScreenLink)]))!
-              as BuiltList<Object?>);
+          result.next.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(ScreenLink),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'pathName':
-          result.pathName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.pathName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'pathTrail':
-          result.pathTrail.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.pathTrail.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'imageBytes':
-          result.imageBytes = serializers.deserialize(value,
-              specifiedType: const FullType(Uint8List)) as Uint8List?;
+          result.imageBytes =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Uint8List),
+                  )
+                  as Uint8List?;
           break;
         case 'documentationKey':
-          result.documentationKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.documentationKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'isCollapsable':
-          result.isCollapsable = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isCollapsable =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isCollapsed':
-          result.isCollapsed = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isCollapsed =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'collapsedScreens':
-          result.collapsedScreens.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(Screen)]))!
-              as BuiltList<Object?>);
+          result.collapsedScreens.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(Screen),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'browser':
-          result.browser.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BrowserInfo))! as BrowserInfo);
+          result.browser.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BrowserInfo),
+                )!
+                as BrowserInfo,
+          );
           break;
         case 'email':
-          result.email.replace(serializers.deserialize(value,
-              specifiedType: const FullType(EmailInfo))! as EmailInfo);
+          result.email.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(EmailInfo),
+                )!
+                as EmailInfo,
+          );
           break;
         case 'pdf':
-          result.pdf.replace(serializers.deserialize(value,
-              specifiedType: const FullType(PdfInfo))! as PdfInfo);
+          result.pdf.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(PdfInfo),
+                )!
+                as PdfInfo,
+          );
           break;
         case 'json':
-          result.json.replace(serializers.deserialize(value,
-              specifiedType: const FullType(JsonInfo))! as JsonInfo);
+          result.json.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(JsonInfo),
+                )!
+                as JsonInfo,
+          );
           break;
       }
     }
@@ -296,35 +451,46 @@ class _$TextInfoSerializer implements StructuredSerializer<TextInfo> {
   final String wireName = 'TextInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, TextInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    TextInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'translationKey',
-      serializers.serialize(object.translationKey,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.translationKey,
+        specifiedType: const FullType(String),
+      ),
       'rawTranslation',
-      serializers.serialize(object.rawTranslation,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.rawTranslation,
+        specifiedType: const FullType(String),
+      ),
       'text',
       serializers.serialize(object.text, specifiedType: const FullType(String)),
       'globalRectangle',
-      serializers.serialize(object.globalRectangle,
-          specifiedType: const FullType(Rectangle)),
+      serializers.serialize(
+        object.globalRectangle,
+        specifiedType: const FullType(Rectangle),
+      ),
     ];
     Object? value;
     value = object.fontFamily;
     if (value != null) {
       result
         ..add('fontFamily')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.fontSize;
     if (value != null) {
       result
         ..add('fontSize')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.color;
     if (value != null) {
@@ -342,9 +508,12 @@ class _$TextInfoSerializer implements StructuredSerializer<TextInfo> {
   }
 
   @override
-  TextInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new TextInfoBuilder();
+  TextInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = TextInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -353,36 +522,63 @@ class _$TextInfoSerializer implements StructuredSerializer<TextInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'translationKey':
-          result.translationKey = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.translationKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'rawTranslation':
-          result.rawTranslation = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.rawTranslation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'text':
-          result.text = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.text =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'globalRectangle':
-          result.globalRectangle.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Rectangle))! as Rectangle);
+          result.globalRectangle.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(Rectangle),
+                )!
+                as Rectangle,
+          );
           break;
         case 'fontFamily':
-          result.fontFamily = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.fontFamily =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'fontSize':
-          result.fontSize = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.fontSize =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'color':
-          result.color = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.color =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'fontWeight':
-          result.fontWeight = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.fontWeight =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -398,8 +594,11 @@ class _$ScreenLinkSerializer implements StructuredSerializer<ScreenLink> {
   final String wireName = 'ScreenLink';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ScreenLink object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ScreenLink object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'to',
       serializers.serialize(object.to, specifiedType: const FullType(String)),
@@ -409,23 +608,34 @@ class _$ScreenLinkSerializer implements StructuredSerializer<ScreenLink> {
     if (value != null) {
       result
         ..add('tapRect')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(Rectangle)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Rectangle),
+          ),
+        );
     }
     value = object.analytic;
     if (value != null) {
       result
         ..add('analytic')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(AnalyticEvent)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(AnalyticEvent),
+          ),
+        );
     }
     return result;
   }
 
   @override
-  ScreenLink deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScreenLinkBuilder();
+  ScreenLink deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ScreenLinkBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -434,16 +644,30 @@ class _$ScreenLinkSerializer implements StructuredSerializer<ScreenLink> {
       final Object? value = iterator.current;
       switch (key) {
         case 'to':
-          result.to = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.to =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'tapRect':
-          result.tapRect.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Rectangle))! as Rectangle);
+          result.tapRect.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(Rectangle),
+                )!
+                as Rectangle,
+          );
           break;
         case 'analytic':
-          result.analytic.replace(serializers.deserialize(value,
-              specifiedType: const FullType(AnalyticEvent))! as AnalyticEvent);
+          result.analytic.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(AnalyticEvent),
+                )!
+                as AnalyticEvent,
+          );
           break;
       }
     }
@@ -459,16 +683,25 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
   final String wireName = 'AnalyticEvent';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, AnalyticEvent object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    AnalyticEvent object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'event',
-      serializers.serialize(object.event,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.event,
+        specifiedType: const FullType(String),
+      ),
       'args',
-      serializers.serialize(object.args,
-          specifiedType: const FullType(BuiltMap,
-              const [const FullType(String), const FullType(String)])),
+      serializers.serialize(
+        object.args,
+        specifiedType: const FullType(BuiltMap, const [
+          const FullType(String),
+          const FullType(String),
+        ]),
+      ),
     ];
 
     return result;
@@ -476,9 +709,11 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
 
   @override
   AnalyticEvent deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new AnalyticEventBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AnalyticEventBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -487,13 +722,23 @@ class _$AnalyticEventSerializer implements StructuredSerializer<AnalyticEvent> {
       final Object? value = iterator.current;
       switch (key) {
         case 'event':
-          result.event = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.event =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'args':
-          result.args.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap,
-                  const [const FullType(String), const FullType(String)]))!);
+          result.args.replace(
+            serializers.deserialize(
+              value,
+              specifiedType: const FullType(BuiltMap, const [
+                const FullType(String),
+                const FullType(String),
+              ]),
+            )!,
+          );
           break;
       }
     }
@@ -509,26 +754,36 @@ class _$BrowserInfoSerializer implements StructuredSerializer<BrowserInfo> {
   final String wireName = 'BrowserInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, BrowserInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    BrowserInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
       'useSafariVC',
-      serializers.serialize(object.useSafariVC,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.useSafariVC,
+        specifiedType: const FullType(bool),
+      ),
       'useWebView',
-      serializers.serialize(object.useWebView,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.useWebView,
+        specifiedType: const FullType(bool),
+      ),
     ];
 
     return result;
   }
 
   @override
-  BrowserInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new BrowserInfoBuilder();
+  BrowserInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BrowserInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -537,16 +792,28 @@ class _$BrowserInfoSerializer implements StructuredSerializer<BrowserInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'url':
-          result.url = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.url =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'useSafariVC':
-          result.useSafariVC = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.useSafariVC =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'useWebView':
-          result.useWebView = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.useWebView =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -562,32 +829,46 @@ class _$EmailInfoSerializer implements StructuredSerializer<EmailInfo> {
   final String wireName = 'EmailInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, EmailInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    EmailInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'subject',
-      serializers.serialize(object.subject,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.subject,
+        specifiedType: const FullType(String),
+      ),
       'subjectTranslationKey',
-      serializers.serialize(object.subjectTranslationKey,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.subjectTranslationKey,
+        specifiedType: const FullType(String),
+      ),
       'body',
       serializers.serialize(object.body, specifiedType: const FullType(String)),
       'sender',
-      serializers.serialize(object.sender,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.sender,
+        specifiedType: const FullType(String),
+      ),
       'recipient',
-      serializers.serialize(object.recipient,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.recipient,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
   }
 
   @override
-  EmailInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new EmailInfoBuilder();
+  EmailInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = EmailInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -596,24 +877,44 @@ class _$EmailInfoSerializer implements StructuredSerializer<EmailInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'subject':
-          result.subject = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.subject =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'subjectTranslationKey':
-          result.subjectTranslationKey = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.subjectTranslationKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'body':
-          result.body = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.body =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'sender':
-          result.sender = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.sender =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'recipient':
-          result.recipient = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.recipient =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -629,24 +930,34 @@ class _$PdfInfoSerializer implements StructuredSerializer<PdfInfo> {
   final String wireName = 'PdfInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, PdfInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    PdfInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'bytesBase64',
-      serializers.serialize(object.bytesBase64,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.bytesBase64,
+        specifiedType: const FullType(String),
+      ),
       'fileName',
-      serializers.serialize(object.fileName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.fileName,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
   }
 
   @override
-  PdfInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new PdfInfoBuilder();
+  PdfInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PdfInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -655,12 +966,20 @@ class _$PdfInfoSerializer implements StructuredSerializer<PdfInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'bytesBase64':
-          result.bytesBase64 = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.bytesBase64 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'fileName':
-          result.fileName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.fileName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -676,23 +995,31 @@ class _$JsonInfoSerializer implements StructuredSerializer<JsonInfo> {
   final String wireName = 'JsonInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, JsonInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    JsonInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'data',
       serializers.serialize(object.data, specifiedType: const FullType(String)),
       'fileName',
-      serializers.serialize(object.fileName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.fileName,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
   }
 
   @override
-  JsonInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new JsonInfoBuilder();
+  JsonInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = JsonInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -701,12 +1028,20 @@ class _$JsonInfoSerializer implements StructuredSerializer<JsonInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'data':
-          result.data = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.data =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'fileName':
-          result.fileName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.fileName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -722,12 +1057,17 @@ class _$ScreenAndPathSerializer implements StructuredSerializer<ScreenAndPath> {
   final String wireName = 'ScreenAndPath';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ScreenAndPath object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ScreenAndPath object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'screen',
-      serializers.serialize(object.screen,
-          specifiedType: const FullType(Screen)),
+      serializers.serialize(
+        object.screen,
+        specifiedType: const FullType(Screen),
+      ),
       'path',
       serializers.serialize(object.path, specifiedType: const FullType(String)),
     ];
@@ -737,9 +1077,11 @@ class _$ScreenAndPathSerializer implements StructuredSerializer<ScreenAndPath> {
 
   @override
   ScreenAndPath deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new ScreenAndPathBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ScreenAndPathBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -748,12 +1090,21 @@ class _$ScreenAndPathSerializer implements StructuredSerializer<ScreenAndPath> {
       final Object? value = iterator.current;
       switch (key) {
         case 'screen':
-          result.screen.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Screen))! as Screen);
+          result.screen.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(Screen),
+                )!
+                as Screen,
+          );
           break;
         case 'path':
-          result.path = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.path =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -775,24 +1126,21 @@ class _$NewScreen extends NewScreen {
   final String? imageBase64;
 
   factory _$NewScreen([void Function(NewScreenBuilder)? updates]) =>
-      (new NewScreenBuilder()..update(updates))._build();
+      (NewScreenBuilder()..update(updates))._build();
 
-  _$NewScreen._(
-      {required this.screen,
-      this.parent,
-      this.parentRectangle,
-      this.analyticEvent,
-      this.imageBase64})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(screen, r'NewScreen', 'screen');
-  }
-
+  _$NewScreen._({
+    required this.screen,
+    this.parent,
+    this.parentRectangle,
+    this.analyticEvent,
+    this.imageBase64,
+  }) : super._();
   @override
   NewScreen rebuild(void Function(NewScreenBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  NewScreenBuilder toBuilder() => new NewScreenBuilder()..replace(this);
+  NewScreenBuilder toBuilder() => NewScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -833,7 +1181,7 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
   _$NewScreen? _$v;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   String? _parent;
@@ -842,13 +1190,13 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
 
   RectangleBuilder? _parentRectangle;
   RectangleBuilder get parentRectangle =>
-      _$this._parentRectangle ??= new RectangleBuilder();
+      _$this._parentRectangle ??= RectangleBuilder();
   set parentRectangle(RectangleBuilder? parentRectangle) =>
       _$this._parentRectangle = parentRectangle;
 
   AnalyticEventBuilder? _analyticEvent;
   AnalyticEventBuilder get analyticEvent =>
-      _$this._analyticEvent ??= new AnalyticEventBuilder();
+      _$this._analyticEvent ??= AnalyticEventBuilder();
   set analyticEvent(AnalyticEventBuilder? analyticEvent) =>
       _$this._analyticEvent = analyticEvent;
 
@@ -873,7 +1221,6 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
 
   @override
   void replace(NewScreen other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$NewScreen;
   }
 
@@ -888,8 +1235,9 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
   _$NewScreen _build() {
     _$NewScreen _$result;
     try {
-      _$result = _$v ??
-          new _$NewScreen._(
+      _$result =
+          _$v ??
+          _$NewScreen._(
             screen: screen.build(),
             parent: parent,
             parentRectangle: _parentRectangle?.build(),
@@ -907,8 +1255,11 @@ class NewScreenBuilder implements Builder<NewScreen, NewScreenBuilder> {
         _$failedField = 'analyticEvent';
         _analyticEvent?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'NewScreen', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'NewScreen',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -952,47 +1303,32 @@ class _$Screen extends Screen {
   final JsonInfo? json;
 
   factory _$Screen([void Function(ScreenBuilder)? updates]) =>
-      (new ScreenBuilder()..update(updates))._build();
+      (ScreenBuilder()..update(updates))._build();
 
-  _$Screen._(
-      {required this.scenarioName,
-      required this.id,
-      required this.texts,
-      required this.next,
-      this.pathName,
-      required this.pathTrail,
-      required this.name,
-      this.imageBytes,
-      this.documentationKey,
-      required this.isCollapsable,
-      required this.isCollapsed,
-      required this.collapsedScreens,
-      this.browser,
-      this.email,
-      this.pdf,
-      this.json})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        scenarioName, r'Screen', 'scenarioName');
-    BuiltValueNullFieldError.checkNotNull(id, r'Screen', 'id');
-    BuiltValueNullFieldError.checkNotNull(texts, r'Screen', 'texts');
-    BuiltValueNullFieldError.checkNotNull(next, r'Screen', 'next');
-    BuiltValueNullFieldError.checkNotNull(pathTrail, r'Screen', 'pathTrail');
-    BuiltValueNullFieldError.checkNotNull(name, r'Screen', 'name');
-    BuiltValueNullFieldError.checkNotNull(
-        isCollapsable, r'Screen', 'isCollapsable');
-    BuiltValueNullFieldError.checkNotNull(
-        isCollapsed, r'Screen', 'isCollapsed');
-    BuiltValueNullFieldError.checkNotNull(
-        collapsedScreens, r'Screen', 'collapsedScreens');
-  }
-
+  _$Screen._({
+    required this.scenarioName,
+    required this.id,
+    required this.texts,
+    required this.next,
+    this.pathName,
+    required this.pathTrail,
+    required this.name,
+    this.imageBytes,
+    this.documentationKey,
+    required this.isCollapsable,
+    required this.isCollapsed,
+    required this.collapsedScreens,
+    this.browser,
+    this.email,
+    this.pdf,
+    this.json,
+  }) : super._();
   @override
   Screen rebuild(void Function(ScreenBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenBuilder toBuilder() => new ScreenBuilder()..replace(this);
+  ScreenBuilder toBuilder() => ScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1067,7 +1403,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<String>? _scenarioName;
   ListBuilder<String> get scenarioName =>
-      _$this._scenarioName ??= new ListBuilder<String>();
+      _$this._scenarioName ??= ListBuilder<String>();
   set scenarioName(ListBuilder<String>? scenarioName) =>
       _$this._scenarioName = scenarioName;
 
@@ -1076,13 +1412,12 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
   set id(String? id) => _$this._id = id;
 
   ListBuilder<TextInfo>? _texts;
-  ListBuilder<TextInfo> get texts =>
-      _$this._texts ??= new ListBuilder<TextInfo>();
+  ListBuilder<TextInfo> get texts => _$this._texts ??= ListBuilder<TextInfo>();
   set texts(ListBuilder<TextInfo>? texts) => _$this._texts = texts;
 
   ListBuilder<ScreenLink>? _next;
   ListBuilder<ScreenLink> get next =>
-      _$this._next ??= new ListBuilder<ScreenLink>();
+      _$this._next ??= ListBuilder<ScreenLink>();
   set next(ListBuilder<ScreenLink>? next) => _$this._next = next;
 
   String? _pathName;
@@ -1091,7 +1426,7 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<String>? _pathTrail;
   ListBuilder<String> get pathTrail =>
-      _$this._pathTrail ??= new ListBuilder<String>();
+      _$this._pathTrail ??= ListBuilder<String>();
   set pathTrail(ListBuilder<String>? pathTrail) =>
       _$this._pathTrail = pathTrail;
 
@@ -1119,25 +1454,24 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   ListBuilder<Screen>? _collapsedScreens;
   ListBuilder<Screen> get collapsedScreens =>
-      _$this._collapsedScreens ??= new ListBuilder<Screen>();
+      _$this._collapsedScreens ??= ListBuilder<Screen>();
   set collapsedScreens(ListBuilder<Screen>? collapsedScreens) =>
       _$this._collapsedScreens = collapsedScreens;
 
   BrowserInfoBuilder? _browser;
-  BrowserInfoBuilder get browser =>
-      _$this._browser ??= new BrowserInfoBuilder();
+  BrowserInfoBuilder get browser => _$this._browser ??= BrowserInfoBuilder();
   set browser(BrowserInfoBuilder? browser) => _$this._browser = browser;
 
   EmailInfoBuilder? _email;
-  EmailInfoBuilder get email => _$this._email ??= new EmailInfoBuilder();
+  EmailInfoBuilder get email => _$this._email ??= EmailInfoBuilder();
   set email(EmailInfoBuilder? email) => _$this._email = email;
 
   PdfInfoBuilder? _pdf;
-  PdfInfoBuilder get pdf => _$this._pdf ??= new PdfInfoBuilder();
+  PdfInfoBuilder get pdf => _$this._pdf ??= PdfInfoBuilder();
   set pdf(PdfInfoBuilder? pdf) => _$this._pdf = pdf;
 
   JsonInfoBuilder? _json;
-  JsonInfoBuilder get json => _$this._json ??= new JsonInfoBuilder();
+  JsonInfoBuilder get json => _$this._json ??= JsonInfoBuilder();
   set json(JsonInfoBuilder? json) => _$this._json = json;
 
   ScreenBuilder();
@@ -1168,7 +1502,6 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
 
   @override
   void replace(Screen other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Screen;
   }
 
@@ -1183,22 +1516,32 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
   _$Screen _build() {
     _$Screen _$result;
     try {
-      _$result = _$v ??
-          new _$Screen._(
+      _$result =
+          _$v ??
+          _$Screen._(
             scenarioName: scenarioName.build(),
             id: BuiltValueNullFieldError.checkNotNull(id, r'Screen', 'id'),
             texts: texts.build(),
             next: next.build(),
             pathName: pathName,
             pathTrail: pathTrail.build(),
-            name:
-                BuiltValueNullFieldError.checkNotNull(name, r'Screen', 'name'),
+            name: BuiltValueNullFieldError.checkNotNull(
+              name,
+              r'Screen',
+              'name',
+            ),
             imageBytes: imageBytes,
             documentationKey: documentationKey,
             isCollapsable: BuiltValueNullFieldError.checkNotNull(
-                isCollapsable, r'Screen', 'isCollapsable'),
+              isCollapsable,
+              r'Screen',
+              'isCollapsable',
+            ),
             isCollapsed: BuiltValueNullFieldError.checkNotNull(
-                isCollapsed, r'Screen', 'isCollapsed'),
+              isCollapsed,
+              r'Screen',
+              'isCollapsed',
+            ),
             collapsedScreens: collapsedScreens.build(),
             browser: _browser?.build(),
             email: _email?.build(),
@@ -1230,8 +1573,11 @@ class ScreenBuilder implements Builder<Screen, ScreenBuilder> {
         _$failedField = 'json';
         _json?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'Screen', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'Screen',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1259,33 +1605,24 @@ class _$TextInfo extends TextInfo {
   final int? fontWeight;
 
   factory _$TextInfo([void Function(TextInfoBuilder)? updates]) =>
-      (new TextInfoBuilder()..update(updates))._build();
+      (TextInfoBuilder()..update(updates))._build();
 
-  _$TextInfo._(
-      {required this.translationKey,
-      required this.rawTranslation,
-      required this.text,
-      required this.globalRectangle,
-      this.fontFamily,
-      this.fontSize,
-      this.color,
-      this.fontWeight})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        translationKey, r'TextInfo', 'translationKey');
-    BuiltValueNullFieldError.checkNotNull(
-        rawTranslation, r'TextInfo', 'rawTranslation');
-    BuiltValueNullFieldError.checkNotNull(text, r'TextInfo', 'text');
-    BuiltValueNullFieldError.checkNotNull(
-        globalRectangle, r'TextInfo', 'globalRectangle');
-  }
-
+  _$TextInfo._({
+    required this.translationKey,
+    required this.rawTranslation,
+    required this.text,
+    required this.globalRectangle,
+    this.fontFamily,
+    this.fontSize,
+    this.color,
+    this.fontWeight,
+  }) : super._();
   @override
   TextInfo rebuild(void Function(TextInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  TextInfoBuilder toBuilder() => new TextInfoBuilder()..replace(this);
+  TextInfoBuilder toBuilder() => TextInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1350,7 +1687,7 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
 
   RectangleBuilder? _globalRectangle;
   RectangleBuilder get globalRectangle =>
-      _$this._globalRectangle ??= new RectangleBuilder();
+      _$this._globalRectangle ??= RectangleBuilder();
   set globalRectangle(RectangleBuilder? globalRectangle) =>
       _$this._globalRectangle = globalRectangle;
 
@@ -1390,7 +1727,6 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
 
   @override
   void replace(TextInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TextInfo;
   }
 
@@ -1405,14 +1741,24 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
   _$TextInfo _build() {
     _$TextInfo _$result;
     try {
-      _$result = _$v ??
-          new _$TextInfo._(
+      _$result =
+          _$v ??
+          _$TextInfo._(
             translationKey: BuiltValueNullFieldError.checkNotNull(
-                translationKey, r'TextInfo', 'translationKey'),
+              translationKey,
+              r'TextInfo',
+              'translationKey',
+            ),
             rawTranslation: BuiltValueNullFieldError.checkNotNull(
-                rawTranslation, r'TextInfo', 'rawTranslation'),
+              rawTranslation,
+              r'TextInfo',
+              'rawTranslation',
+            ),
             text: BuiltValueNullFieldError.checkNotNull(
-                text, r'TextInfo', 'text'),
+              text,
+              r'TextInfo',
+              'text',
+            ),
             globalRectangle: globalRectangle.build(),
             fontFamily: fontFamily,
             fontSize: fontSize,
@@ -1425,8 +1771,11 @@ class TextInfoBuilder implements Builder<TextInfo, TextInfoBuilder> {
         _$failedField = 'globalRectangle';
         globalRectangle.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'TextInfo', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'TextInfo',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1444,18 +1793,15 @@ class _$ScreenLink extends ScreenLink {
   final AnalyticEvent? analytic;
 
   factory _$ScreenLink([void Function(ScreenLinkBuilder)? updates]) =>
-      (new ScreenLinkBuilder()..update(updates))._build();
+      (ScreenLinkBuilder()..update(updates))._build();
 
-  _$ScreenLink._({required this.to, this.tapRect, this.analytic}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(to, r'ScreenLink', 'to');
-  }
-
+  _$ScreenLink._({required this.to, this.tapRect, this.analytic}) : super._();
   @override
   ScreenLink rebuild(void Function(ScreenLinkBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenLinkBuilder toBuilder() => new ScreenLinkBuilder()..replace(this);
+  ScreenLinkBuilder toBuilder() => ScreenLinkBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1494,12 +1840,12 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
   set to(String? to) => _$this._to = to;
 
   RectangleBuilder? _tapRect;
-  RectangleBuilder get tapRect => _$this._tapRect ??= new RectangleBuilder();
+  RectangleBuilder get tapRect => _$this._tapRect ??= RectangleBuilder();
   set tapRect(RectangleBuilder? tapRect) => _$this._tapRect = tapRect;
 
   AnalyticEventBuilder? _analytic;
   AnalyticEventBuilder get analytic =>
-      _$this._analytic ??= new AnalyticEventBuilder();
+      _$this._analytic ??= AnalyticEventBuilder();
   set analytic(AnalyticEventBuilder? analytic) => _$this._analytic = analytic;
 
   ScreenLinkBuilder();
@@ -1517,7 +1863,6 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
 
   @override
   void replace(ScreenLink other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ScreenLink;
   }
 
@@ -1532,8 +1877,9 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
   _$ScreenLink _build() {
     _$ScreenLink _$result;
     try {
-      _$result = _$v ??
-          new _$ScreenLink._(
+      _$result =
+          _$v ??
+          _$ScreenLink._(
             to: BuiltValueNullFieldError.checkNotNull(to, r'ScreenLink', 'to'),
             tapRect: _tapRect?.build(),
             analytic: _analytic?.build(),
@@ -1546,8 +1892,11 @@ class ScreenLinkBuilder implements Builder<ScreenLink, ScreenLinkBuilder> {
         _$failedField = 'analytic';
         _analytic?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'ScreenLink', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'ScreenLink',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1563,19 +1912,15 @@ class _$AnalyticEvent extends AnalyticEvent {
   final BuiltMap<String, String> args;
 
   factory _$AnalyticEvent([void Function(AnalyticEventBuilder)? updates]) =>
-      (new AnalyticEventBuilder()..update(updates))._build();
+      (AnalyticEventBuilder()..update(updates))._build();
 
-  _$AnalyticEvent._({required this.event, required this.args}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(event, r'AnalyticEvent', 'event');
-    BuiltValueNullFieldError.checkNotNull(args, r'AnalyticEvent', 'args');
-  }
-
+  _$AnalyticEvent._({required this.event, required this.args}) : super._();
   @override
   AnalyticEvent rebuild(void Function(AnalyticEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AnalyticEventBuilder toBuilder() => new AnalyticEventBuilder()..replace(this);
+  AnalyticEventBuilder toBuilder() => AnalyticEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1611,7 +1956,7 @@ class AnalyticEventBuilder
 
   MapBuilder<String, String>? _args;
   MapBuilder<String, String> get args =>
-      _$this._args ??= new MapBuilder<String, String>();
+      _$this._args ??= MapBuilder<String, String>();
   set args(MapBuilder<String, String>? args) => _$this._args = args;
 
   AnalyticEventBuilder();
@@ -1628,7 +1973,6 @@ class AnalyticEventBuilder
 
   @override
   void replace(AnalyticEvent other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AnalyticEvent;
   }
 
@@ -1643,10 +1987,14 @@ class AnalyticEventBuilder
   _$AnalyticEvent _build() {
     _$AnalyticEvent _$result;
     try {
-      _$result = _$v ??
-          new _$AnalyticEvent._(
+      _$result =
+          _$v ??
+          _$AnalyticEvent._(
             event: BuiltValueNullFieldError.checkNotNull(
-                event, r'AnalyticEvent', 'event'),
+              event,
+              r'AnalyticEvent',
+              'event',
+            ),
             args: args.build(),
           );
     } catch (_) {
@@ -1655,8 +2003,11 @@ class AnalyticEventBuilder
         _$failedField = 'args';
         args.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'AnalyticEvent', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'AnalyticEvent',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1674,24 +2025,19 @@ class _$BrowserInfo extends BrowserInfo {
   final bool useWebView;
 
   factory _$BrowserInfo([void Function(BrowserInfoBuilder)? updates]) =>
-      (new BrowserInfoBuilder()..update(updates))._build();
+      (BrowserInfoBuilder()..update(updates))._build();
 
-  _$BrowserInfo._(
-      {required this.url, required this.useSafariVC, required this.useWebView})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(url, r'BrowserInfo', 'url');
-    BuiltValueNullFieldError.checkNotNull(
-        useSafariVC, r'BrowserInfo', 'useSafariVC');
-    BuiltValueNullFieldError.checkNotNull(
-        useWebView, r'BrowserInfo', 'useWebView');
-  }
-
+  _$BrowserInfo._({
+    required this.url,
+    required this.useSafariVC,
+    required this.useWebView,
+  }) : super._();
   @override
   BrowserInfo rebuild(void Function(BrowserInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BrowserInfoBuilder toBuilder() => new BrowserInfoBuilder()..replace(this);
+  BrowserInfoBuilder toBuilder() => BrowserInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1752,7 +2098,6 @@ class BrowserInfoBuilder implements Builder<BrowserInfo, BrowserInfoBuilder> {
 
   @override
   void replace(BrowserInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$BrowserInfo;
   }
 
@@ -1765,14 +2110,24 @@ class BrowserInfoBuilder implements Builder<BrowserInfo, BrowserInfoBuilder> {
   BrowserInfo build() => _build();
 
   _$BrowserInfo _build() {
-    final _$result = _$v ??
-        new _$BrowserInfo._(
-          url:
-              BuiltValueNullFieldError.checkNotNull(url, r'BrowserInfo', 'url'),
+    final _$result =
+        _$v ??
+        _$BrowserInfo._(
+          url: BuiltValueNullFieldError.checkNotNull(
+            url,
+            r'BrowserInfo',
+            'url',
+          ),
           useSafariVC: BuiltValueNullFieldError.checkNotNull(
-              useSafariVC, r'BrowserInfo', 'useSafariVC'),
+            useSafariVC,
+            r'BrowserInfo',
+            'useSafariVC',
+          ),
           useWebView: BuiltValueNullFieldError.checkNotNull(
-              useWebView, r'BrowserInfo', 'useWebView'),
+            useWebView,
+            r'BrowserInfo',
+            'useWebView',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1792,29 +2147,21 @@ class _$EmailInfo extends EmailInfo {
   final String recipient;
 
   factory _$EmailInfo([void Function(EmailInfoBuilder)? updates]) =>
-      (new EmailInfoBuilder()..update(updates))._build();
+      (EmailInfoBuilder()..update(updates))._build();
 
-  _$EmailInfo._(
-      {required this.subject,
-      required this.subjectTranslationKey,
-      required this.body,
-      required this.sender,
-      required this.recipient})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(subject, r'EmailInfo', 'subject');
-    BuiltValueNullFieldError.checkNotNull(
-        subjectTranslationKey, r'EmailInfo', 'subjectTranslationKey');
-    BuiltValueNullFieldError.checkNotNull(body, r'EmailInfo', 'body');
-    BuiltValueNullFieldError.checkNotNull(sender, r'EmailInfo', 'sender');
-    BuiltValueNullFieldError.checkNotNull(recipient, r'EmailInfo', 'recipient');
-  }
-
+  _$EmailInfo._({
+    required this.subject,
+    required this.subjectTranslationKey,
+    required this.body,
+    required this.sender,
+    required this.recipient,
+  }) : super._();
   @override
   EmailInfo rebuild(void Function(EmailInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  EmailInfoBuilder toBuilder() => new EmailInfoBuilder()..replace(this);
+  EmailInfoBuilder toBuilder() => EmailInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1892,7 +2239,6 @@ class EmailInfoBuilder implements Builder<EmailInfo, EmailInfoBuilder> {
 
   @override
   void replace(EmailInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$EmailInfo;
   }
 
@@ -1905,18 +2251,34 @@ class EmailInfoBuilder implements Builder<EmailInfo, EmailInfoBuilder> {
   EmailInfo build() => _build();
 
   _$EmailInfo _build() {
-    final _$result = _$v ??
-        new _$EmailInfo._(
+    final _$result =
+        _$v ??
+        _$EmailInfo._(
           subject: BuiltValueNullFieldError.checkNotNull(
-              subject, r'EmailInfo', 'subject'),
+            subject,
+            r'EmailInfo',
+            'subject',
+          ),
           subjectTranslationKey: BuiltValueNullFieldError.checkNotNull(
-              subjectTranslationKey, r'EmailInfo', 'subjectTranslationKey'),
-          body:
-              BuiltValueNullFieldError.checkNotNull(body, r'EmailInfo', 'body'),
+            subjectTranslationKey,
+            r'EmailInfo',
+            'subjectTranslationKey',
+          ),
+          body: BuiltValueNullFieldError.checkNotNull(
+            body,
+            r'EmailInfo',
+            'body',
+          ),
           sender: BuiltValueNullFieldError.checkNotNull(
-              sender, r'EmailInfo', 'sender'),
+            sender,
+            r'EmailInfo',
+            'sender',
+          ),
           recipient: BuiltValueNullFieldError.checkNotNull(
-              recipient, r'EmailInfo', 'recipient'),
+            recipient,
+            r'EmailInfo',
+            'recipient',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1930,20 +2292,15 @@ class _$PdfInfo extends PdfInfo {
   final String fileName;
 
   factory _$PdfInfo([void Function(PdfInfoBuilder)? updates]) =>
-      (new PdfInfoBuilder()..update(updates))._build();
+      (PdfInfoBuilder()..update(updates))._build();
 
-  _$PdfInfo._({required this.bytesBase64, required this.fileName}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        bytesBase64, r'PdfInfo', 'bytesBase64');
-    BuiltValueNullFieldError.checkNotNull(fileName, r'PdfInfo', 'fileName');
-  }
-
+  _$PdfInfo._({required this.bytesBase64, required this.fileName}) : super._();
   @override
   PdfInfo rebuild(void Function(PdfInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  PdfInfoBuilder toBuilder() => new PdfInfoBuilder()..replace(this);
+  PdfInfoBuilder toBuilder() => PdfInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1996,7 +2353,6 @@ class PdfInfoBuilder implements Builder<PdfInfo, PdfInfoBuilder> {
 
   @override
   void replace(PdfInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$PdfInfo;
   }
 
@@ -2009,12 +2365,19 @@ class PdfInfoBuilder implements Builder<PdfInfo, PdfInfoBuilder> {
   PdfInfo build() => _build();
 
   _$PdfInfo _build() {
-    final _$result = _$v ??
-        new _$PdfInfo._(
+    final _$result =
+        _$v ??
+        _$PdfInfo._(
           bytesBase64: BuiltValueNullFieldError.checkNotNull(
-              bytesBase64, r'PdfInfo', 'bytesBase64'),
+            bytesBase64,
+            r'PdfInfo',
+            'bytesBase64',
+          ),
           fileName: BuiltValueNullFieldError.checkNotNull(
-              fileName, r'PdfInfo', 'fileName'),
+            fileName,
+            r'PdfInfo',
+            'fileName',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -2028,19 +2391,15 @@ class _$JsonInfo extends JsonInfo {
   final String fileName;
 
   factory _$JsonInfo([void Function(JsonInfoBuilder)? updates]) =>
-      (new JsonInfoBuilder()..update(updates))._build();
+      (JsonInfoBuilder()..update(updates))._build();
 
-  _$JsonInfo._({required this.data, required this.fileName}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(data, r'JsonInfo', 'data');
-    BuiltValueNullFieldError.checkNotNull(fileName, r'JsonInfo', 'fileName');
-  }
-
+  _$JsonInfo._({required this.data, required this.fileName}) : super._();
   @override
   JsonInfo rebuild(void Function(JsonInfoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  JsonInfoBuilder toBuilder() => new JsonInfoBuilder()..replace(this);
+  JsonInfoBuilder toBuilder() => JsonInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2093,7 +2452,6 @@ class JsonInfoBuilder implements Builder<JsonInfo, JsonInfoBuilder> {
 
   @override
   void replace(JsonInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$JsonInfo;
   }
 
@@ -2106,12 +2464,19 @@ class JsonInfoBuilder implements Builder<JsonInfo, JsonInfoBuilder> {
   JsonInfo build() => _build();
 
   _$JsonInfo _build() {
-    final _$result = _$v ??
-        new _$JsonInfo._(
-          data:
-              BuiltValueNullFieldError.checkNotNull(data, r'JsonInfo', 'data'),
+    final _$result =
+        _$v ??
+        _$JsonInfo._(
+          data: BuiltValueNullFieldError.checkNotNull(
+            data,
+            r'JsonInfo',
+            'data',
+          ),
           fileName: BuiltValueNullFieldError.checkNotNull(
-              fileName, r'JsonInfo', 'fileName'),
+            fileName,
+            r'JsonInfo',
+            'fileName',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -2126,26 +2491,23 @@ class _$DocumentationScreen extends DocumentationScreen {
   @override
   final RunArgs args;
 
-  factory _$DocumentationScreen(
-          [void Function(DocumentationScreenBuilder)? updates]) =>
-      (new DocumentationScreenBuilder()..update(updates))._build();
+  factory _$DocumentationScreen([
+    void Function(DocumentationScreenBuilder)? updates,
+  ]) => (DocumentationScreenBuilder()..update(updates))._build();
 
-  _$DocumentationScreen._(
-      {this.screenshot, required this.screen, required this.args})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        screen, r'DocumentationScreen', 'screen');
-    BuiltValueNullFieldError.checkNotNull(args, r'DocumentationScreen', 'args');
-  }
-
+  _$DocumentationScreen._({
+    this.screenshot,
+    required this.screen,
+    required this.args,
+  }) : super._();
   @override
   DocumentationScreen rebuild(
-          void Function(DocumentationScreenBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(DocumentationScreenBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   DocumentationScreenBuilder toBuilder() =>
-      new DocumentationScreenBuilder()..replace(this);
+      DocumentationScreenBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2185,11 +2547,11 @@ class DocumentationScreenBuilder
   set screenshot(File? screenshot) => _$this._screenshot = screenshot;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   RunArgsBuilder? _args;
-  RunArgsBuilder get args => _$this._args ??= new RunArgsBuilder();
+  RunArgsBuilder get args => _$this._args ??= RunArgsBuilder();
   set args(RunArgsBuilder? args) => _$this._args = args;
 
   DocumentationScreenBuilder();
@@ -2207,7 +2569,6 @@ class DocumentationScreenBuilder
 
   @override
   void replace(DocumentationScreen other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$DocumentationScreen;
   }
 
@@ -2222,8 +2583,9 @@ class DocumentationScreenBuilder
   _$DocumentationScreen _build() {
     _$DocumentationScreen _$result;
     try {
-      _$result = _$v ??
-          new _$DocumentationScreen._(
+      _$result =
+          _$v ??
+          _$DocumentationScreen._(
             screenshot: screenshot,
             screen: screen.build(),
             args: args.build(),
@@ -2236,8 +2598,11 @@ class DocumentationScreenBuilder
         _$failedField = 'args';
         args.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'DocumentationScreen', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'DocumentationScreen',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -2253,19 +2618,15 @@ class _$ScreenAndPath extends ScreenAndPath {
   final String path;
 
   factory _$ScreenAndPath([void Function(ScreenAndPathBuilder)? updates]) =>
-      (new ScreenAndPathBuilder()..update(updates))._build();
+      (ScreenAndPathBuilder()..update(updates))._build();
 
-  _$ScreenAndPath._({required this.screen, required this.path}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(screen, r'ScreenAndPath', 'screen');
-    BuiltValueNullFieldError.checkNotNull(path, r'ScreenAndPath', 'path');
-  }
-
+  _$ScreenAndPath._({required this.screen, required this.path}) : super._();
   @override
   ScreenAndPath rebuild(void Function(ScreenAndPathBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ScreenAndPathBuilder toBuilder() => new ScreenAndPathBuilder()..replace(this);
+  ScreenAndPathBuilder toBuilder() => ScreenAndPathBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2298,7 +2659,7 @@ class ScreenAndPathBuilder
   _$ScreenAndPath? _$v;
 
   ScreenBuilder? _screen;
-  ScreenBuilder get screen => _$this._screen ??= new ScreenBuilder();
+  ScreenBuilder get screen => _$this._screen ??= ScreenBuilder();
   set screen(ScreenBuilder? screen) => _$this._screen = screen;
 
   String? _path;
@@ -2319,7 +2680,6 @@ class ScreenAndPathBuilder
 
   @override
   void replace(ScreenAndPath other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ScreenAndPath;
   }
 
@@ -2334,11 +2694,15 @@ class ScreenAndPathBuilder
   _$ScreenAndPath _build() {
     _$ScreenAndPath _$result;
     try {
-      _$result = _$v ??
-          new _$ScreenAndPath._(
+      _$result =
+          _$v ??
+          _$ScreenAndPath._(
             screen: screen.build(),
             path: BuiltValueNullFieldError.checkNotNull(
-                path, r'ScreenAndPath', 'path'),
+              path,
+              r'ScreenAndPath',
+              'path',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -2346,8 +2710,11 @@ class ScreenAndPathBuilder
         _$failedField = 'screen';
         screen.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'ScreenAndPath', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'ScreenAndPath',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

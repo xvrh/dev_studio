@@ -5,7 +5,8 @@ import 'package:process_runner/process_runner.dart';
 import '../../../html_screenshot.dart';
 
 Future<PdfScreenshotResponse> pdfScreenshot(
-    PdfScreenshotRequest request) async {
+  PdfScreenshotRequest request,
+) async {
   var processRunner = ProcessRunner();
 
   var result = await processRunner.runProcess([
@@ -14,11 +15,14 @@ Future<PdfScreenshotResponse> pdfScreenshot(
     '-resize',
     '${request.device.width}x${request.device.height}',
     '-',
-    'png:-'
+    'png:-',
   ], stdin: Stream.value(base64Decode(request.base64Bytes)));
 
   var bytes = Uint8List.fromList(result.stdoutRaw);
   var image = decodePng(bytes)!;
   return PdfScreenshotResponse(
-      image: bytes, imageWidth: image.width, imageHeight: image.height);
+    image: bytes,
+    imageWidth: image.width,
+    imageHeight: image.height,
+  );
 }

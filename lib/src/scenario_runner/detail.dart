@@ -16,8 +16,13 @@ class DetailPage extends StatelessWidget {
   final ScenarioRun run;
   final String screenId;
 
-  const DetailPage(this.service, this.project, this.run, this.screenId,
-      {super.key});
+  const DetailPage(
+    this.service,
+    this.project,
+    this.run,
+    this.screenId, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +32,29 @@ class DetailPage extends StatelessWidget {
     });
 
     if (screen == null) {
-      return Center(
-        child: Text('Screen $screenId is loading'),
-      );
+      return Center(child: Text('Screen $screenId is loading'));
     }
 
     var email = screen.email;
     if (email != null) {
-      return EmailDetail(project, run, screen, email,
-          htmlScreenshotService: service.htmlScreenshot);
+      return EmailDetail(
+        project,
+        run,
+        screen,
+        email,
+        htmlScreenshotService: service.htmlScreenshot,
+      );
     }
 
     var pdf = screen.pdf;
     if (pdf != null) {
-      return PdfDetail(project, run, screen, pdf,
-          htmlScreenshotService: service.htmlScreenshot);
+      return PdfDetail(
+        project,
+        run,
+        screen,
+        pdf,
+        htmlScreenshotService: service.htmlScreenshot,
+      );
     }
 
     var json = screen.json;
@@ -73,8 +86,9 @@ class DetailSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var previousScreen = run.screens.values
-        .firstWhereOrNull((s) => s.next.any((l) => l.to == screen.id));
+    var previousScreen = run.screens.values.firstWhereOrNull(
+      (s) => s.next.any((l) => l.to == screen.id),
+    );
     Widget? previousScreenLink;
     if (previousScreen != null) {
       previousScreenLink = Positioned(
@@ -88,12 +102,7 @@ class DetailSkeleton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(Icons.arrow_back_ios, size: 13),
-              Text(
-                previousScreen.name,
-                style: const TextStyle(
-                  fontSize: 10,
-                ),
-              ),
+              Text(previousScreen.name, style: const TextStyle(fontSize: 10)),
             ],
           ),
         ),
@@ -102,8 +111,10 @@ class DetailSkeleton extends StatelessWidget {
 
     var parentScreen = screen;
     if (screen.collapsedScreens.isEmpty) {
-      parentScreen = run.screens.values
-              .firstWhereOrNull((s) => s.collapsedScreens.contains(screen)) ??
+      parentScreen =
+          run.screens.values.firstWhereOrNull(
+            (s) => s.collapsedScreens.contains(screen),
+          ) ??
           screen;
     }
 
@@ -120,37 +131,22 @@ class DetailSkeleton extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: _ScreenView(
-                          run,
-                          screen,
-                          child: main,
-                        ),
+                        child: _ScreenView(run, screen, child: main),
                       ),
                       if (previousScreenLink != null) previousScreenLink,
                     ],
                   ),
                 ),
                 if (parentScreen.collapsedScreens.isNotEmpty) ...[
-                  Container(
-                    color: AppColors.separator,
-                    height: 1,
-                  ),
+                  Container(color: AppColors.separator, height: 1),
                   _RelatedScreensList(parentScreen, selectedScreen: screen),
                 ],
               ],
             ),
           ),
         ),
-        Container(
-          color: AppColors.separator,
-          width: 1,
-        ),
-        SizedBox(
-          width: 200,
-          child: Column(
-            children: sidebar,
-          ),
-        )
+        Container(color: AppColors.separator, width: 1),
+        SizedBox(width: 200, child: Column(children: sidebar)),
       ],
     );
   }
@@ -160,10 +156,7 @@ class _RelatedScreensList extends StatelessWidget {
   final Screen parentScreen;
   final Screen selectedScreen;
 
-  const _RelatedScreensList(
-    this.parentScreen, {
-    required this.selectedScreen,
-  });
+  const _RelatedScreensList(this.parentScreen, {required this.selectedScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -214,21 +207,19 @@ class _CollapsedScreenshot extends StatelessWidget {
       image = Image.memory(bytes);
     } else {
       image = Center(
-        child: Text(
-          screen.name,
-          style: const TextStyle(fontSize: 10),
-        ),
+        child: Text(screen.name, style: const TextStyle(fontSize: 10)),
       );
     }
     return InkWell(
       onTap: onTap,
       child: Container(
-          decoration: isSelected
-              ? BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent, width: 2),
-                )
-              : null,
-          child: image),
+        decoration: isSelected
+            ? BoxDecoration(
+                border: Border.all(color: Colors.blueAccent, width: 2),
+              )
+            : null,
+        child: image,
+      ),
     );
   }
 }

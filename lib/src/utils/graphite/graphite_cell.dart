@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import '../../../core/graphite.dart';
 
-typedef NodeCellBuilder = Widget Function(
-    BuildContext context, MatrixNode node);
+typedef NodeCellBuilder =
+    Widget Function(BuildContext context, MatrixNode node);
 
 Widget _defaultNodeCellBuilder(BuildContext context, MatrixNode node) {
   return Container(
@@ -33,11 +33,13 @@ class _GraphiteCellState extends State<GraphiteCell> {
     var node = widget.node;
     return node.isAnchor
         ? IgnorePointer(child: Container())
-        : Builder(builder: (ctx) {
-            return widget.builder == null
-                ? _defaultNodeCellBuilder(ctx, node)
-                : widget.builder!(ctx, node);
-          });
+        : Builder(
+            builder: (ctx) {
+              return widget.builder == null
+                  ? _defaultNodeCellBuilder(ctx, node)
+                  : widget.builder!(ctx, node);
+            },
+          );
   }
 }
 
@@ -49,8 +51,6 @@ class GraphiteAnchor extends StatefulWidget {
 class _GraphiteAnchorState extends State<GraphiteAnchor> {
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(),
-    );
+    return IgnorePointer(child: Container());
   }
 }

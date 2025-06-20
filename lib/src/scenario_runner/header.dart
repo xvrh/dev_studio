@@ -12,11 +12,7 @@ class Header extends StatefulWidget {
   final ProjectInfo project;
   final ScenarioContext context;
 
-  const Header(
-    this.project, {
-    super.key,
-    required this.context,
-  });
+  const Header(this.project, {super.key, required this.context});
 
   @override
   State<Header> createState() => HeaderState();
@@ -85,15 +81,13 @@ class HeaderState extends State<Header> {
           Text(part),
           onTap: clickable
               ? () => context.go(
-                  'scenario/${Uri.encodeComponent(TreePath(run.scenario.name.toList()).encoded)}')
+                  'scenario/${Uri.encodeComponent(TreePath(run.scenario.name.toList()).encoded)}',
+                )
               : null,
         );
       } else {
         //TODO(xha): allow to open submenu with siblings
-        yield BreadcrumbItem(
-          Text(part),
-          onTap: null,
-        );
+        yield BreadcrumbItem(Text(part), onTap: null);
       }
     }
   }

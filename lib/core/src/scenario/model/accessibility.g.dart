@@ -7,29 +7,35 @@ part of 'accessibility.dart';
 // **************************************************************************
 
 Serializer<AccessibilityConfig> _$accessibilityConfigSerializer =
-    new _$AccessibilityConfigSerializer();
+    _$AccessibilityConfigSerializer();
 
 class _$AccessibilityConfigSerializer
     implements StructuredSerializer<AccessibilityConfig> {
   @override
   final Iterable<Type> types = const [
     AccessibilityConfig,
-    _$AccessibilityConfig
+    _$AccessibilityConfig,
   ];
   @override
   final String wireName = 'AccessibilityConfig';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, AccessibilityConfig object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    AccessibilityConfig object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'textScale',
-      serializers.serialize(object.textScale,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.textScale,
+        specifiedType: const FullType(double),
+      ),
       'boldText',
-      serializers.serialize(object.boldText,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.boldText,
+        specifiedType: const FullType(bool),
+      ),
     ];
 
     return result;
@@ -37,9 +43,11 @@ class _$AccessibilityConfigSerializer
 
   @override
   AccessibilityConfig deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new AccessibilityConfigBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AccessibilityConfigBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -48,12 +56,20 @@ class _$AccessibilityConfigSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'textScale':
-          result.textScale = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.textScale =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'boldText':
-          result.boldText = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.boldText =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -68,26 +84,20 @@ class _$AccessibilityConfig extends AccessibilityConfig {
   @override
   final bool boldText;
 
-  factory _$AccessibilityConfig(
-          [void Function(AccessibilityConfigBuilder)? updates]) =>
-      (new AccessibilityConfigBuilder()..update(updates))._build();
+  factory _$AccessibilityConfig([
+    void Function(AccessibilityConfigBuilder)? updates,
+  ]) => (AccessibilityConfigBuilder()..update(updates))._build();
 
   _$AccessibilityConfig._({required this.textScale, required this.boldText})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        textScale, r'AccessibilityConfig', 'textScale');
-    BuiltValueNullFieldError.checkNotNull(
-        boldText, r'AccessibilityConfig', 'boldText');
-  }
-
+    : super._();
   @override
   AccessibilityConfig rebuild(
-          void Function(AccessibilityConfigBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(AccessibilityConfigBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   AccessibilityConfigBuilder toBuilder() =>
-      new AccessibilityConfigBuilder()..replace(this);
+      AccessibilityConfigBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -141,7 +151,6 @@ class AccessibilityConfigBuilder
 
   @override
   void replace(AccessibilityConfig other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccessibilityConfig;
   }
 
@@ -154,12 +163,19 @@ class AccessibilityConfigBuilder
   AccessibilityConfig build() => _build();
 
   _$AccessibilityConfig _build() {
-    final _$result = _$v ??
-        new _$AccessibilityConfig._(
+    final _$result =
+        _$v ??
+        _$AccessibilityConfig._(
           textScale: BuiltValueNullFieldError.checkNotNull(
-              textScale, r'AccessibilityConfig', 'textScale'),
+            textScale,
+            r'AccessibilityConfig',
+            'textScale',
+          ),
           boldText: BuiltValueNullFieldError.checkNotNull(
-              boldText, r'AccessibilityConfig', 'boldText'),
+            boldText,
+            r'AccessibilityConfig',
+            'boldText',
+          ),
         );
     replace(_$result);
     return _$result;

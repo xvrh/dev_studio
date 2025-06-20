@@ -30,14 +30,19 @@ void main() {
     var collapsed = run.collapse();
     expect(collapsed.screens.length, 3);
     expect(
-        collapsed.screens['A']!.next, BuiltList<ScreenLink>([ScreenLink('C')]));
+      collapsed.screens['A']!.next,
+      BuiltList<ScreenLink>([ScreenLink('C')]),
+    );
     expect(
-        collapsed.screens['A']!.collapsedScreens,
-        BuiltList([
-          Screen([], 'B', 'B', isCollapsable: true).rebuild((b) => b
+      collapsed.screens['A']!.collapsedScreens,
+      BuiltList([
+        Screen([], 'B', 'B', isCollapsable: true).rebuild(
+          (b) => b
             ..isCollapsed = true
-            ..next.replace([ScreenLink('C')]))
-        ]));
+            ..next.replace([ScreenLink('C')]),
+        ),
+      ]),
+    );
     expect(collapsed.screens['B']!.isCollapsed, true);
   });
 
@@ -51,8 +56,11 @@ void main() {
         s.isCollapsable = true;
       });
       r.screens['C'] = Screen([], 'C', 'C').rebuild((s) {
-        s.next.add(ScreenLink('D')
-            .rebuild((r) => r.tapRect.replace(Rectangle.fromTLWH(0, 0, 0, 0))));
+        s.next.add(
+          ScreenLink(
+            'D',
+          ).rebuild((r) => r.tapRect.replace(Rectangle.fromTLWH(0, 0, 0, 0))),
+        );
         s.isCollapsable = true;
       });
       r.screens['D'] = Screen([], 'D', 'D').rebuild((s) {
@@ -64,11 +72,13 @@ void main() {
     var collapsed = run.collapse();
     expect(collapsed.screens.length, 5);
     expect(
-        collapsed.screens['A']!.next,
-        BuiltList<ScreenLink>([
-          ScreenLink('D')
-              .rebuild((d) => d.tapRect.replace(Rectangle.fromTLWH(0, 0, 0, 0)))
-        ]));
+      collapsed.screens['A']!.next,
+      BuiltList<ScreenLink>([
+        ScreenLink(
+          'D',
+        ).rebuild((d) => d.tapRect.replace(Rectangle.fromTLWH(0, 0, 0, 0))),
+      ]),
+    );
     expect(collapsed.screens['A']!.collapsedScreens, hasLength(2));
   });
 }

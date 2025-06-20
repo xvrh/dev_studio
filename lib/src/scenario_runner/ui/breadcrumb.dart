@@ -10,11 +10,7 @@ class Breadcrumb extends StatelessWidget {
   Widget build(BuildContext context) {
     var separator = Padding(
       padding: EdgeInsets.symmetric(horizontal: 6),
-      child: SizedBox(
-        width: 5,
-        height: 16,
-        child: _Separator(),
-      ),
+      child: SizedBox(width: 5, height: 16, child: _Separator()),
     );
 
     return SizedBox(
@@ -24,7 +20,7 @@ class Breadcrumb extends StatelessWidget {
         children: [
           for (var child in children) ...[
             child,
-            if (child != children.last) separator
+            if (child != children.last) separator,
           ],
         ],
       ),
@@ -37,9 +33,7 @@ class _Separator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _SeparatorPainter(),
-    );
+    return CustomPaint(painter: _SeparatorPainter());
   }
 }
 
@@ -77,13 +71,9 @@ class BreadcrumbItem extends StatelessWidget {
     return BreadcrumbItem(
       Row(
         children: [
-          Icon(
-            icon,
-            size: 17,
-            color: AppColors.iconLightBlue,
-          ),
+          Icon(icon, size: 17, color: AppColors.iconLightBlue),
           const SizedBox(width: 5),
-          Text(text)
+          Text(text),
         ],
       ),
     );
@@ -93,10 +83,7 @@ class BreadcrumbItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: defaultPadding,
-        child: child,
-      ),
+      child: Padding(padding: defaultPadding, child: child),
     );
   }
 }
@@ -199,7 +186,7 @@ class _Menu<T> extends StatelessWidget {
                   color: Colors.black26,
                   blurRadius: 2,
                   offset: Offset(1, 1),
-                )
+                ),
               ],
             ),
             child: ListView(
@@ -231,10 +218,7 @@ class _MenuTile extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 8,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           child: child,
         ),
       ),

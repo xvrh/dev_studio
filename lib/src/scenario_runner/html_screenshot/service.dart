@@ -30,44 +30,52 @@ class RemoteHtmlScreenshotService implements HtmlScreenshotService {
 
   @override
   Future<HtmlScreenshotResponse> htmlScreenshot(
-      HtmlScreenshotRequest request) async {
+    HtmlScreenshotRequest request,
+  ) async {
     var response = await http.post(
-        serverUri.replace(path: p.url.join(serverUri.path, 'html')),
-        body: jsonEncode(request));
+      serverUri.replace(path: p.url.join(serverUri.path, 'html')),
+      body: jsonEncode(request),
+    );
     if (response.statusCode >= 400) {
       throw Exception(
-          'Html screenshot error: ${response.body} (${response.statusCode})');
+        'Html screenshot error: ${response.body} (${response.statusCode})',
+      );
     }
     var responseString = response.body;
     return HtmlScreenshotResponse.fromJson(
-        jsonDecode(responseString) as Map<String, dynamic>);
+      jsonDecode(responseString) as Map<String, dynamic>,
+    );
   }
 
   @override
   Future<PdfScreenshotResponse> pdfScreenshot(
-      PdfScreenshotRequest request) async {
+    PdfScreenshotRequest request,
+  ) async {
     var response = await http.post(
-        serverUri.replace(path: p.url.join(serverUri.path, 'pdf')),
-        body: jsonEncode(request));
+      serverUri.replace(path: p.url.join(serverUri.path, 'pdf')),
+      body: jsonEncode(request),
+    );
     if (response.statusCode >= 400) {
       throw Exception(
-          'Html screenshot error: ${response.body} (${response.statusCode})');
+        'Html screenshot error: ${response.body} (${response.statusCode})',
+      );
     }
     var responseString = response.body;
     return PdfScreenshotResponse.fromJson(
-        jsonDecode(responseString) as Map<String, dynamic>);
+      jsonDecode(responseString) as Map<String, dynamic>,
+    );
   }
 }
 
 class CachedHtmlScreenshotService implements HtmlScreenshotService {
   final HtmlScreenshotService innerService;
   final LruMap<HtmlScreenshotRequest, Future<HtmlScreenshotResponse>>
-      _cacheHtml;
+  _cacheHtml;
   final LruMap<PdfScreenshotRequest, Future<PdfScreenshotResponse>> _cachePdf;
 
   CachedHtmlScreenshotService(this.innerService, {required int maxSize})
-      : _cacheHtml = LruMap(maximumSize: maxSize),
-        _cachePdf = LruMap(maximumSize: maxSize);
+    : _cacheHtml = LruMap(maximumSize: maxSize),
+      _cachePdf = LruMap(maximumSize: maxSize);
 
   @override
   Future<HtmlScreenshotResponse> htmlScreenshot(HtmlScreenshotRequest request) {

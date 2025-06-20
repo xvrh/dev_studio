@@ -6,7 +6,7 @@ part of 'rectangle.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Rectangle> _$rectangleSerializer = new _$RectangleSerializer();
+Serializer<Rectangle> _$rectangleSerializer = _$RectangleSerializer();
 
 class _$RectangleSerializer implements StructuredSerializer<Rectangle> {
   @override
@@ -15,28 +15,38 @@ class _$RectangleSerializer implements StructuredSerializer<Rectangle> {
   final String wireName = 'Rectangle';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, Rectangle object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    Rectangle object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'left',
       serializers.serialize(object.left, specifiedType: const FullType(double)),
       'top',
       serializers.serialize(object.top, specifiedType: const FullType(double)),
       'right',
-      serializers.serialize(object.right,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.right,
+        specifiedType: const FullType(double),
+      ),
       'bottom',
-      serializers.serialize(object.bottom,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.bottom,
+        specifiedType: const FullType(double),
+      ),
     ];
 
     return result;
   }
 
   @override
-  Rectangle deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new RectangleBuilder();
+  Rectangle deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RectangleBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -45,20 +55,36 @@ class _$RectangleSerializer implements StructuredSerializer<Rectangle> {
       final Object? value = iterator.current;
       switch (key) {
         case 'left':
-          result.left = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.left =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'top':
-          result.top = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.top =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'right':
-          result.right = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.right =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'bottom':
-          result.bottom = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.bottom =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
       }
     }
@@ -78,26 +104,20 @@ class _$Rectangle extends Rectangle {
   final double bottom;
 
   factory _$Rectangle([void Function(RectangleBuilder)? updates]) =>
-      (new RectangleBuilder()..update(updates))._build();
+      (RectangleBuilder()..update(updates))._build();
 
-  _$Rectangle._(
-      {required this.left,
-      required this.top,
-      required this.right,
-      required this.bottom})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(left, r'Rectangle', 'left');
-    BuiltValueNullFieldError.checkNotNull(top, r'Rectangle', 'top');
-    BuiltValueNullFieldError.checkNotNull(right, r'Rectangle', 'right');
-    BuiltValueNullFieldError.checkNotNull(bottom, r'Rectangle', 'bottom');
-  }
-
+  _$Rectangle._({
+    required this.left,
+    required this.top,
+    required this.right,
+    required this.bottom,
+  }) : super._();
   @override
   Rectangle rebuild(void Function(RectangleBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RectangleBuilder toBuilder() => new RectangleBuilder()..replace(this);
+  RectangleBuilder toBuilder() => RectangleBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -166,7 +186,6 @@ class RectangleBuilder implements Builder<Rectangle, RectangleBuilder> {
 
   @override
   void replace(Rectangle other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Rectangle;
   }
 
@@ -179,15 +198,25 @@ class RectangleBuilder implements Builder<Rectangle, RectangleBuilder> {
   Rectangle build() => _build();
 
   _$Rectangle _build() {
-    final _$result = _$v ??
-        new _$Rectangle._(
-          left:
-              BuiltValueNullFieldError.checkNotNull(left, r'Rectangle', 'left'),
+    final _$result =
+        _$v ??
+        _$Rectangle._(
+          left: BuiltValueNullFieldError.checkNotNull(
+            left,
+            r'Rectangle',
+            'left',
+          ),
           top: BuiltValueNullFieldError.checkNotNull(top, r'Rectangle', 'top'),
           right: BuiltValueNullFieldError.checkNotNull(
-              right, r'Rectangle', 'right'),
+            right,
+            r'Rectangle',
+            'right',
+          ),
           bottom: BuiltValueNullFieldError.checkNotNull(
-              bottom, r'Rectangle', 'bottom'),
+            bottom,
+            r'Rectangle',
+            'bottom',
+          ),
         );
     replace(_$result);
     return _$result;

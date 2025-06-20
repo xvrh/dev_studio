@@ -29,14 +29,20 @@ abstract class Screen implements Built<Screen, ScreenBuilder> {
   Screen._();
   factory Screen._builder([void Function(ScreenBuilder) updates]) = _$Screen;
 
-  factory Screen(Iterable<String> scenarioName, String id, String name,
-          {bool? isCollapsable, bool? isCollapsed}) =>
-      Screen._builder((b) => b
-        ..scenarioName.replace(scenarioName)
-        ..id = id
-        ..name = name
-        ..isCollapsable = isCollapsable ?? false
-        ..isCollapsed = false);
+  factory Screen(
+    Iterable<String> scenarioName,
+    String id,
+    String name, {
+    bool? isCollapsable,
+    bool? isCollapsed,
+  }) => Screen._builder(
+    (b) => b
+      ..scenarioName.replace(scenarioName)
+      ..id = id
+      ..name = name
+      ..isCollapsable = isCollapsable ?? false
+      ..isCollapsed = false,
+  );
 
   BuiltList<String> get scenarioName;
   String get id;
@@ -72,12 +78,13 @@ abstract class TextInfo implements Built<TextInfo, TextInfoBuilder> {
     required String rawTranslation,
     required String text,
     required Rectangle globalRectangle,
-  }) =>
-      TextInfo._fromBuilder((b) => b
-        ..translationKey = translationKey
-        ..rawTranslation = rawTranslation
-        ..text = text
-        ..globalRectangle.replace(globalRectangle));
+  }) => TextInfo._fromBuilder(
+    (b) => b
+      ..translationKey = translationKey
+      ..rawTranslation = rawTranslation
+      ..text = text
+      ..globalRectangle.replace(globalRectangle),
+  );
 
   String get translationKey;
   String get rawTranslation;
@@ -108,8 +115,9 @@ abstract class AnalyticEvent
   static Serializer<AnalyticEvent> get serializer => _$analyticEventSerializer;
 
   AnalyticEvent._();
-  factory AnalyticEvent._builder(
-      [void Function(AnalyticEventBuilder) updates]) = _$AnalyticEvent;
+  factory AnalyticEvent._builder([
+    void Function(AnalyticEventBuilder) updates,
+  ]) = _$AnalyticEvent;
 
   factory AnalyticEvent(String event, {Map<String, dynamic>? args}) =>
       AnalyticEvent._builder((b) {
@@ -131,12 +139,16 @@ abstract class BrowserInfo implements Built<BrowserInfo, BrowserInfoBuilder> {
   factory BrowserInfo._builder([void Function(BrowserInfoBuilder) updates]) =
       _$BrowserInfo;
 
-  factory BrowserInfo(String url,
-          {required bool useSafariVC, required bool useWebView}) =>
-      BrowserInfo._builder((b) => b
-        ..url = url
-        ..useSafariVC = useSafariVC
-        ..useWebView = useWebView);
+  factory BrowserInfo(
+    String url, {
+    required bool useSafariVC,
+    required bool useWebView,
+  }) => BrowserInfo._builder(
+    (b) => b
+      ..url = url
+      ..useSafariVC = useSafariVC
+      ..useWebView = useWebView,
+  );
 
   String get url;
   bool get useSafariVC;
@@ -155,13 +167,14 @@ abstract class EmailInfo implements Built<EmailInfo, EmailInfoBuilder> {
     required String body,
     required String sender,
     required String recipient,
-  }) =>
-      EmailInfo._builder((b) => b
-        ..subject = subject
-        ..subjectTranslationKey = subjectTranslationKey
-        ..body = body
-        ..sender = sender
-        ..recipient = recipient);
+  }) => EmailInfo._builder(
+    (b) => b
+      ..subject = subject
+      ..subjectTranslationKey = subjectTranslationKey
+      ..body = body
+      ..sender = sender
+      ..recipient = recipient,
+  );
 
   String get subject;
   String get subjectTranslationKey;
@@ -176,13 +189,12 @@ abstract class PdfInfo implements Built<PdfInfo, PdfInfoBuilder> {
   PdfInfo._();
   factory PdfInfo._builder([void Function(PdfInfoBuilder) updates]) = _$PdfInfo;
 
-  factory PdfInfo({
-    required Uint8List bytes,
-    required String fileName,
-  }) =>
-      PdfInfo._builder((b) => b
-        ..bytesBase64 = base64Encode(bytes)
-        ..fileName = fileName);
+  factory PdfInfo({required Uint8List bytes, required String fileName}) =>
+      PdfInfo._builder(
+        (b) => b
+          ..bytesBase64 = base64Encode(bytes)
+          ..fileName = fileName,
+      );
 
   String get bytesBase64;
   String get fileName;
@@ -195,13 +207,12 @@ abstract class JsonInfo implements Built<JsonInfo, JsonInfoBuilder> {
   factory JsonInfo._builder([void Function(JsonInfoBuilder) updates]) =
       _$JsonInfo;
 
-  factory JsonInfo({
-    required String data,
-    required String fileName,
-  }) =>
-      JsonInfo._builder((b) => b
-        ..data = data
-        ..fileName = fileName);
+  factory JsonInfo({required String data, required String fileName}) =>
+      JsonInfo._builder(
+        (b) => b
+          ..data = data
+          ..fileName = fileName,
+      );
 
   String get data;
   String get fileName;
@@ -210,15 +221,17 @@ abstract class JsonInfo implements Built<JsonInfo, JsonInfoBuilder> {
 abstract class DocumentationScreen
     implements Built<DocumentationScreen, DocumentationScreenBuilder> {
   DocumentationScreen._();
-  factory DocumentationScreen._fromBuilder(
-          [void Function(DocumentationScreenBuilder) updates]) =
-      _$DocumentationScreen;
+  factory DocumentationScreen._fromBuilder([
+    void Function(DocumentationScreenBuilder) updates,
+  ]) = _$DocumentationScreen;
 
   factory DocumentationScreen(File? screenshot, Screen screen, RunArgs args) =>
-      DocumentationScreen._fromBuilder((b) => b
-        ..screenshot = screenshot
-        ..screen.replace(screen)
-        ..args.replace(args));
+      DocumentationScreen._fromBuilder(
+        (b) => b
+          ..screenshot = screenshot
+          ..screen.replace(screen)
+          ..args.replace(args),
+      );
 
   File? get screenshot;
   Screen get screen;
@@ -230,13 +243,16 @@ abstract class ScreenAndPath
   static Serializer<ScreenAndPath> get serializer => _$screenAndPathSerializer;
 
   ScreenAndPath._();
-  factory ScreenAndPath._fromBuilder(
-      [void Function(ScreenAndPathBuilder) updates]) = _$ScreenAndPath;
+  factory ScreenAndPath._fromBuilder([
+    void Function(ScreenAndPathBuilder) updates,
+  ]) = _$ScreenAndPath;
 
   factory ScreenAndPath(Screen screen, String path) =>
-      ScreenAndPath._fromBuilder((b) => b
-        ..path = path
-        ..screen.replace(screen));
+      ScreenAndPath._fromBuilder(
+        (b) => b
+          ..path = path
+          ..screen.replace(screen),
+      );
 
   Screen get screen;
   String get path;

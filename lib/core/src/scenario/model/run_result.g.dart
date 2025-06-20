@@ -6,7 +6,7 @@ part of 'run_result.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<RunResult> _$runResultSerializer = new _$RunResultSerializer();
+Serializer<RunResult> _$runResultSerializer = _$RunResultSerializer();
 
 class _$RunResultSerializer implements StructuredSerializer<RunResult> {
   @override
@@ -15,45 +15,55 @@ class _$RunResultSerializer implements StructuredSerializer<RunResult> {
   final String wireName = 'RunResult';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, RunResult object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    RunResult object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.error;
     if (value != null) {
       result
         ..add('error')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.errorType;
     if (value != null) {
       result
         ..add('errorType')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.stackTrace;
     if (value != null) {
       result
         ..add('stackTrace')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.duration;
     if (value != null) {
       result
         ..add('duration')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(Duration)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(Duration)),
+        );
     }
     return result;
   }
 
   @override
-  RunResult deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new RunResultBuilder();
+  RunResult deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RunResultBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -62,20 +72,36 @@ class _$RunResultSerializer implements StructuredSerializer<RunResult> {
       final Object? value = iterator.current;
       switch (key) {
         case 'error':
-          result.error = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.error =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'errorType':
-          result.errorType = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.errorType =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'stackTrace':
-          result.stackTrace = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.stackTrace =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'duration':
-          result.duration = serializers.deserialize(value,
-              specifiedType: const FullType(Duration)) as Duration?;
+          result.duration =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Duration),
+                  )
+                  as Duration?;
           break;
       }
     }
@@ -95,17 +121,16 @@ class _$RunResult extends RunResult {
   final Duration? duration;
 
   factory _$RunResult([void Function(RunResultBuilder)? updates]) =>
-      (new RunResultBuilder()..update(updates))._build();
+      (RunResultBuilder()..update(updates))._build();
 
   _$RunResult._({this.error, this.errorType, this.stackTrace, this.duration})
-      : super._();
-
+    : super._();
   @override
   RunResult rebuild(void Function(RunResultBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RunResultBuilder toBuilder() => new RunResultBuilder()..replace(this);
+  RunResultBuilder toBuilder() => RunResultBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -174,7 +199,6 @@ class RunResultBuilder implements Builder<RunResult, RunResultBuilder> {
 
   @override
   void replace(RunResult other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RunResult;
   }
 
@@ -187,8 +211,9 @@ class RunResultBuilder implements Builder<RunResult, RunResultBuilder> {
   RunResult build() => _build();
 
   _$RunResult _build() {
-    final _$result = _$v ??
-        new _$RunResult._(
+    final _$result =
+        _$v ??
+        _$RunResult._(
           error: error,
           errorType: errorType,
           stackTrace: stackTrace,

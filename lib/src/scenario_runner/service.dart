@@ -8,19 +8,12 @@ class ScenarioService {
   final ScenarioContext context;
   final HtmlScreenshotService htmlScreenshot;
 
-  ScenarioService(
-    this.clients,
-    this.context, {
-    required this.htmlScreenshot,
-  });
+  ScenarioService(this.clients, this.context, {required this.htmlScreenshot});
 }
 
 class ScenarioContext {
   final WebManifest? manifest;
   final BuildInfo? build;
 
-  ScenarioContext({
-    this.manifest,
-    this.build,
-  });
+  ScenarioContext({this.manifest, this.build});
 }

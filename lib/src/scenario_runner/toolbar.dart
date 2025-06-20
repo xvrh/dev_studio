@@ -86,8 +86,9 @@ class _RunToolbarState extends State<RunToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    var devices =
-        widget.isDesktop ? DeviceInfo.desktopDevices : DeviceInfo.mobileDevices;
+    var devices = widget.isDesktop
+        ? DeviceInfo.desktopDevices
+        : DeviceInfo.mobileDevices;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -111,7 +112,7 @@ class _RunToolbarState extends State<RunToolbar> {
                 },
                 items: {
                   for (var language in widget.project.supportedLanguages)
-                    language: Text(language)
+                    language: Text(language),
                 },
               ),
               ToolbarDropdown<DeviceInfo>(
@@ -131,12 +132,9 @@ class _RunToolbarState extends State<RunToolbar> {
               ToolbarPanel(
                 button: Row(
                   children: [
-                    Icon(
-                      Icons.text_fields,
-                      color: Colors.black54,
-                    ),
+                    Icon(Icons.text_fields, color: Colors.black54),
                     const SizedBox(width: 5),
-                    Text(_describeAccessibility(_accessibility))
+                    Text(_describeAccessibility(_accessibility)),
                   ],
                 ),
                 panel: _AccessibilityPanel(
@@ -149,28 +147,26 @@ class _RunToolbarState extends State<RunToolbar> {
                   },
                 ),
               ),
-              Expanded(
-                child: const SizedBox(),
-              ),
+              Expanded(child: const SizedBox()),
               ...?widget.trailingActions,
               // User preferences?
             ],
           ),
         ),
-        Expanded(
-          child: widget.child,
-        ),
+        Expanded(child: widget.child),
       ],
     );
   }
 
   void _onChanged() {
-    widget.onChanged(ToolbarParameters(
-      language: _language,
-      mobileDevice: _mobileDevice,
-      desktopDevice: _desktopDevice,
-      accessibility: _accessibility,
-    ));
+    widget.onChanged(
+      ToolbarParameters(
+        language: _language,
+        mobileDevice: _mobileDevice,
+        desktopDevice: _desktopDevice,
+        accessibility: _accessibility,
+      ),
+    );
   }
 }
 
@@ -212,10 +208,7 @@ class _AccessibilityPanelState extends State<_AccessibilityPanel> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              height: 40,
-              child: _title(),
-            ),
+            SizedBox(height: 40, child: _title()),
             _scaleEditor(),
             _boldEditor(),
             FilledButton(
@@ -274,7 +267,8 @@ class _AccessibilityPanelState extends State<_AccessibilityPanel> {
                 onPressed: () {
                   setState(() {
                     _value = _value.rebuild(
-                        (b) => b.textScale = max(0.1, _value.textScale - 0.1));
+                      (b) => b.textScale = max(0.1, _value.textScale - 0.1),
+                    );
                   });
                 },
                 child: Text('-'),
@@ -287,7 +281,8 @@ class _AccessibilityPanelState extends State<_AccessibilityPanel> {
                 onPressed: () {
                   setState(() {
                     _value = _value.rebuild(
-                        (b) => b.textScale = min(3, _value.textScale + 0.1));
+                      (b) => b.textScale = min(3, _value.textScale + 0.1),
+                    );
                   });
                 },
                 child: Text('+'),
@@ -324,8 +319,9 @@ class _AccessibilityPanelState extends State<_AccessibilityPanel> {
         elevation: WidgetStateProperty.all(0),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
-              side: BorderSide(color: _buttonBorderColor)),
+            borderRadius: BorderRadius.circular(3),
+            side: BorderSide(color: _buttonBorderColor),
+          ),
         ),
         backgroundColor: WidgetStateProperty.all(_buttonBackground),
         foregroundColor: WidgetStateProperty.all(Colors.black87),

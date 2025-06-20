@@ -6,9 +6,7 @@ import 'graphite_grid.dart';
 class GraphiteRoot extends StatefulWidget {
   final Matrix mtx;
 
-  GraphiteRoot({
-    required this.mtx,
-  });
+  GraphiteRoot({required this.mtx});
   @override
   State<GraphiteRoot> createState() => _GraphiteRootState();
 }
@@ -18,9 +16,7 @@ class _GraphiteRootState extends State<GraphiteRoot> {
   Widget build(BuildContext context) {
     return GraphiteEdges(
       matrix: widget.mtx,
-      child: GraphiteGrid(
-        matrix: widget.mtx,
-      ),
+      child: GraphiteGrid(matrix: widget.mtx),
     );
   }
 }
