@@ -134,7 +134,8 @@ class WidgetTester extends WidgetController
 
   @override
   Future<List<Duration>> handlePointerEventRecord(
-      Iterable<PointerEventRecord> records) {
+    Iterable<PointerEventRecord> records,
+  ) {
     assert(records.isNotEmpty);
     return TestAsyncUtils.guard<List<Duration>>(() async {
       final List<Duration> handleTimeStampDiff = <Duration>[];
@@ -148,8 +149,10 @@ class WidgetTester extends WidgetController
           // Flush all past events
           handleTimeStampDiff.add(-timeDiff);
           for (final PointerEvent event in record.events) {
-            binding.handlePointerEventForSource(event,
-                source: TestBindingEventSource.test);
+            binding.handlePointerEventForSource(
+              event,
+              source: TestBindingEventSource.test,
+            );
           }
         } else {
           await binding.pump();
@@ -158,8 +161,10 @@ class WidgetTester extends WidgetController
             binding.clock.now().difference(startTime) - record.timeDelay,
           );
           for (final PointerEvent event in record.events) {
-            binding.handlePointerEventForSource(event,
-                source: TestBindingEventSource.test);
+            binding.handlePointerEventForSource(
+              event,
+              source: TestBindingEventSource.test,
+            );
           }
         }
       }
@@ -371,11 +376,12 @@ class WidgetTester extends WidgetController
   ///   your widget tree, then await that future inside [callback].
   Future<T?> runAsync<T>(
     Future<T> Function() callback, {
-    @Deprecated('This is no longer supported and has no effect. '
-        'This feature was deprecated after v3.12.0-1.1.pre.')
+    @Deprecated(
+      'This is no longer supported and has no effect. '
+      'This feature was deprecated after v3.12.0-1.1.pre.',
+    )
     Duration additionalTime = const Duration(milliseconds: 1000),
-  }) =>
-      binding.runAsync<T?>(callback);
+  }) => binding.runAsync<T?>(callback);
 
   /// Whether there are any transient callbacks scheduled.
   ///
@@ -396,8 +402,9 @@ class WidgetTester extends WidgetController
   @override
   HitTestResult hitTestOnBinding(Offset location, {int? viewId}) {
     viewId ??= view.viewId;
-    final RenderView renderView = binding.renderViews
-        .firstWhere((RenderView r) => r.flutterView.viewId == viewId);
+    final RenderView renderView = binding.renderViews.firstWhere(
+      (RenderView r) => r.flutterView.viewId == viewId,
+    );
     location = binding.localToGlobal(location, renderView);
     return super.hitTestOnBinding(location, viewId: viewId);
   }
@@ -405,8 +412,10 @@ class WidgetTester extends WidgetController
   @override
   Future<void> sendEventToBinding(PointerEvent event) {
     return TestAsyncUtils.guard<void>(() async {
-      binding.handlePointerEventForSource(event,
-          source: TestBindingEventSource.test);
+      binding.handlePointerEventForSource(
+        event,
+        source: TestBindingEventSource.test,
+      );
     });
   }
 
@@ -422,8 +431,8 @@ class WidgetTester extends WidgetController
           .map((HitTestEntry candidate) => candidate.target)
           .whereType<RenderObject>()
           .first;
-      final Element? innerTargetElement = binding.renderViews
-              .contains(innerTarget)
+      final Element? innerTargetElement =
+          binding.renderViews.contains(innerTarget)
           ? null
           : _lastWhereOrNull(
               collectAllElementsFrom(binding.rootElement!, skipOffstage: true),
@@ -444,7 +453,8 @@ class WidgetTester extends WidgetController
       int numberOfTypes = 0;
       int totalNumber = 0;
       printToConsole(
-          'Some possible finders for the widgets at ${event.position}:');
+        'Some possible finders for the widgets at ${event.position}:',
+      );
       for (final Element element in candidates) {
         if (totalNumber > 13) {
           break;
@@ -495,8 +505,9 @@ class WidgetTester extends WidgetController
 
         if (!_isPrivate(widget.runtimeType)) {
           if (numberOfTypes < 5) {
-            final Iterable<Element> matches =
-                find.byType(widget.runtimeType).evaluate();
+            final Iterable<Element> matches = find
+                .byType(widget.runtimeType)
+                .evaluate();
             if (matches.length == 1) {
               printToConsole('  find.byType(${widget.runtimeType})');
               numberOfTypes += 1;
@@ -510,7 +521,8 @@ class WidgetTester extends WidgetController
                 .evaluate();
             if (matches.length == 1) {
               printToConsole(
-                  "  find.widgetWithText(${widget.runtimeType}, '$descendantText')");
+                "  find.widgetWithText(${widget.runtimeType}, '$descendantText')",
+              );
               numberOfWithTexts += 1;
               continue;
             }
@@ -518,8 +530,9 @@ class WidgetTester extends WidgetController
         }
 
         if (!_isPrivate(element.runtimeType)) {
-          final Iterable<Element> matches =
-              find.byElementType(element.runtimeType).evaluate();
+          final Iterable<Element> matches = find
+              .byElementType(element.runtimeType)
+              .evaluate();
           if (matches.length == 1) {
             printToConsole('  find.byElementType(${element.runtimeType})');
             continue;
@@ -596,9 +609,11 @@ class WidgetTester extends WidgetController
           throw FlutterError.fromParts(<DiagnosticsNode>[
             ErrorSummary('A Ticker was active $when.'),
             ErrorDescription('All Tickers must be disposed.'),
-            ErrorHint('Tickers used by AnimationControllers '
-                'should be disposed by calling dispose() on the AnimationController itself. '
-                'Otherwise, the ticker will leak.'),
+            ErrorHint(
+              'Tickers used by AnimationControllers '
+              'should be disposed by calling dispose() on the AnimationController itself. '
+              'Otherwise, the ticker will leak.',
+            ),
             ticker.describeForError('The offending ticker was'),
           ]);
         }

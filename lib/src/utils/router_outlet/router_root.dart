@@ -91,11 +91,7 @@ class SubMatchTrackerState extends State<SubMatchTracker> {
 class SubMatches extends InheritedWidget {
   final List<MatchedPath> allMatches;
 
-  const SubMatches({
-    super.key,
-    required super.child,
-    required this.allMatches,
-  });
+  const SubMatches({super.key, required super.child, required this.allMatches});
 
   static List<MatchedPath> of(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<SubMatches>()!;
@@ -127,10 +123,7 @@ class _RouterRootAuto extends State<RouterRootAuto> {
 
   @override
   Widget build(BuildContext context) {
-    return RouterRoot(
-      urlSource: _urlSource,
-      child: widget.child,
-    );
+    return RouterRoot(urlSource: _urlSource, child: widget.child);
   }
 
   @override

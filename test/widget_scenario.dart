@@ -13,16 +13,16 @@ import 'fake_app.dart';
   );
 }*/
 
-void main() => runScenarios(allScenarios,
-    projectName: 'WidgetTests', supportedLanguages: ['en', 'fr', 'it']);
+void main() => runScenarios(
+  allScenarios,
+  projectName: 'WidgetTests',
+  supportedLanguages: ['en', 'fr', 'it'],
+);
 
 Map<String, dynamic> allScenarios() {
   return {
     'Onboarding': OnboardingScenario(),
-    'Home': {
-      'Login': LoginScenario(),
-      'Sign up': LoginScenario(),
-    },
+    'Home': {'Login': LoginScenario(), 'Sign up': LoginScenario()},
     'Path': PathScenario(),
   };
 }
@@ -60,7 +60,7 @@ class LoginScenario extends Scenario {
       Colors.yellow,
       Colors.blueGrey,
       Colors.lime,
-      Colors.indigoAccent
+      Colors.indigoAccent,
     ];
     await pumpWidget(
       MaterialApp(
@@ -163,7 +163,9 @@ class HomePage extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Page2()));
+                  context,
+                  MaterialPageRoute(builder: (context) => Page2()),
+                );
               },
               child: Text('Go page 2'),
             ),
@@ -180,14 +182,9 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Page1'),
-      ),
+      appBar: AppBar(title: Text('Page1')),
       body: Center(
-        child: Text(
-          'Page1',
-          style: Theme.of(context).textTheme.displaySmall,
-        ),
+        child: Text('Page1', style: Theme.of(context).textTheme.displaySmall),
       ),
     );
   }
@@ -199,20 +196,17 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Page 2'),
-      ),
+      appBar: AppBar(title: Text('Page 2')),
       body: Center(
         child: Column(
           children: [
-            Text(
-              'Page 2',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
+            Text('Page 2', style: Theme.of(context).textTheme.displaySmall),
             FilledButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Page1()));
+                  context,
+                  MaterialPageRoute(builder: (context) => Page1()),
+                );
               },
               child: Text('Go page 1'),
             ),

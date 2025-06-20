@@ -16,11 +16,7 @@ class ConnectedScreen extends StatefulWidget {
   final ScenarioService service;
   final ScenarioApi client;
 
-  const ConnectedScreen(
-    this.service,
-    this.client, {
-    super.key,
-  });
+  const ConnectedScreen(this.service, this.client, {super.key});
 
   @override
   State<ConnectedScreen> createState() => _ConnectedScreenState();
@@ -47,9 +43,7 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
           }
           return _MainView(widget.service, widget.client, snapshot.requireData);
         } else {
-          return Center(
-            child: Text('Loading project...'),
-          );
+          return Center(child: Text('Loading project...'));
         }
       },
     );
@@ -104,41 +98,43 @@ class ProjectViewState extends State<ProjectView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                  width: 220,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(child: ScenarioListingView(widget.client)),
-                      ToolsListingView(widget.client),
-                    ],
-                  )),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.separator,
+                width: 220,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: ScenarioListingView(widget.client)),
+                    ToolsListingView(widget.client),
+                  ],
                 ),
+              ),
+              Container(
+                decoration: BoxDecoration(color: AppColors.separator),
                 width: 1,
               ),
               Expanded(
                 child: ToolBarScope(
                   project: widget.projectInfo,
-                  child: StreamBuilder<
-                          BuiltMap<BuiltList<String>, ScenarioReference>>(
-                      stream: widget.client.listing.allScenarios,
-                      initialData: widget.client.listing.allScenarios.value,
-                      builder: (context, snapshot) {
-                        var loadingWidget =
-                            Center(child: CircularProgressIndicator());
-                        var allScenarios = snapshot.data;
-                        if (allScenarios == null) {
-                          return loadingWidget;
-                        }
+                  child:
+                      StreamBuilder<
+                        BuiltMap<BuiltList<String>, ScenarioReference>
+                      >(
+                        stream: widget.client.listing.allScenarios,
+                        initialData: widget.client.listing.allScenarios.value,
+                        builder: (context, snapshot) {
+                          var loadingWidget = Center(
+                            child: CircularProgressIndicator(),
+                          );
+                          var allScenarios = snapshot.data;
+                          if (allScenarios == null) {
+                            return loadingWidget;
+                          }
 
-                        return RouterOutlet(
-                          {
+                          return RouterOutlet({
                             'scenario/:scenarioId': (args) {
                               var id = args['scenarioId'];
-                              var name =
-                                  BuiltList(TreePath.fromEncoded(id).nodes);
+                              var name = BuiltList(
+                                TreePath.fromEncoded(id).nodes,
+                              );
                               var scenario = allScenarios[name];
                               if (scenario == null) {
                                 return loadingWidget;
@@ -150,9 +146,9 @@ class ProjectViewState extends State<ProjectView> {
                                 scenario,
                               );
                             },
-                          },
-                        );
-                      }),
+                          });
+                        },
+                      ),
                 ),
               ),
             ],

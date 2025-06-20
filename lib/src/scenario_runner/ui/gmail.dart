@@ -6,21 +6,17 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        // etc.
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    // etc.
+  };
 }
 
 class Gmail extends StatefulWidget {
   final EmailInfo info;
   final Widget body;
 
-  const Gmail({
-    super.key,
-    required this.info,
-    required this.body,
-  });
+  const Gmail({super.key, required this.info, required this.body});
 
   @override
   State<Gmail> createState() => _GmailState();
@@ -42,15 +38,16 @@ class _GmailState extends State<Gmail> {
             IconButton(onPressed: () {}, icon: Icon(Icons.archive_outlined)),
             IconButton(onPressed: () {}, icon: Icon(Icons.delete_outlined)),
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.mark_as_unread_outlined)),
+              onPressed: () {},
+              icon: Icon(Icons.mark_as_unread_outlined),
+            ),
             IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz_outlined)),
           ],
         ),
         body: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          }),
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+          ),
           child: SingleChildScrollView(
             controller: _scrollController,
             primary: false,
@@ -58,7 +55,9 @@ class _GmailState extends State<Gmail> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 10),
+                    horizontal: 15.0,
+                    vertical: 10,
+                  ),
                   child: Row(
                     children: [
                       Expanded(
@@ -67,10 +66,7 @@ class _GmailState extends State<Gmail> {
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
-                      Icon(
-                        Icons.star_outlined,
-                        color: Colors.yellow.shade700,
-                      ),
+                      Icon(Icons.star_outlined, color: Colors.yellow.shade700),
                     ],
                   ),
                 ),
@@ -104,7 +100,9 @@ class _GmailState extends State<Gmail> {
                                   child: Text(
                                     'to ${widget.info.recipient}',
                                     style: const TextStyle(
-                                        fontSize: 10, color: Colors.black54),
+                                      fontSize: 10,
+                                      color: Colors.black54,
+                                    ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -115,10 +113,13 @@ class _GmailState extends State<Gmail> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.reply_outlined)),
+                        onPressed: () {},
+                        icon: Icon(Icons.reply_outlined),
+                      ),
                       IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.more_horiz_outlined)),
+                        onPressed: () {},
+                        icon: Icon(Icons.more_horiz_outlined),
+                      ),
                     ],
                   ),
                 ),
@@ -142,23 +143,23 @@ class _GmailState extends State<Gmail> {
 }
 
 ColorScheme get _gmailColorScheme => ColorScheme.light(
-      /// The color displayed most frequently across your app’s screens and components.
-      primary: Colors.white,
+  /// The color displayed most frequently across your app’s screens and components.
+  primary: Colors.white,
 
-      /// An accent color that, when used sparingly, calls attention to parts
-      /// of your app.
-      secondary: Colors.black,
+  /// An accent color that, when used sparingly, calls attention to parts
+  /// of your app.
+  secondary: Colors.black,
 
-      /// The background color for widgets like [Card].
-      surface: Colors.white,
+  /// The background color for widgets like [Card].
+  surface: Colors.white,
 
-      /// The color to use for input validation errors, e.g. for
-      /// [InputDecoration.errorText].
-      error: Colors.red,
+  /// The color to use for input validation errors, e.g. for
+  /// [InputDecoration.errorText].
+  error: Colors.red,
 
-      /// A color that's clearly legible when drawn on [primary].
-      onPrimary: Colors.black87,
-      onSecondary: Colors.black,
-      onSurface: Colors.white,
-      onError: Colors.white,
-    );
+  /// A color that's clearly legible when drawn on [primary].
+  onPrimary: Colors.black87,
+  onSecondary: Colors.black,
+  onSurface: Colors.white,
+  onError: Colors.white,
+);

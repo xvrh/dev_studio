@@ -19,26 +19,35 @@ class _$ProjectInfoSerializer implements StructuredSerializer<ProjectInfo> {
   final String wireName = 'ProjectInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ProjectInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ProjectInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'currentDirectory',
-      serializers.serialize(object.currentDirectory,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.currentDirectory,
+        specifiedType: const FullType(String),
+      ),
       'supportedLanguages',
-      serializers.serialize(object.supportedLanguages,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.supportedLanguages,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
     ];
     Object? value;
     value = object.rootPath;
     if (value != null) {
       result
         ..add('rootPath')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.defaultStatusBarBrightness;
     if (value != null) {
@@ -56,22 +65,33 @@ class _$ProjectInfoSerializer implements StructuredSerializer<ProjectInfo> {
     if (value != null) {
       result
         ..add('confluence')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(ConfluenceInfo)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(ConfluenceInfo),
+          ),
+        );
     }
     value = object.firebase;
     if (value != null) {
       result
         ..add('firebase')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(FirebaseInfo)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(FirebaseInfo),
+          ),
+        );
     }
     return result;
   }
 
   @override
-  ProjectInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  ProjectInfo deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new ProjectInfoBuilder();
 
     final iterator = serialized.iterator;
@@ -81,39 +101,67 @@ class _$ProjectInfoSerializer implements StructuredSerializer<ProjectInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'rootPath':
-          result.rootPath = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.rootPath =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'currentDirectory':
-          result.currentDirectory = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.currentDirectory =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'supportedLanguages':
-          result.supportedLanguages.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.supportedLanguages.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'defaultStatusBarBrightness':
-          result.defaultStatusBarBrightness = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.defaultStatusBarBrightness =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'poEditorProjectId':
-          result.poEditorProjectId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.poEditorProjectId =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'confluence':
-          result.confluence.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(ConfluenceInfo))!
-              as ConfluenceInfo);
+          result.confluence.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(ConfluenceInfo),
+                )!
+                as ConfluenceInfo,
+          );
           break;
         case 'firebase':
-          result.firebase.replace(serializers.deserialize(value,
-              specifiedType: const FullType(FirebaseInfo))! as FirebaseInfo);
+          result.firebase.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(FirebaseInfo),
+                )!
+                as FirebaseInfo,
+          );
           break;
       }
     }
@@ -130,17 +178,24 @@ class _$ConfluenceInfoSerializer
   final String wireName = 'ConfluenceInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ConfluenceInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ConfluenceInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'site',
       serializers.serialize(object.site, specifiedType: const FullType(String)),
       'space',
-      serializers.serialize(object.space,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.space,
+        specifiedType: const FullType(String),
+      ),
       'docPrefix',
-      serializers.serialize(object.docPrefix,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.docPrefix,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -148,8 +203,10 @@ class _$ConfluenceInfoSerializer
 
   @override
   ConfluenceInfo deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new ConfluenceInfoBuilder();
 
     final iterator = serialized.iterator;
@@ -159,16 +216,28 @@ class _$ConfluenceInfoSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'site':
-          result.site = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.site =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'space':
-          result.space = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.space =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'docPrefix':
-          result.docPrefix = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.docPrefix =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -184,15 +253,22 @@ class _$FirebaseInfoSerializer implements StructuredSerializer<FirebaseInfo> {
   final String wireName = 'FirebaseInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, FirebaseInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    FirebaseInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'projectId',
-      serializers.serialize(object.projectId,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.projectId,
+        specifiedType: const FullType(String),
+      ),
       'androidAppId',
-      serializers.serialize(object.androidAppId,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.androidAppId,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -200,8 +276,10 @@ class _$FirebaseInfoSerializer implements StructuredSerializer<FirebaseInfo> {
 
   @override
   FirebaseInfo deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new FirebaseInfoBuilder();
 
     final iterator = serialized.iterator;
@@ -211,12 +289,20 @@ class _$FirebaseInfoSerializer implements StructuredSerializer<FirebaseInfo> {
       final Object? value = iterator.current;
       switch (key) {
         case 'projectId':
-          result.projectId = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.projectId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'androidAppId':
-          result.androidAppId = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.androidAppId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -246,21 +332,27 @@ class _$ProjectInfo extends ProjectInfo {
   factory _$ProjectInfo([void Function(ProjectInfoBuilder)? updates]) =>
       (new ProjectInfoBuilder()..update(updates))._build();
 
-  _$ProjectInfo._(
-      {required this.name,
-      this.rootPath,
-      required this.currentDirectory,
-      required this.supportedLanguages,
-      this.defaultStatusBarBrightness,
-      this.poEditorProjectId,
-      this.confluence,
-      this.firebase})
-      : super._() {
+  _$ProjectInfo._({
+    required this.name,
+    this.rootPath,
+    required this.currentDirectory,
+    required this.supportedLanguages,
+    this.defaultStatusBarBrightness,
+    this.poEditorProjectId,
+    this.confluence,
+    this.firebase,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'ProjectInfo', 'name');
     BuiltValueNullFieldError.checkNotNull(
-        currentDirectory, r'ProjectInfo', 'currentDirectory');
+      currentDirectory,
+      r'ProjectInfo',
+      'currentDirectory',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        supportedLanguages, r'ProjectInfo', 'supportedLanguages');
+      supportedLanguages,
+      r'ProjectInfo',
+      'supportedLanguages',
+    );
   }
 
   @override
@@ -392,13 +484,20 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
   _$ProjectInfo _build() {
     _$ProjectInfo _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$ProjectInfo._(
             name: BuiltValueNullFieldError.checkNotNull(
-                name, r'ProjectInfo', 'name'),
+              name,
+              r'ProjectInfo',
+              'name',
+            ),
             rootPath: rootPath,
             currentDirectory: BuiltValueNullFieldError.checkNotNull(
-                currentDirectory, r'ProjectInfo', 'currentDirectory'),
+              currentDirectory,
+              r'ProjectInfo',
+              'currentDirectory',
+            ),
             supportedLanguages: supportedLanguages.build(),
             defaultStatusBarBrightness: defaultStatusBarBrightness,
             poEditorProjectId: poEditorProjectId,
@@ -417,7 +516,10 @@ class ProjectInfoBuilder implements Builder<ProjectInfo, ProjectInfoBuilder> {
         _firebase?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'ProjectInfo', _$failedField, e.toString());
+          r'ProjectInfo',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -437,13 +539,18 @@ class _$ConfluenceInfo extends ConfluenceInfo {
   factory _$ConfluenceInfo([void Function(ConfluenceInfoBuilder)? updates]) =>
       (new ConfluenceInfoBuilder()..update(updates))._build();
 
-  _$ConfluenceInfo._(
-      {required this.site, required this.space, required this.docPrefix})
-      : super._() {
+  _$ConfluenceInfo._({
+    required this.site,
+    required this.space,
+    required this.docPrefix,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(site, r'ConfluenceInfo', 'site');
     BuiltValueNullFieldError.checkNotNull(space, r'ConfluenceInfo', 'space');
     BuiltValueNullFieldError.checkNotNull(
-        docPrefix, r'ConfluenceInfo', 'docPrefix');
+      docPrefix,
+      r'ConfluenceInfo',
+      'docPrefix',
+    );
   }
 
   @override
@@ -527,14 +634,24 @@ class ConfluenceInfoBuilder
   ConfluenceInfo build() => _build();
 
   _$ConfluenceInfo _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$ConfluenceInfo._(
           site: BuiltValueNullFieldError.checkNotNull(
-              site, r'ConfluenceInfo', 'site'),
+            site,
+            r'ConfluenceInfo',
+            'site',
+          ),
           space: BuiltValueNullFieldError.checkNotNull(
-              space, r'ConfluenceInfo', 'space'),
+            space,
+            r'ConfluenceInfo',
+            'space',
+          ),
           docPrefix: BuiltValueNullFieldError.checkNotNull(
-              docPrefix, r'ConfluenceInfo', 'docPrefix'),
+            docPrefix,
+            r'ConfluenceInfo',
+            'docPrefix',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -551,11 +668,17 @@ class _$FirebaseInfo extends FirebaseInfo {
       (new FirebaseInfoBuilder()..update(updates))._build();
 
   _$FirebaseInfo._({required this.projectId, required this.androidAppId})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        projectId, r'FirebaseInfo', 'projectId');
+      projectId,
+      r'FirebaseInfo',
+      'projectId',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        androidAppId, r'FirebaseInfo', 'androidAppId');
+      androidAppId,
+      r'FirebaseInfo',
+      'androidAppId',
+    );
   }
 
   @override
@@ -630,12 +753,19 @@ class FirebaseInfoBuilder
   FirebaseInfo build() => _build();
 
   _$FirebaseInfo _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$FirebaseInfo._(
           projectId: BuiltValueNullFieldError.checkNotNull(
-              projectId, r'FirebaseInfo', 'projectId'),
+            projectId,
+            r'FirebaseInfo',
+            'projectId',
+          ),
           androidAppId: BuiltValueNullFieldError.checkNotNull(
-              androidAppId, r'FirebaseInfo', 'androidAppId'),
+            androidAppId,
+            r'FirebaseInfo',
+            'androidAppId',
+          ),
         );
     replace(_$result);
     return _$result;

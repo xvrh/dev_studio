@@ -16,9 +16,11 @@ abstract class ScenarioRun implements Built<ScenarioRun, ScenarioRunBuilder> {
       _$ScenarioRun;
 
   factory ScenarioRun(ScenarioReference scenario, RunArgs args) =>
-      ScenarioRun._builder((b) => b
-        ..scenario.replace(scenario)
-        ..args.replace(args));
+      ScenarioRun._builder(
+        (b) => b
+          ..scenario.replace(scenario)
+          ..args.replace(args),
+      );
 
   ScenarioReference get scenario;
   RunArgs get args;

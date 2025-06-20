@@ -186,14 +186,16 @@ class _DocumentationRunContext implements RunContext {
     } else if (email != null) {
       var browser = _browser;
 
-      var browserPath = Platform.environment['CHROME_EXECUTABLE_PATH'] ??
+      var browserPath =
+          Platform.environment['CHROME_EXECUTABLE_PATH'] ??
           const String.fromEnvironment(
             'CHROME_EXECUTABLE_PATH',
           ).nonEmptyOrNull ??
           BrowserPath.chrome;
 
-      browser ??=
-          _browser = await puppeteer.launch(executablePath: browserPath);
+      browser ??= _browser = await puppeteer.launch(
+        executablePath: browserPath,
+      );
       var screenshotResponse = await screenshot.htmlScreenshot(
         screenshot.HtmlScreenshotRequest(
           html: _wrapEmailBody(email),
@@ -238,8 +240,9 @@ class _DocumentationRunContext implements RunContext {
 }
 
 String _packageNameAt(String location) {
-  var pubspecContent =
-      File(p.join(location, 'pubspec.yaml')).readAsStringSync();
+  var pubspecContent = File(
+    p.join(location, 'pubspec.yaml'),
+  ).readAsStringSync();
   var pubspec = loadYaml(pubspecContent) as YamlMap;
   return pubspec['name']! as String;
 }

@@ -14,13 +14,7 @@ class JsonDetail extends StatelessWidget {
   final Screen screen;
   final JsonInfo json;
 
-  const JsonDetail(
-    this.project,
-    this.run,
-    this.screen,
-    this.json, {
-    super.key,
-  });
+  const JsonDetail(this.project, this.run, this.screen, this.json, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +44,11 @@ class JsonDetail extends StatelessWidget {
                       );
                       if (location != null) {
                         var data = Uint8List.fromList(utf8.encode(json.data));
-                        var file = XFile.fromData(data,
-                            name: p.basename(location.path),
-                            mimeType: 'application/json');
+                        var file = XFile.fromData(
+                          data,
+                          name: p.basename(location.path),
+                          mimeType: 'application/json',
+                        );
                         await file.saveTo(location.path);
                       }
                     },
@@ -83,11 +79,7 @@ class JsonDetail extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4),
               children: [
                 for (var next in screen.next)
-                  LinkRow(
-                    project,
-                    run.screens[next.to]!,
-                    next,
-                  ),
+                  LinkRow(project, run.screens[next.to]!, next),
               ],
             ),
           ),

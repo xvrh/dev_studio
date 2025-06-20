@@ -69,10 +69,11 @@ void main() {
     expect(matched1, matched2);
     expect(matched1.hashCode, matched2.hashCode);
     expect(
-        [
-          path.rootMatch.matchesRemaining(PathPattern('users/:id'))!
-        ].contains(path.rootMatch.matchesRemaining(PathPattern('users/:id'))!),
-        isTrue);
+      [
+        path.rootMatch.matchesRemaining(PathPattern('users/:id'))!,
+      ].contains(path.rootMatch.matchesRemaining(PathPattern('users/:id'))!),
+      isTrue,
+    );
   });
 
   test('MatchedPath class 3', () {

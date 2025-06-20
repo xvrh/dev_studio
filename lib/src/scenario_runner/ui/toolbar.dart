@@ -42,8 +42,9 @@ class Toolbar extends StatelessWidget {
         elevation: WidgetStateProperty.all(0),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
-              side: BorderSide(color: _buttonBorderColor)),
+            borderRadius: BorderRadius.circular(3),
+            side: BorderSide(color: _buttonBorderColor),
+          ),
         ),
         backgroundColor: WidgetStateProperty.all(_buttonBackground),
         foregroundColor: WidgetStateProperty.all(Colors.black87),
@@ -78,8 +79,8 @@ class ToolbarDropdown<T extends Object> extends StatelessWidget {
     required this.items,
     bool? showArrow,
     bool? highlight,
-  })  : showArrow = showArrow ?? true,
-        highlight = highlight ?? false;
+  }) : showArrow = showArrow ?? true,
+       highlight = highlight ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -94,10 +95,7 @@ class ToolbarDropdown<T extends Object> extends StatelessWidget {
         value: value,
         items: [
           for (var entry in items.entries)
-            DropdownMenuItem(
-              value: entry.key,
-              child: entry.value,
-            ),
+            DropdownMenuItem(value: entry.key, child: entry.value),
         ],
         onChanged: (v) => onChanged(v!),
         icon: Icon(
@@ -146,17 +144,21 @@ class ToolbarPicker<T> extends StatelessWidget {
         width: double.maxFinite,
         child: ListView(
           shrinkWrap: true,
-          children: ListTile.divideTiles(context: context, tiles: [
-            for (var item in items.entries) _itemTile(context, item.key),
-          ]).toList(),
+          children: ListTile.divideTiles(
+            context: context,
+            tiles: [
+              for (var item in items.entries) _itemTile(context, item.key),
+            ],
+          ).toList(),
         ),
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('CANCEL')),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('CANCEL'),
+        ),
       ],
     );
   }
@@ -166,21 +168,17 @@ class ToolbarPicker<T> extends StatelessWidget {
     if (itemTiles != null) {
       tile = itemTiles![key];
       if (tile != null) {
-        tile = InkWell(
-          onTap: () => _onTap(context, key),
-          child: tile,
-        );
+        tile = InkWell(onTap: () => _onTap(context, key), child: tile);
       }
     }
-    tile ??= ListTile(
-      title: items[key],
-      onTap: () => _onTap(context, key),
-    );
+    tile ??= ListTile(title: items[key], onTap: () => _onTap(context, key));
 
-    tile = Row(children: [
-      Expanded(child: tile),
-      Icon(key == value ? Icons.check : null, color: Color(0xff0000ff)),
-    ]);
+    tile = Row(
+      children: [
+        Expanded(child: tile),
+        Icon(key == value ? Icons.check : null, color: Color(0xff0000ff)),
+      ],
+    );
 
     return tile;
   }
@@ -221,10 +219,7 @@ class ToolbarPanelState extends State<ToolbarPanel> {
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: hideMenu,
-              child: _Menu(
-                link: layerLink,
-                child: widget.panel,
-              ),
+              child: _Menu(link: layerLink, child: widget.panel),
             ),
           ),
         );
@@ -244,10 +239,7 @@ class ToolbarPanelState extends State<ToolbarPanel> {
       onPressed: () {
         showMenu();
       },
-      child: CompositedTransformTarget(
-        link: layerLink,
-        child: widget.button,
-      ),
+      child: CompositedTransformTarget(link: layerLink, child: widget.button),
     );
   }
 }
@@ -256,10 +248,7 @@ class _Menu extends StatelessWidget {
   final LayerLink link;
   final Widget child;
 
-  const _Menu({
-    required this.link,
-    required this.child,
-  });
+  const _Menu({required this.link, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +267,7 @@ class _Menu extends StatelessWidget {
                   color: Colors.black26,
                   blurRadius: 2,
                   offset: Offset(1, 1),
-                )
+                ),
               ],
             ),
             child: GestureDetector(
@@ -295,10 +284,7 @@ class _Menu extends StatelessWidget {
 
 class _ToolbarPanelProvider extends InheritedWidget {
   final ToolbarPanelState panel;
-  const _ToolbarPanelProvider({
-    required super.child,
-    required this.panel,
-  });
+  const _ToolbarPanelProvider({required super.child, required this.panel});
 
   @override
   bool updateShouldNotify(_ToolbarPanelProvider oldWidget) {

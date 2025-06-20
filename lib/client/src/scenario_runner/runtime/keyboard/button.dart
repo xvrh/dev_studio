@@ -17,10 +17,7 @@ class VirtualKeyboardButton extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(4),
       ),
-      padding: EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 6,
-      ),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 6),
       alignment: Alignment.center,
       child: child,
     );

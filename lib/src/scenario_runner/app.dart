@@ -10,10 +10,7 @@ import 'service.dart';
 class ScenarioAppWithServer extends StatefulWidget {
   final ScenarioService Function(ValueStream<List<ScenarioApi>>) serviceFactory;
 
-  const ScenarioAppWithServer({
-    super.key,
-    required this.serviceFactory,
-  });
+  const ScenarioAppWithServer({super.key, required this.serviceFactory});
 
   @override
   State<ScenarioAppWithServer> createState() => _ScenarioAppWithServerState();
@@ -69,11 +66,7 @@ class ScenarioApp extends StatelessWidget {
         } else {
           //TODO(xha): add a tab bar to handle several clients
           var client = clients.last;
-          return ConnectedScreen(
-            service,
-            client,
-            key: ValueKey(client),
-          );
+          return ConnectedScreen(service, client, key: ValueKey(client));
         }
       },
     );
@@ -92,11 +85,12 @@ class _WaitingConnectionScreen extends StatelessWidget {
           if (!platform.isBrowser) ...[
             Text('Waiting for connection...'),
             SelectableText(
-                'flutter run -d flutter-tester <scenario-file>.dart'),
+              'flutter run -d flutter-tester <scenario-file>.dart',
+            ),
             SelectableText('flutter run -d chrome <scenario-file>.dart'),
           ] else ...[
             Text('Loading...'),
-          ]
+          ],
         ],
       ),
     );

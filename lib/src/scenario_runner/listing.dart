@@ -58,7 +58,8 @@ class _ScenarioListingViewState extends State<ScenarioListingView> {
   }
 
   List<MenuEntry> _menu(
-      BuiltMap<BuiltList<String>, ScenarioReference> scenarios) {
+    BuiltMap<BuiltList<String>, ScenarioReference> scenarios,
+  ) {
     var entries = <MenuEntry>[];
 
     for (var scenario in scenarios.entries) {
@@ -108,7 +109,8 @@ class ScenarioRow extends StatelessWidget {
       title: Text(scenario.name.join('/')),
       onTap: () {
         context.go(
-            'scenario/${Uri.encodeComponent(TreePath(scenario.name.toList()).encoded)}');
+          'scenario/${Uri.encodeComponent(TreePath(scenario.name.toList()).encoded)}',
+        );
       },
     );
   }

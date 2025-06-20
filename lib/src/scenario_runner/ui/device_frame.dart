@@ -10,8 +10,12 @@ class DeviceFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var device = run.args.device;
-    var devicePadding = EdgeInsets.fromLTRB(device.safeArea.left,
-        device.safeArea.top, device.safeArea.right, device.safeArea.bottom);
+    var devicePadding = EdgeInsets.fromLTRB(
+      device.safeArea.left,
+      device.safeArea.top,
+      device.safeArea.right,
+      device.safeArea.bottom,
+    );
     return MediaQuery(
       data: MediaQueryData(
         padding: devicePadding,

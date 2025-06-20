@@ -23,18 +23,21 @@ export 'src/scenario_runner/html_screenshot/service_local.dart'
     show LocalHtmlScreenshotService;
 
 void main({HtmlScreenshotService? htmlScreenshotService}) async {
-  var buildInfoRaw =
-      document.body?.attributes.getNamedItem('build-info')?.value;
+  var buildInfoRaw = document.body?.attributes
+      .getNamedItem('build-info')
+      ?.value;
   BuildInfo? buildInfo;
   WebManifest? manifest;
   if (buildInfoRaw != null && buildInfoRaw.isNotEmpty) {
-    buildInfo =
-        BuildInfo.fromJson(jsonDecode(buildInfoRaw) as Map<String, dynamic>);
+    buildInfo = BuildInfo.fromJson(
+      jsonDecode(buildInfoRaw) as Map<String, dynamic>,
+    );
     var manifestPath = buildInfo.manifestPath;
     if (manifestPath != null) {
       var manifestContent = await read(Uri.parse(manifestPath));
       manifest = WebManifest.fromJson(
-          jsonDecode(manifestContent) as Map<String, dynamic>);
+        jsonDecode(manifestContent) as Map<String, dynamic>,
+      );
     }
   }
 
@@ -52,9 +55,12 @@ void main({HtmlScreenshotService? htmlScreenshotService}) async {
     if (data.dartify() == onConnectedMessage) {
       onMessageSubscription.cancel();
       var channel = createWebChannel(iframe.contentWindow!);
-      var client = ScenarioApi(channel, onClose: () {
-        subject.close();
-      });
+      var client = ScenarioApi(
+        channel,
+        onClose: () {
+          subject.close();
+        },
+      );
       subject.add([client]);
     }
   });
@@ -65,10 +71,7 @@ void main({HtmlScreenshotService? htmlScreenshotService}) async {
 
   var service = ScenarioService(
     subject.stream,
-    ScenarioContext(
-      build: buildInfo,
-      manifest: manifest,
-    ),
+    ScenarioContext(build: buildInfo, manifest: manifest),
     htmlScreenshot:
         htmlScreenshotService ?? UnimplementedHtmlScreenshotService(),
   );

@@ -46,10 +46,12 @@ class IOAssetBundle extends CachingAssetBundle implements ScenarioBundle {
       try {
         var realResponse = await realHttpClient.readBytes(request.request.uri);
         request.response.complete(
-            FakeHttpResponse(statusCode: HttpStatus.ok, body: realResponse));
+          FakeHttpResponse(statusCode: HttpStatus.ok, body: realResponse),
+        );
       } catch (e) {
-        request.response
-            .complete(FakeHttpResponse(statusCode: HttpStatus.notFound));
+        request.response.complete(
+          FakeHttpResponse(statusCode: HttpStatus.notFound),
+        );
       }
     }
     _requestCompleters.clear();

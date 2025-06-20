@@ -8,8 +8,12 @@ class EmailBody extends StatefulWidget {
   final ScenarioRun run;
   final EmailInfo email;
 
-  const EmailBody(this.htmlScreenshotService, this.run, this.email,
-      {super.key});
+  const EmailBody(
+    this.htmlScreenshotService,
+    this.run,
+    this.email, {
+    super.key,
+  });
 
   @override
   State<EmailBody> createState() => _EmailBodyState();
@@ -57,9 +61,7 @@ class _EmailBodyState extends State<EmailBody> {
     if (error != null) {
       return ErrorWidget(error);
     } else if (response == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
+      return Center(child: CircularProgressIndicator());
     } else {
       return Image.memory(response.image);
     }

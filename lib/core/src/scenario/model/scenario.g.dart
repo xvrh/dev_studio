@@ -17,32 +17,43 @@ class _$ScenarioReferenceSerializer
   final String wireName = 'ScenarioReference';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ScenarioReference object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ScenarioReference object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'name',
-      serializers.serialize(object.name,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.name,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
       'isDesktop',
-      serializers.serialize(object.isDesktop,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isDesktop,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.description;
     if (value != null) {
       result
         ..add('description')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   ScenarioReference deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new ScenarioReferenceBuilder();
 
     final iterator = serialized.iterator;
@@ -52,18 +63,31 @@ class _$ScenarioReferenceSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.name.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.description =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'isDesktop':
-          result.isDesktop = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isDesktop =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -80,16 +104,21 @@ class _$ScenarioReference extends ScenarioReference {
   @override
   final bool isDesktop;
 
-  factory _$ScenarioReference(
-          [void Function(ScenarioReferenceBuilder)? updates]) =>
-      (new ScenarioReferenceBuilder()..update(updates))._build();
+  factory _$ScenarioReference([
+    void Function(ScenarioReferenceBuilder)? updates,
+  ]) => (new ScenarioReferenceBuilder()..update(updates))._build();
 
-  _$ScenarioReference._(
-      {required this.name, this.description, required this.isDesktop})
-      : super._() {
+  _$ScenarioReference._({
+    required this.name,
+    this.description,
+    required this.isDesktop,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'ScenarioReference', 'name');
     BuiltValueNullFieldError.checkNotNull(
-        isDesktop, r'ScenarioReference', 'isDesktop');
+      isDesktop,
+      r'ScenarioReference',
+      'isDesktop',
+    );
   }
 
   @override
@@ -175,12 +204,16 @@ class ScenarioReferenceBuilder
   _$ScenarioReference _build() {
     _$ScenarioReference _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$ScenarioReference._(
             name: name.build(),
             description: description,
             isDesktop: BuiltValueNullFieldError.checkNotNull(
-                isDesktop, r'ScenarioReference', 'isDesktop'),
+              isDesktop,
+              r'ScenarioReference',
+              'isDesktop',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -189,7 +222,10 @@ class ScenarioReferenceBuilder
         name.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'ScenarioReference', _$failedField, e.toString());
+          r'ScenarioReference',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

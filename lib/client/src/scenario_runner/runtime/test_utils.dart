@@ -1,12 +1,16 @@
 import 'package:test/test.dart';
 
-void check(actual, matcher, {String? reason}) {
+void check(dynamic actual, dynamic matcher, {String? reason}) {
   String formatter(actual, Matcher matcher, String? reason, Map matchState) {
     var mismatchDescription = StringDescription();
     matcher.describeMismatch(actual, mismatchDescription, matchState, false);
 
-    return _formatFailure(matcher, actual, mismatchDescription.toString(),
-        reason: reason);
+    return _formatFailure(
+      matcher,
+      actual,
+      mismatchDescription.toString(),
+      reason: reason,
+    );
   }
 
   matcher = wrapMatcher(matcher);
@@ -22,8 +26,12 @@ void check(actual, matcher, {String? reason}) {
   fail(formatter(actual, matcher as Matcher, reason, matchState));
 }
 
-String _formatFailure(Matcher expected, actual, String which,
-    {String? reason}) {
+String _formatFailure(
+  Matcher expected,
+  actual,
+  String which, {
+  String? reason,
+}) {
   var buffer = StringBuffer();
   buffer.writeln(_indent(_prettyPrint(expected), first: 'Expected: '));
   buffer.writeln(_indent(_prettyPrint(actual), first: '  Actual: '));
@@ -54,5 +62,5 @@ String _indent(String text, {required String first}) {
 ///
 /// The matcher package doesn't expose its pretty-print function directly, but
 /// we can use it through StringDescription.
-String _prettyPrint(value) =>
+String _prettyPrint(Object? value) =>
     StringDescription().addDescriptionOf(value).toString();

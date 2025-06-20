@@ -5,7 +5,8 @@ import 'service.dart';
 class LocalHtmlScreenshotService implements HtmlScreenshotService {
   @override
   Future<HtmlScreenshotResponse> htmlScreenshot(
-      HtmlScreenshotRequest request) async {
+    HtmlScreenshotRequest request,
+  ) async {
     // We launch a new browser for each request so we don't create zombie process
     // as we hot-start this tool.
     var browser = await puppeteer.launch(executablePath: BrowserPath.chrome);
@@ -18,7 +19,8 @@ class LocalHtmlScreenshotService implements HtmlScreenshotService {
 
   @override
   Future<screenshot.PdfScreenshotResponse> pdfScreenshot(
-      screenshot.PdfScreenshotRequest request) {
+    screenshot.PdfScreenshotRequest request,
+  ) {
     return screenshot.pdfScreenshot(request);
   }
 }

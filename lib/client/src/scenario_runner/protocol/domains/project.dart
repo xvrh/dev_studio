@@ -7,7 +7,7 @@ class ProjectHost {
   final _onReloadedController = StreamController<void>.broadcast();
 
   ProjectHost(Connection connection)
-      : _channel = connection.createChannel('Project') {
+    : _channel = connection.createChannel('Project') {
     _channel.registerMethod('onReloaded', _onReloaded);
   }
 
@@ -30,7 +30,7 @@ class ProjectClient {
   final Channel _channel;
 
   ProjectClient(Connection connection, {required ProjectInfo Function() load})
-      : _channel = connection.createChannel('Project') {
+    : _channel = connection.createChannel('Project') {
     _channel.registerMethod('load', load);
   }
 

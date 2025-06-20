@@ -12,10 +12,7 @@ class HtmlScreenshotRequest {
   final String html;
   final DeviceInfo device;
 
-  HtmlScreenshotRequest({
-    required this.html,
-    required this.device,
-  });
+  HtmlScreenshotRequest({required this.html, required this.device});
 
   factory HtmlScreenshotRequest.fromJson(Map<String, dynamic> json) =>
       _$HtmlScreenshotRequestFromJson(json);
@@ -60,10 +57,7 @@ class PdfScreenshotRequest {
   final String base64Bytes;
   final DeviceInfo device;
 
-  PdfScreenshotRequest({
-    required this.base64Bytes,
-    required this.device,
-  });
+  PdfScreenshotRequest({required this.base64Bytes, required this.device});
 
   factory PdfScreenshotRequest.fromJson(Map<String, dynamic> json) =>
       _$PdfScreenshotRequestFromJson(json);
@@ -101,11 +95,7 @@ class PdfScreenshotResponse {
 
 @JsonSerializable()
 class DeviceInfo {
-  static final iphoneX = DeviceInfo(
-    width: 375,
-    height: 812,
-    pixelRatio: 3,
-  );
+  static final iphoneX = DeviceInfo(width: 375, height: 812, pixelRatio: 3);
 
   final int width;
   final int height;
@@ -150,16 +140,16 @@ class TextInfo {
   String toString() => 'TextInfo($translationKey, $rectangle, $text)';
 
   model.TextInfo toTextInfo() => model.TextInfo(
-        text: text,
-        translationKey: translationKey,
-        rawTranslation: text,
-        globalRectangle: model.Rectangle.fromTLWH(
-          rectangle.y.toDouble(),
-          rectangle.x.toDouble(),
-          rectangle.width.toDouble(),
-          rectangle.height.toDouble(),
-        ),
-      );
+    text: text,
+    translationKey: translationKey,
+    rawTranslation: text,
+    globalRectangle: model.Rectangle.fromTLWH(
+      rectangle.y.toDouble(),
+      rectangle.x.toDouble(),
+      rectangle.width.toDouble(),
+      rectangle.height.toDouble(),
+    ),
+  );
 }
 
 @JsonSerializable()
@@ -189,10 +179,11 @@ class Rect {
   Rect(this.x, this.y, this.width, this.height);
 
   factory Rect.fromRectangle(Rectangle box, {required num pixelRatio}) => Rect(
-      box.left * pixelRatio,
-      box.top * pixelRatio,
-      box.width * pixelRatio,
-      box.height * pixelRatio);
+    box.left * pixelRatio,
+    box.top * pixelRatio,
+    box.width * pixelRatio,
+    box.height * pixelRatio,
+  );
 
   factory Rect.fromJson(Map<String, dynamic> json) => _$RectFromJson(json);
 

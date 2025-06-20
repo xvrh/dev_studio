@@ -34,11 +34,7 @@ class LinkRow extends StatelessWidget {
               ).copyWith(bottom: 4),
               child: Row(
                 children: [
-                  Expanded(
-                    child: Text(
-                      screen.name,
-                    ),
-                  ),
+                  Expanded(child: Text(screen.name)),
                   if (pathName != null)
                     Text(
                       pathName,

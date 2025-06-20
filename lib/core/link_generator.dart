@@ -1,26 +1,27 @@
 Uri Function(String) poEditorTranslationLink({required int projectId}) {
   return (key) {
-    return Uri.parse('https://poeditor.com/projects/view_terms')
-        .replace(queryParameters: {
-      'id': '$projectId',
-      'search': key,
-    });
+    return Uri.parse(
+      'https://poeditor.com/projects/view_terms',
+    ).replace(queryParameters: {'id': '$projectId', 'search': key});
   };
 }
 
 Uri Function(String) lokaliseTranslationLink({required String projectId}) {
   return (key) {
     return Uri.parse(
-        'https://app.lokalise.com/project/$projectId/?view=multi&search=$key');
+      'https://app.lokalise.com/project/$projectId/?view=multi&search=$key',
+    );
   };
 }
 
-Uri Function(String) firebaseEventLink(
-    {required String projectId, required String androidAppId}) {
+Uri Function(String) firebaseEventLink({
+  required String projectId,
+  required String androidAppId,
+}) {
   return (key) {
     return Uri.parse(
-            'https://console.firebase.google.com/u/0/project/$projectId/analytics/app/android:$androidAppId/events/')
-        .replace(queryParameters: {'q': key});
+      'https://console.firebase.google.com/u/0/project/$projectId/analytics/app/android:$androidAppId/events/',
+    ).replace(queryParameters: {'q': key});
   };
 }
 
@@ -36,8 +37,10 @@ ScenarioUrlFactory scenarioLink(String baseUrl) {
   };
 }
 
-Uri Function(String) confluencePageLink(
-    {required String site, required String space}) {
+Uri Function(String) confluencePageLink({
+  required String site,
+  required String space,
+}) {
   return (pageId) {
     return Uri.https('$site.atlassian.net', 'wiki/spaces/$space/pages/$pageId');
   };

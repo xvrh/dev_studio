@@ -15,10 +15,11 @@ class UrlSourceWeb implements UrlSource {
     setUrlStrategy(null);
 
     html.window.addEventListener(
-        'hashchange',
-        () {
-          go(_getHash());
-        }.toJS);
+      'hashchange',
+      () {
+        go(_getHash());
+      }.toJS,
+    );
 
     _current = _getHash();
   }

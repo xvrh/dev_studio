@@ -37,14 +37,18 @@ class Server {
 
   FutureOr<Response> _scenarioSocketHandler(Request request) {
     return webSocketHandler(
-        (channel, _) => _onScenarioConnect(request, channel))(request);
+      (channel, _) => _onScenarioConnect(request, channel),
+    )(request);
   }
 
   void _onScenarioConnect(Request request, WebSocketChannel channel) async {
     late ScenarioApi client;
-    client = ScenarioApi(channel.cast<String>(), onClose: () {
-      _clients.add(_clients.value..remove(client));
-    });
+    client = ScenarioApi(
+      channel.cast<String>(),
+      onClose: () {
+        _clients.add(_clients.value..remove(client));
+      },
+    );
 
     _clients.add(_clients.value..add(client));
   }

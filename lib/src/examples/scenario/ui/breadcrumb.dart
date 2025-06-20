@@ -16,10 +16,7 @@ class BreadcrumbExample extends StatelessWidget {
             Breadcrumb(
               children: [
                 BreadcrumbItemWithMenu(
-                  Text(
-                    'App',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  Text('App', style: TextStyle(fontWeight: FontWeight.bold)),
                   options: {},
                   onTapOption: (option) {
                     print('Go to $option');
@@ -36,10 +33,7 @@ class BreadcrumbExample extends StatelessWidget {
                     print('Go to $option');
                   },
                 ),
-                BreadcrumbItem(
-                  Text('Home'),
-                  onTap: () {},
-                ),
+                BreadcrumbItem(Text('Home'), onTap: () {}),
                 BreadcrumbItem(Text('Onboarding')),
                 BreadcrumbItem.withIcon('Group', Icons.list),
                 BreadcrumbItem.withIcon('Page 1', Icons.description_outlined),
@@ -49,10 +43,7 @@ class BreadcrumbExample extends StatelessWidget {
             Breadcrumb(
               children: [
                 BreadcrumbItemWithMenu(
-                  Text(
-                    'App',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  Text('App', style: TextStyle(fontWeight: FontWeight.bold)),
                   options: {},
                   onTapOption: (option) {
                     print('Go to $option');

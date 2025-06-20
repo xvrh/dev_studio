@@ -91,9 +91,12 @@ class _ImageDetailState extends State<ImageDetail> {
         ),
         if (documentationKey != null) ...[
           DetailSkeleton.separator,
-          DocumentationSection(widget.project, widget.run,
-              documentationKey: documentationKey),
-        ]
+          DocumentationSection(
+            widget.project,
+            widget.run,
+            documentationKey: documentationKey,
+          ),
+        ],
       ],
     );
   }

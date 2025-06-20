@@ -1,5 +1,6 @@
 import 'path.dart';
-import 'url_source_fake.dart' if (dart.library.html) 'url_source_web.dart'
+import 'url_source_fake.dart'
+    if (dart.library.html) 'url_source_web.dart'
     as source;
 
 abstract class UrlSource {

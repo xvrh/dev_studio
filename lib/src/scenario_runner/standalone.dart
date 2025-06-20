@@ -11,10 +11,7 @@ class StandaloneScenarioApp extends StatelessWidget {
     return RouterOutlet.root(
       child: MaterialApp(
         title: 'Scenario runner',
-        home: Scaffold(
-          backgroundColor: Colors.white,
-          body: app,
-        ),
+        home: Scaffold(backgroundColor: Colors.white, body: app),
         initialRoute: '/',
         debugShowCheckedModeBanner: false,
       ),

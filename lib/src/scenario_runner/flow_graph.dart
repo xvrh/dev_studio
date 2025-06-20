@@ -21,7 +21,7 @@ class RunView extends StatefulWidget {
   final ScenarioReference scenario;
 
   RunView(this.service, this.client, this.scenario)
-      : super(key: Key(scenario.name.join('-')));
+    : super(key: Key(scenario.name.join('-')));
 
   @override
   State<RunView> createState() => _RunViewState();
@@ -29,7 +29,8 @@ class RunView extends StatefulWidget {
 
 class _RunViewState extends State<RunView> {
   final _interactionController = TransformationController()
-    ..value = ((Matrix4.identity() * 0.5 as Matrix4)..translate(50.0, 100.0));
+    ..value = ((Matrix4.identity() * 0.5 as Matrix4)
+      ..translateByDouble(50.0, 100.0, 0, 1.0));
   late RunReference _runReference;
   late StreamSubscription _reloadSubscription;
 
@@ -139,11 +140,9 @@ class _RunViewState extends State<RunView> {
                 child: SizedBox(
                   width: 12,
                   height: 12,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
+                  child: CircularProgressIndicator(strokeWidth: 2),
                 ),
-              )
+              ),
           ],
           trailingActions: [if (result != null) ResultIcon(result)],
           child: contentWidget,
@@ -176,18 +175,12 @@ class ResultIcon extends StatelessWidget {
     if (result.success) {
       return Tooltip(
         message: '${result.duration}',
-        child: Icon(
-          Icons.check,
-          color: Colors.green,
-        ),
+        child: Icon(Icons.check, color: Colors.green),
       );
     } else {
       return Tooltip(
         message: '${result.error}',
-        child: Icon(
-          Icons.error_outline,
-          color: Colors.red,
-        ),
+        child: Icon(Icons.error_outline, color: Colors.red),
       );
     }
   }
@@ -224,10 +217,7 @@ class _FlowMaster extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          color: AppColors.separator,
-          height: 1,
-        ),
+        Container(color: AppColors.separator, height: 1),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Text(run.scenario.description ?? ''),
@@ -280,14 +270,18 @@ class __FlowGraphState extends State<_FlowGraph> {
     var screens = widget.run.screens;
     _inputs = screens.values
         .where((s) => !s.isCollapsed)
-        .map((s) => NodeInput(
+        .map(
+          (s) => NodeInput(
             id: s.id,
             next: s.next.map((n) {
               var target = screens[n.to];
               target ??= screens.values.firstWhere(
-                  (e) => e.collapsedScreens.any((c) => c.id == n.to));
+                (e) => e.collapsedScreens.any((c) => c.id == n.to),
+              );
               return target.id;
-            }).toList()))
+            }).toList(),
+          ),
+        )
         .toList();
   }
 
@@ -303,8 +297,10 @@ class __FlowGraphState extends State<_FlowGraph> {
 
     return DirectGraph(
       list: inputs,
-      cellSize: Size(widget.run.args.device.width * widget.run.args.imageRatio,
-          widget.run.args.device.height * widget.run.args.imageRatio),
+      cellSize: Size(
+        widget.run.args.device.width * widget.run.args.imageRatio,
+        widget.run.args.device.height * widget.run.args.imageRatio,
+      ),
       cellPadding: 90.0,
       contactEdgesDistance: 0,
       tipLength: 20,
@@ -355,7 +351,9 @@ class __FlowGraphState extends State<_FlowGraph> {
           return EdgeTooltip(
             pathName,
             style: TextStyle(
-                color: Colors.blueGrey.withValues(alpha: 0.8), fontSize: 15),
+              color: Colors.blueGrey.withValues(alpha: 0.8),
+              fontSize: 15,
+            ),
           );
         }
         return null;
@@ -383,7 +381,8 @@ class _ScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var main = _widgetForScreen(screen) ??
+    var main =
+        _widgetForScreen(screen) ??
         Container(
           color: Colors.black12,
           width: run.args.device.width * run.args.device.pixelRatio,
@@ -403,7 +402,9 @@ class _ScreenView extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: Colors.blueGrey.withValues(alpha: 0.5), width: 1),
+                  color: Colors.blueGrey.withValues(alpha: 0.5),
+                  width: 1,
+                ),
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
               ),
@@ -414,8 +415,10 @@ class _ScreenView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
                 child: Opacity(
                   opacity: 0.5,
-                  child: _widgetForScreen(
-                          screen.collapsedScreens.elementAt(i - 1)) ??
+                  child:
+                      _widgetForScreen(
+                        screen.collapsedScreens.elementAt(i - 1),
+                      ) ??
                       Container(color: Colors.white),
                 ),
               ),
@@ -483,11 +486,12 @@ class _ScreenView extends StatelessWidget {
                     '+ ${screen.collapsedScreens.length} screen${screen.collapsedScreens.length > 1 ? 's' : ''}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 15,
-                        height: 0.9,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent,
-                        backgroundColor: Colors.white),
+                      fontSize: 15,
+                      height: 0.9,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
                 ],
               ),

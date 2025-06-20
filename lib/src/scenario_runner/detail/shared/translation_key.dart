@@ -8,10 +8,7 @@ import '../../ui/side_bar.dart';
 class TranslationsSidebar extends StatelessWidget {
   final List<Widget> children;
 
-  const TranslationsSidebar({
-    super.key,
-    required this.children,
-  });
+  const TranslationsSidebar({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +54,7 @@ class TranslationKeyRowState extends State<TranslationKeyRow> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                widget.text.translationKey,
-              ),
+              Text(widget.text.translationKey),
               if (_expanded) _fontDetail(),
             ],
           ),
@@ -119,10 +114,7 @@ class TranslationKeyRowState extends State<TranslationKeyRow> {
         onPressed: () {
           Clipboard.setData(ClipboardData(text: widget.text.text));
         },
-        child: Text(
-          'Copy text',
-          style: const TextStyle(fontSize: 10),
-        ),
+        child: Text('Copy text', style: const TextStyle(fontSize: 10)),
       ),
     );
   }
@@ -135,10 +127,7 @@ class TranslationKeyRowState extends State<TranslationKeyRow> {
           var generator = poEditorTranslationLink(projectId: projectId);
           launchUrl(generator(widget.text.translationKey));
         },
-        child: Text(
-          'poeditor.com',
-          style: const TextStyle(fontSize: 10),
-        ),
+        child: Text('poeditor.com', style: const TextStyle(fontSize: 10)),
       ),
     );
   }

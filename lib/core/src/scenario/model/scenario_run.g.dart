@@ -15,34 +15,52 @@ class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
   final String wireName = 'ScenarioRun';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ScenarioRun object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    ScenarioRun object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'scenario',
-      serializers.serialize(object.scenario,
-          specifiedType: const FullType(ScenarioReference)),
+      serializers.serialize(
+        object.scenario,
+        specifiedType: const FullType(ScenarioReference),
+      ),
       'args',
-      serializers.serialize(object.args,
-          specifiedType: const FullType(RunArgs)),
+      serializers.serialize(
+        object.args,
+        specifiedType: const FullType(RunArgs),
+      ),
       'screens',
-      serializers.serialize(object.screens,
-          specifiedType: const FullType(BuiltMap,
-              const [const FullType(String), const FullType(Screen)])),
+      serializers.serialize(
+        object.screens,
+        specifiedType: const FullType(BuiltMap, const [
+          const FullType(String),
+          const FullType(Screen),
+        ]),
+      ),
     ];
     Object? value;
     value = object.result;
     if (value != null) {
       result
         ..add('result')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(RunResult)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(RunResult),
+          ),
+        );
     }
     return result;
   }
 
   @override
-  ScenarioRun deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  ScenarioRun deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new ScenarioRunBuilder();
 
     final iterator = serialized.iterator;
@@ -52,22 +70,42 @@ class _$ScenarioRunSerializer implements StructuredSerializer<ScenarioRun> {
       final Object? value = iterator.current;
       switch (key) {
         case 'scenario':
-          result.scenario.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(ScenarioReference))!
-              as ScenarioReference);
+          result.scenario.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(ScenarioReference),
+                )!
+                as ScenarioReference,
+          );
           break;
         case 'args':
-          result.args.replace(serializers.deserialize(value,
-              specifiedType: const FullType(RunArgs))! as RunArgs);
+          result.args.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(RunArgs),
+                )!
+                as RunArgs,
+          );
           break;
         case 'screens':
-          result.screens.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap,
-                  const [const FullType(String), const FullType(Screen)]))!);
+          result.screens.replace(
+            serializers.deserialize(
+              value,
+              specifiedType: const FullType(BuiltMap, const [
+                const FullType(String),
+                const FullType(Screen),
+              ]),
+            )!,
+          );
           break;
         case 'result':
-          result.result.replace(serializers.deserialize(value,
-              specifiedType: const FullType(RunResult))! as RunResult);
+          result.result.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(RunResult),
+                )!
+                as RunResult,
+          );
           break;
       }
     }
@@ -89,12 +127,12 @@ class _$ScenarioRun extends ScenarioRun {
   factory _$ScenarioRun([void Function(ScenarioRunBuilder)? updates]) =>
       (new ScenarioRunBuilder()..update(updates))._build();
 
-  _$ScenarioRun._(
-      {required this.scenario,
-      required this.args,
-      required this.screens,
-      this.result})
-      : super._() {
+  _$ScenarioRun._({
+    required this.scenario,
+    required this.args,
+    required this.screens,
+    this.result,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(scenario, r'ScenarioRun', 'scenario');
     BuiltValueNullFieldError.checkNotNull(args, r'ScenarioRun', 'args');
     BuiltValueNullFieldError.checkNotNull(screens, r'ScenarioRun', 'screens');
@@ -192,7 +230,8 @@ class ScenarioRunBuilder implements Builder<ScenarioRun, ScenarioRunBuilder> {
   _$ScenarioRun _build() {
     _$ScenarioRun _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$ScenarioRun._(
             scenario: scenario.build(),
             args: args.build(),
@@ -212,7 +251,10 @@ class ScenarioRunBuilder implements Builder<ScenarioRun, ScenarioRunBuilder> {
         _result?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'ScenarioRun', _$failedField, e.toString());
+          r'ScenarioRun',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

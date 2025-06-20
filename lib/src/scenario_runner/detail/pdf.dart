@@ -76,11 +76,7 @@ class _PdfDetailState extends State<PdfDetail> {
     if (error != null) {
       body = ErrorWidget(error);
     } else {
-      body = _PdfBody(
-        widget.run,
-        widget.screen,
-        _response,
-      );
+      body = _PdfBody(widget.run, widget.screen, _response);
     }
 
     return DetailSkeleton(
@@ -96,7 +92,9 @@ class _PdfDetailState extends State<PdfDetail> {
               padding: EdgeInsets.symmetric(horizontal: 4),
               children: [
                 ListTile(
-                    title: Text('File'), subtitle: Text(widget.pdf.fileName)),
+                  title: Text('File'),
+                  subtitle: Text(widget.pdf.fileName),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -109,10 +107,13 @@ class _PdfDetailState extends State<PdfDetail> {
                       );
                       if (location != null) {
                         var data = Uint8List.fromList(
-                            base64Decode(widget.pdf.bytesBase64));
-                        var file = XFile.fromData(data,
-                            name: p.basename(location.path),
-                            mimeType: 'application/pdf');
+                          base64Decode(widget.pdf.bytesBase64),
+                        );
+                        var file = XFile.fromData(
+                          data,
+                          name: p.basename(location.path),
+                          mimeType: 'application/pdf',
+                        );
                         await file.saveTo(location.path);
                       }
                     },
@@ -131,20 +132,19 @@ class _PdfDetailState extends State<PdfDetail> {
               padding: EdgeInsets.symmetric(horizontal: 4),
               children: [
                 for (var next in screen.next)
-                  LinkRow(
-                    widget.project,
-                    widget.run.screens[next.to]!,
-                    next,
-                  ),
+                  LinkRow(widget.project, widget.run.screens[next.to]!, next),
               ],
             ),
           ),
         ),
         if (documentationKey != null) ...[
           DetailSkeleton.separator,
-          DocumentationSection(widget.project, widget.run,
-              documentationKey: documentationKey),
-        ]
+          DocumentationSection(
+            widget.project,
+            widget.run,
+            documentationKey: documentationKey,
+          ),
+        ],
       ],
     );
   }
@@ -167,12 +167,7 @@ class _PdfBody extends StatelessWidget {
           width: screenshot.imageWidth.toDouble(),
           height: screenshot.imageHeight.toDouble(),
           child: Stack(
-            children: [
-              Image.memory(
-                screenshot.image,
-                fit: BoxFit.none,
-              ),
-            ],
+            children: [Image.memory(screenshot.image, fit: BoxFit.none)],
           ),
         ),
       );

@@ -17,9 +17,7 @@ class RouterReference {
   RouterReference(this.context);
 
   Map<String, String> get allArgs {
-    return {
-      for (var subMatch in _subMatches) ...subMatch.args,
-    };
+    return {for (var subMatch in _subMatches) ...subMatch.args};
   }
 
   void go(String url) {

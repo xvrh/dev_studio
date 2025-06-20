@@ -15,38 +15,57 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
   final String wireName = 'RunArgs';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, RunArgs object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    RunArgs object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'scenarioName',
-      serializers.serialize(object.scenarioName,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.scenarioName,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
       'device',
-      serializers.serialize(object.device,
-          specifiedType: const FullType(DeviceInfo)),
+      serializers.serialize(
+        object.device,
+        specifiedType: const FullType(DeviceInfo),
+      ),
       'accessibility',
-      serializers.serialize(object.accessibility,
-          specifiedType: const FullType(AccessibilityConfig)),
+      serializers.serialize(
+        object.accessibility,
+        specifiedType: const FullType(AccessibilityConfig),
+      ),
       'imageRatio',
-      serializers.serialize(object.imageRatio,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.imageRatio,
+        specifiedType: const FullType(double),
+      ),
       'language',
-      serializers.serialize(object.language,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.language,
+        specifiedType: const FullType(String),
+      ),
       'onlyWithDocumentationKey',
-      serializers.serialize(object.onlyWithDocumentationKey,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.onlyWithDocumentationKey,
+        specifiedType: const FullType(bool),
+      ),
     ];
 
     return result;
   }
 
   @override
-  RunArgs deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  RunArgs deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new RunArgsBuilder();
 
     final iterator = serialized.iterator;
@@ -56,35 +75,65 @@ class _$RunArgsSerializer implements StructuredSerializer<RunArgs> {
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'scenarioName':
-          result.scenarioName.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.scenarioName.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'device':
-          result.device.replace(serializers.deserialize(value,
-              specifiedType: const FullType(DeviceInfo))! as DeviceInfo);
+          result.device.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(DeviceInfo),
+                )!
+                as DeviceInfo,
+          );
           break;
         case 'accessibility':
-          result.accessibility.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(AccessibilityConfig))!
-              as AccessibilityConfig);
+          result.accessibility.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(AccessibilityConfig),
+                )!
+                as AccessibilityConfig,
+          );
           break;
         case 'imageRatio':
-          result.imageRatio = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.imageRatio =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'language':
-          result.language = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.language =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'onlyWithDocumentationKey':
-          result.onlyWithDocumentationKey = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.onlyWithDocumentationKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -112,25 +161,34 @@ class _$RunArgs extends RunArgs {
   factory _$RunArgs([void Function(RunArgsBuilder)? updates]) =>
       (new RunArgsBuilder()..update(updates))._build();
 
-  _$RunArgs._(
-      {required this.id,
-      required this.scenarioName,
-      required this.device,
-      required this.accessibility,
-      required this.imageRatio,
-      required this.language,
-      required this.onlyWithDocumentationKey})
-      : super._() {
+  _$RunArgs._({
+    required this.id,
+    required this.scenarioName,
+    required this.device,
+    required this.accessibility,
+    required this.imageRatio,
+    required this.language,
+    required this.onlyWithDocumentationKey,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'RunArgs', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        scenarioName, r'RunArgs', 'scenarioName');
+      scenarioName,
+      r'RunArgs',
+      'scenarioName',
+    );
     BuiltValueNullFieldError.checkNotNull(device, r'RunArgs', 'device');
     BuiltValueNullFieldError.checkNotNull(
-        accessibility, r'RunArgs', 'accessibility');
+      accessibility,
+      r'RunArgs',
+      'accessibility',
+    );
     BuiltValueNullFieldError.checkNotNull(imageRatio, r'RunArgs', 'imageRatio');
     BuiltValueNullFieldError.checkNotNull(language, r'RunArgs', 'language');
     BuiltValueNullFieldError.checkNotNull(
-        onlyWithDocumentationKey, r'RunArgs', 'onlyWithDocumentationKey');
+      onlyWithDocumentationKey,
+      r'RunArgs',
+      'onlyWithDocumentationKey',
+    );
   }
 
   @override
@@ -251,20 +309,28 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
   _$RunArgs _build() {
     _$RunArgs _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$RunArgs._(
             id: BuiltValueNullFieldError.checkNotNull(id, r'RunArgs', 'id'),
             scenarioName: scenarioName.build(),
             device: device.build(),
             accessibility: accessibility.build(),
             imageRatio: BuiltValueNullFieldError.checkNotNull(
-                imageRatio, r'RunArgs', 'imageRatio'),
+              imageRatio,
+              r'RunArgs',
+              'imageRatio',
+            ),
             language: BuiltValueNullFieldError.checkNotNull(
-                language, r'RunArgs', 'language'),
+              language,
+              r'RunArgs',
+              'language',
+            ),
             onlyWithDocumentationKey: BuiltValueNullFieldError.checkNotNull(
-                onlyWithDocumentationKey,
-                r'RunArgs',
-                'onlyWithDocumentationKey'),
+              onlyWithDocumentationKey,
+              r'RunArgs',
+              'onlyWithDocumentationKey',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -277,7 +343,10 @@ class RunArgsBuilder implements Builder<RunArgs, RunArgsBuilder> {
         accessibility.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'RunArgs', _$failedField, e.toString());
+          r'RunArgs',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

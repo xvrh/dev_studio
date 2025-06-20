@@ -40,13 +40,13 @@ extension WidgetTesterExtension on WidgetTester {
         }
       }
       //TODO(xha): pre-load lottie animations
-//      for (final lottie in lottieElements) {
-//        final widget = lottie.widget as LottieBuilder;
-//        var provider = widget.lottie;
-//        if (provider is AssetLottie) {
-//          await provider.precache(lottie);
-//        }
-//      }
+      //      for (final lottie in lottieElements) {
+      //        final widget = lottie.widget as LottieBuilder;
+      //        var provider = widget.lottie;
+      //        if (provider is AssetLottie) {
+      //          await provider.precache(lottie);
+      //        }
+      //      }
       //});
 
       await Future.wait(futures);
