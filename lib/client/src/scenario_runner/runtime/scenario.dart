@@ -617,6 +617,8 @@ class _FakeAccessibilityFeatures implements ui.AccessibilityFeatures {
   @override
   bool get onOffSwitchLabels => false;
 
-  @override
   bool get announce => false;
+
+  @override
+  bool get supportsAnnounce => false;
 }
