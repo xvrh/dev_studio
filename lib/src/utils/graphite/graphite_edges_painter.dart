@@ -296,6 +296,7 @@ class LinesPainter extends CustomPainter {
           paragraph,
           rect.centerLeft - Offset(0, paragraph.height + 5),
         );
+        paragraph.dispose();
       }
     }
   }
