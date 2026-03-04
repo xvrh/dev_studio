@@ -15,8 +15,15 @@ Future<Map<String, String>> get commonFonts async {
     'Roboto': '$path/Roboto',
     'CupertinoSystemDisplay': '$path/SF-Pro-Display',
     'CupertinoSystemText': '$path/SF-Pro-Text',
+    'Segoe UI': '$path/Roboto',
+    'monospace': '$path/Roboto',
+    'sans-serif': '$path/Roboto',
+    'NotoSansSC': '$path/Noto_Sans_SC',
+    'NotoSansTC': '$path/Noto_Sans_TC',
   };
 }
+
+final fallbackNotoFonts = ['NotoSansSC', 'NotoSansTC'];
 
 Future<String> get ahemFont async {
   final path = await commonFontsPath;
