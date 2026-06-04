@@ -23,8 +23,6 @@ Future<Map<String, String>> get commonFonts async {
   };
 }
 
-final fallbackNotoFonts = ['NotoSansSC', 'NotoSansTC'];
-
 Future<String> get ahemFont async {
   final path = await commonFontsPath;
   return '$path/Ahem';

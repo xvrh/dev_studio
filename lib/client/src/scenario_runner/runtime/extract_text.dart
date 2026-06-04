@@ -32,8 +32,12 @@ TextInfo textInfoFromElement(
       ..color = style.color?.toARGB32()
       ..fontSize = style.fontSize
       ..fontFamily = style.fontFamily
-      ..fontWeight = style.fontWeight?.index,
+      ..fontWeight = style.fontWeight?.indexInt,
   );
+}
+
+extension on FontWeight {
+  int get indexInt => (value ~/ 100 - 1).clamp(0, 8);
 }
 
 String? textFromElement(Element candidate) {

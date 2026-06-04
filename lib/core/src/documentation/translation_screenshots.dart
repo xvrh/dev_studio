@@ -21,15 +21,15 @@ class TranslationScreenshotUtilities {
 
     var result = <String, List<String>>{};
     for (var argument
-        in initializer.argumentList.arguments.cast<NamedExpression>()) {
-      var valueCode = argument.expression as SetOrMapLiteral;
+        in initializer.argumentList.arguments.cast<NamedArgument>()) {
+      var valueCode = argument.argumentExpression as SetOrMapLiteral;
 
       var values = <String>[];
       for (var setEntry in valueCode.elements.cast<PrefixedIdentifier>()) {
         values.add(setEntry.identifier.name);
       }
 
-      result[argument.name.label.name] = values;
+      result[argument.name.lexeme] = values;
     }
     return result;
   }
